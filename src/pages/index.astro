@@ -1,0 +1,63 @@
+---
+import Layout from "@/layouts/Layout.astro"
+
+import AboutMe from "@/components/AboutMe.astro"
+import Briefcase from "@/components/icons/Briefcase.astro"
+import CodeIcon from "@/components/icons/Code.astro"
+import Experience from "@/components/Experience.astro"
+import ProfileCheck from "@/components/icons/ProfileCheck.astro"
+import Projects from "@/components/Projects.astro"
+import SectionContainer from "@/components/SectionContainer.astro"
+import Hero from "@/components/Hero.astro"
+import TitleSection from "@/components/TitleSection.astro"
+import TechStack from "@/components/TechStack.astro"
+---
+
+<Layout
+  title="PGA - FullStack Dev"
+  description="Desarrollador Full Stack con experiencia en React, React Native, PHP y Node.js. Construyo aplicaciones eficientes y escalables."
+>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-24" id="inicio">
+      <Hero>
+        </slot>
+      </Hero>
+    </SectionContainer>
+
+    <div class="space-y-24 mt-10">
+
+      <SectionContainer id="proyectos">
+        <TitleSection>
+          <CodeIcon class="size-10" />
+          Proyectos
+        </TitleSection>
+        <Projects />
+      </SectionContainer>
+        
+      <SectionContainer id="experiencia">
+        <TitleSection>
+          <Briefcase class="size-10" />
+          Experiencia laboral
+        </TitleSection>
+        <Experience />
+      </SectionContainer>
+
+
+      <SectionContainer id="sobre-mi">
+        <TitleSection>
+          <ProfileCheck class="size-10" />
+          Sobre mí
+        </TitleSection>
+        <AboutMe />
+      </SectionContainer>
+
+      <SectionContainer id="techstack">
+        <TitleSection>
+          <ProfileCheck class="size-10" />
+          Tech Stack
+        </TitleSection>
+          <TechStack />
+      </SectionContainer>
+    </div>
+  </main>
+</Layout>

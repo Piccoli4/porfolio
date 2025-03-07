@@ -1,0 +1,33 @@
+<div class="flex items-center ">
+<span class="relative inline-flex overflow-hidden rounded p-[1px]">
+  <span
+    class="
+      absolute 
+      inset-[-1000%] 
+      animate-[spin_2s_linear_infinite] 
+      bg-[conic-gradient(from_90deg_at_50%_50%,#990000_0%,#ffcccc_50%,#990000_100%)]
+      dark:bg-[conic-gradient(from_90deg_at_50%_50%,#003d99_0%,#cce0ff_50%,#003d99_100%)]"
+  ></span>
+  <div 
+    class="
+      inline-flex 
+      items-center 
+      justify-center 
+      w-full 
+      px-3 
+      py-1 
+      text-sm 
+      text-red-800
+      dark:text-blue-200 
+      bg-gray-300 
+      rounded 
+      cursor-pointer 
+      dark:bg-gray-800 
+      dark:text-white/80 
+      backdrop-blur-3xl
+    "
+  >
+    <slot />
+  </div>
+</span>
+</div>
