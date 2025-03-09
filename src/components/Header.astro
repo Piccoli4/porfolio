@@ -31,127 +31,127 @@ const navItems = [
 ---
 
 <header 
-    class="
-        flex 
-        justify-between 
-        items-center
-        pt-1 
-        mb-10
-        font-bold
-        border-black
-        dark:border-white
-        sticky 
-        top-0 
-        z-50 
-        w-full 
-        border-b 
-        bg-background/95 
-        backdrop-blur 
-        supports-[backdrop-filter]:bg-background/60
-        px-4
-    "
+  class="
+    flex 
+    justify-between 
+    items-center
+    pt-1 
+    mb-10
+    font-bold
+    border-black
+    dark:border-white
+    sticky 
+    top-0 
+    z-50 
+    w-full 
+    border-b 
+    bg-background/95 
+    backdrop-blur 
+    supports-[backdrop-filter]:bg-background/60
+    px-4
+  "
 >
-    <!-- LOGO -->
-    <img 
-        class="size-10 md:size-12 ml-2" 
-        src="/pga_image.svg" 
-        alt="Logo de Piccoli Guido Augusto"
-    />
+  <!-- LOGO -->
+  <img 
+      class="size-10 md:size-12 ml-2" 
+      src="/pga_image.svg" 
+      alt="Logo de Piccoli Guido Augusto"
+  />
 
-    <!-- NAV DESKTOP (oculto en móvil) -->
-    <nav
-      class="hidden sm:flex flex-row gap-6 md:gap-12 text-xs lg:text-lg text-black dark:text-white items-center"
-    >
-      {
-        navItems.map((link) => (
-          <a
-            class="hover:scale-110 hover:text-[#DD1D18] transition dark:hover:text-[#DD1D18]"
-            aria-label={link.label}
-            href={link.url}
-          >
-            {link.title}
-          </a>
-        ))
-      }
-      <ThemeToggle />
-    </nav>
-
-      <!-- BOTÓN DESCARGAR CV (siempre visible) -->
-      <a
-        href="/CV_Piccoli_Guido_A.pdf"
-        download="CV_Piccoli_Guido_Augusto.pdf"
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="
-          bg-[#DD1D18] 
-          hover:bg-[#690D0A] 
-          text-white 
-          text-xs
-          lg:text-md
-          drop-shadow-lg
-          font-bold 
-          py-1
-          lg:py-2
-          px-2
-          lg:px-4 
-          rounded 
-          cursor-pointer
-          hover:scale-110
-          transition
-          hidden sm:block
-        "
-      >
-        Descargar CV
-      </a>  
-
-    <!-- ICONO MENU (visible solo en móviles) -->
-    <button 
-        id="menu-button"
-        class="sm:hidden text-white text-3xl"
-        aria-label="Abrir menú"
-    >
-        ☰
-    </button>
-
-    <!-- MENU DESPLEGABLE (oculto por defecto) -->
-    <div 
-        id="mobile-menu" 
-        class="
-          hidden 
-          absolute 
-          top-14 
-          right-4 
-          bg-[#282828] 
-          w-48 
-          rounded-lg 
-          shadow-lg 
-          flex-col 
-          items-start 
-          text-white 
-          sm:hidden
-        "
-    >
-      {
-        navItems.map((link) => (
-          <a
-            class="block px-4 py-2 w-full"
-            aria-label={link.label}
-            href={link.url}
-          >
-            {link.title}
-          </a>
-        ))
-      }
-        <a 
-            href="/CV_Piccoli_Guido_A.pdf" 
-            download="CV_Piccoli_Guido_Augusto.pdf" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="block px-4 py-2 w-full"
+  <!-- NAV DESKTOP (oculto en móvil) -->
+  <nav
+    class="hidden sm:flex flex-row gap-6 md:gap-12 text-xs lg:text-lg text-black dark:text-white items-center"
+  >
+    {
+      navItems.map((link) => (
+        <a
+          class="hover:scale-110 hover:text-[#DD1D18] transition dark:hover:text-[#DD1D18]"
+          aria-label={link.label}
+          href={link.url}
         >
-            Descargar CV
+          {link.title}
         </a>
-    </div>
+      ))
+    }
+    <ThemeToggle />
+  </nav>
+
+    <!-- BOTÓN DESCARGAR CV (siempre visible) -->
+    <a
+      href="/CV_Piccoli_Guido_A.pdf"
+      download="CV_Piccoli_Guido_Augusto.pdf"
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="
+        bg-[#DD1D18] 
+        hover:bg-[#690D0A] 
+        text-white 
+        text-xs
+        lg:text-md
+        drop-shadow-lg
+        font-bold 
+        py-1
+        lg:py-2
+        px-2
+        lg:px-4 
+        rounded 
+        cursor-pointer
+        hover:scale-110
+        transition
+        hidden sm:block
+      "
+    >
+      Descargar CV
+    </a>  
+
+  <!-- ICONO MENU (visible solo en móviles) -->
+  <button 
+      id="menu-button"
+      class="sm:hidden text-white text-3xl"
+      aria-label="Abrir menú"
+  >
+      ☰
+  </button>
+
+  <!-- MENU DESPLEGABLE (oculto por defecto) -->
+  <div 
+      id="mobile-menu" 
+      class="
+        hidden 
+        absolute 
+        top-14 
+        right-4 
+        bg-[#282828] 
+        w-48 
+        rounded-lg 
+        shadow-lg 
+        flex-col 
+        items-start 
+        text-white 
+        sm:hidden
+      "
+  >
+    {
+      navItems.map((link) => (
+        <a
+          class="block px-4 py-2 w-full"
+          aria-label={link.label}
+          href={link.url}
+        >
+          {link.title}
+        </a>
+      ))
+    }
+      <a 
+          href="/CV_Piccoli_Guido_A.pdf" 
+          download="CV_Piccoli_Guido_Augusto.pdf" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="block px-4 py-2 w-full"
+      >
+          Descargar CV
+      </a>
+  </div>
 </header>
 
 <script>
