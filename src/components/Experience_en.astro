@@ -1,0 +1,28 @@
+---
+import ExperienceItem from "./ExperienceItem_es.astro"
+
+const EXPERIENCE = [
+  {
+      title: 'Full Stack Developer',
+      company: 'Sectorial Informática - Ministry of Health of the Province of Santa Fe',
+      date: 'January 2023 - January 2024',
+      description: 'Developed and maintained systems using PHP and Symfony, applying MVC and SOLID principles for scalable code. Improved user experience with AJAX, managed versions in GitLab, and tasks in Redmine. Optimized SQL databases with ORM and ACID transactions, ensuring integrity and reducing downtime. Also worked on frontend optimization with Bootstrap, JavaScript, HTML5, and CSS3. Additionally, implemented backend security to protect sensitive medical data and managed the integration of Web Services and REST APIs to enhance system interoperability.'
+  },
+  {
+      title: 'Full Stack Developer',
+      company: 'Freelance',
+      date: '2022 - Present',
+      description: 'Worked on designing and implementing solutions from scratch, as well as improving and optimizing existing projects. \n\Handled the entire development cycle, from planning and architecture to implementation and maintenance, ensuring clean code, scalability, and an excellent user experience. Additionally, collaborated directly with clients to understand their needs and translate them into efficient and functional solutions.'
+  }
+]
+---
+
+<ol class="relative mt-16">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>

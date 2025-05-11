@@ -1,0 +1,27 @@
+---
+import Argentina from "./icons/Argentina.astro";
+import Usa from "./icons/usa.astro";
+
+const currentPath = Astro.url.pathname;
+const currentLang = currentPath.startsWith('/en') ? 'en' : 'es';
+
+// Si estás en /es/xxx, pasar a /en/xxx (y viceversa)
+const targetLang = currentLang === 'es' ? 'en' : 'es';
+const targetPath = currentPath.replace(/^\/(en|es)/, '') || '/';
+const newUrl = `/${targetLang}${targetPath}`;
+---
+
+<div class="flex items-center h-10">
+  <a href={currentLang === 'es' ? newUrl : currentPath} title="English" class="mx-1">
+    <div class="w-6 h-6 rounded-md overflow-hidden flex items-center justify-center hover:scale-125 transition">
+      <Usa />
+    </div>
+  </a>
+  <a href={currentLang === 'en' ? newUrl : currentPath} title="Español" class="mx-1">
+    <div class="w-6 h-6 rounded-md overflow-hidden flex items-center justify-center hover:scale-125 transition">
+      <Argentina />
+    </div>
+  </a>
+</div>
+
+

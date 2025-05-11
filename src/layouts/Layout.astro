@@ -1,9 +1,9 @@
 ---
 import "@fontsource-variable/onest"
-
-import Header from "../components/Header.astro"
-import Footer from "../components/Footer.astro"
 import { ViewTransitions } from "astro:transitions"
+import Header from "../components/Header.astro"
+import Footer_es from "../components/Footer_es.astro"
+import Footer_en from "../components/Footer_en.astro"
 
 interface Props {
   title: string
@@ -11,27 +11,33 @@ interface Props {
 }
 
 const { description, title } = Astro.props
+
+// Determinamos el idioma por la URL
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es'
+
+// Seleccionamos el footer según el idioma
+const Footer = lang === 'en' ? Footer_en : Footer_es
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <!-- Descripción optimizada para SEO -->
-		<meta name="description" content="Desarrollador Full Stack con experiencia en React, React Native, PHP y Node.js. Construyo aplicaciones eficientes y escalables." />
-		<!-- Palabras clave -->
-		<meta name="keywords" content="Full Stack Developer, React, Node.js, PHP, Desarrollo Web, Astro, Tailwind, MySQL, Piccoli Guido Augusto, piccoli guido augusto, piccoli, augusto, pga, PGA" />
-		<!-- Autor -->
-		<meta name="author" content="Piccoli Guido Augusto" />
-		<!-- Open Graph (para compartir en redes sociales) -->
-	  <meta property="og:title" content="PGA - Full Stack Developer" />
-		<meta property="og:description" content="Desarrollador Full Stack enfocado en la creación de aplicaciones web y móviles eficientes y escalables." />
-		<meta property="og:image" content="/pga_blanco.svg" />
-		<meta property="og:url" content="https://piccoliaugusto.com.ar" />
-		<meta property="og:type" content="website" />
+    <meta name="description" content="Desarrollador Full Stack con experiencia en React, React Native, PHP y Node.js. Construyo aplicaciones eficientes y escalables." />
+    <!-- Palabras clave -->
+    <meta name="keywords" content="Full Stack Developer, React, Node.js, PHP, Desarrollo Web, Astro, Tailwind, MySQL, Piccoli Guido Augusto, piccoli guido augusto, piccoli, augusto, pga, PGA" />
+    <!-- Autor -->
+    <meta name="author" content="Piccoli Guido Augusto" />
+    <!-- Open Graph (para compartir en redes sociales) -->
+    <meta property="og:title" content="PGA - Full Stack Developer" />
+    <meta property="og:description" content="Desarrollador Full Stack enfocado en la creación de aplicaciones web y móviles eficientes y escalables." />
+    <meta property="og:image" content="/pga_blanco.svg" />
+    <meta property="og:url" content="https://piccoliaugusto.com.ar" />
+    <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="/pga_blanco.svg" />
     <title>{title}</title>
     <ViewTransitions />

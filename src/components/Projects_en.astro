@@ -1,0 +1,117 @@
+---
+import GitHub from "./icons/GitHub.astro"
+import NextJS from "./icons/NextJS.astro"
+import Link from "./icons/Link.astro"
+import LinkButton from "./LinkButton.astro"
+import React from "./icons/React.astro"
+import Chakra from "./icons/Chakra.astro"
+import Firebase from "./icons/Firebase.astro"
+import Expo from "./icons/Expo.astro"
+
+const TAGS = {
+  REACT: {
+    name: "React",
+    class: "bg-blue-500 text-white",
+    icon: React,
+  },
+  REACTNATIVE: {
+    name: "React Native",
+    class: "bg-blue-500 text-white",
+    icon: React,
+  },
+  CHAKRA: {
+    name: "Chakra UI",
+    class: "bg-blue-500 text-white",
+    icon: Chakra,
+  },
+  FIREBASE: {
+    name: "Firebase",
+    class: "bg-blue-500 text-white",
+    icon: Firebase,
+  },
+  EXPO: {
+    name: "Expo",
+    class: "bg-blue-500 text-white",
+    icon: Expo,
+  },
+  NEXTJS: {
+    name: "Next.js",
+    class: "bg-blue-500 text-white",
+    icon: NextJS,
+  }
+}
+
+const PROJECTS = [
+  {
+    title: "Emercor",
+    description: "Marketplace application developed with React Native and Firebase, allowing users to easily buy and sell products.",
+    link: "",
+    github: "https://github.com/Piccoli4/Emercor",
+    image: "/projects/emercor.webp",
+    tags: [TAGS.REACTNATIVE, TAGS.NEXTJS, TAGS.EXPO, TAGS.FIREBASE]
+  },
+  {
+    title: "TurnoSmart",
+    description: "TurnoSmart is an intuitive app for managing appointments. It allows users to book, view, and manage appointments with a personalized dashboard, real-time updates, and security powered by Firebase.",
+    link: "",
+    github: "https://github.com/Piccoli4/TurnoSmart",
+    image: "/projects/turnosmart.webp",
+    tags: [TAGS.REACTNATIVE, TAGS.NEXTJS, TAGS.EXPO, TAGS.FIREBASE]
+  },
+  {
+    title: "BasketDrip",
+    description: "BasketDrip is a responsive website for basketball enthusiasts, where they can discover and purchase exclusive clothing and accessories with an intuitive and hassle-free design.",
+    link: "https://basketdrip.vercel.app/",
+    github: "https://github.com/Piccoli4/BasketDrip",
+    image: "/projects/Basketdrip.webp",
+    tags: [TAGS.REACT, TAGS.CHAKRA, TAGS.FIREBASE]
+  },
+];
+---
+
+<div class="flex flex-col gap-y-16">
+  {
+    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+      <article class="flex flex-col justify-center items-center space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <div class="flex flex-col items-center w-[45%] col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+          <img 
+              alt={`Captura de pantalla del proyecto ${image}`} 
+              class="object-cover object-top w-full transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" 
+              loading="lazy" 
+              src={image} 
+          />
+        </div>
+
+        <div class="w-[90%] md:w-full justify-center items-center md:justify-start md:items-start">
+          <h3 class="text-lg xl:text-2xl font-semibold text-red-600 mb-1 ml-2 dark:text-red-400 text-center md:text-start">{title}</h3>
+          <p class="text-sm xl:text-lg mb-2 text-pretty ml-2 flex-grow">{description}</p>
+          <ul class="flex flex-row gap-6 justify-center md:justify-start items-center ml-6">
+              {tags.map(tag => (
+                  <li class="flex flex-col items-center text-black dark:text-white size-11 whitespace-nowrap my-3">
+                      <tag.icon/> 
+                      <span class="text-xs mt-1">{tag.name}</span>
+                  </li>
+              ))} 
+          </ul>
+          <footer class="flex items-end justify-center md:justify-start gap-x-4 m-2">
+              {github && (
+                  <LinkButton href={github}>
+                      <GitHub class="size-6" />
+                        View on GitHub
+                  </LinkButton>
+              )}
+              {link && (
+                  <LinkButton href={link}>
+                      <Link class="size-5" />
+                        Live Preview
+                  </LinkButton>
+              )}
+          </footer>
+        </div>
+      </article>
+    ))
+  }
+</div>
+
+
+
