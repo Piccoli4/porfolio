@@ -1,0 +1,995 @@
+---
+const EDUCATION = [
+    {
+        id: "tuig",
+        title: "Técnico Universitario en Informática",
+        institution: "Universidad Nacional del Litoral - FICH",
+        date: "2021 - 2024",
+        type: "Título Universitario",
+        status: "Completado",
+        image: "/education/tuig.jpg",
+        description: "Formación técnica orientada a la gestión informática en organizaciones, con énfasis en desarrollo de software, bases de datos, redes, sistemas operativos y herramientas web. Capacita para analizar necesidades administrativas, implementar soluciones tecnológicas y optimizar procesos mediante el uso eficiente de sistemas de información.",
+        skills: ["Programación", "Bases de Datos", "Desarrollo Web", "Sistemas", "Metodologías Ágiles"],
+        featured: true
+    },
+    {
+        id: "desarrollo-web-responsive",
+        title: "Diseño Web Responsive - HTML5 y CSS3",
+        institution: "Universidad Tecnológica Nacional - FRR",
+        date: "2020",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/dwr.jpg",
+        description: "Formación en diseño web responsive con foco en HTML5 y CSS3, abordando maquetación semántica, estilos avanzados, uso de multimedia, animaciones, tipografías web y adaptación de interfaces a distintos dispositivos y resoluciones, priorizando usabilidad, accesibilidad y compatibilidad entre navegadores.",
+        skills: ["HTML5", "CSS3", "Diseño Responsive", "Frontend", "Web Design"],
+        featured: false
+    },
+    {
+        id: "programacion-web-inicial",
+        title: "Programación Web Inicial",
+        institution: "Universidad Tecnológica Nacional - FRR",
+        date: "2024",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/pwi.jpg",
+        description: "Curso introductorio al desarrollo web, abarcando desde el registro de dominios hasta la creación de sitios responsivos con HTML5, CSS3, JavaScript y Bootstrap. Incluye fundamentos de maquetación, estilos, interactividad y diseño adaptable.",
+        skills: ["HTML", "CSS", "JavaScript", "Desarrollo Web", "Frontend Básico"],
+        featured: false
+    },
+    {
+        id: "php-mysql",
+        title: "Programación Web con PHP y MySQL",
+        institution: "Universidad Tecnológica Nacional - FRR",
+        date: "2023",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/pwphpmysql.jpg",
+        description: "Curso de desarrollo web backend con PHP y MySQL. Abarca estructuras de control, manejo de formularios (GET/POST), sesiones, funciones personalizadas, integración con bases de datos mediante MySQLi, y desarrollo de un panel de administración con operaciones CRUD completas.",
+        skills: ["PHP", "MySQL", "MySQLi", "CRUD", "Sesiones", "Formularios", "Estructuras de Control", "Arrays", "Bootstrap", "Backend Development", "Panel de Administración"],
+        featured: false
+    },
+    {
+        id: "php-mysql-avanzado",
+        title: "Programación Web con PHP y MySQL Avanzado",
+        institution: "Universidad Tecnológica Nacional - FRR",
+        date: "2023",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/pwphpmysqlna.jpg",
+        description: "Curso avanzado de PHP y MySQL con enfoque en programación orientada a objetos (POO), manejo de fechas, archivos, imágenes dinámicas, implementación de CAPTCHA, seguridad web y uso de bibliotecas como FPDF y PHPMailer. Incluye desarrollo de sistemas web complejos con integración de bases de datos y contenido dinámico.",
+        skills: ["PHP Avanzado", "MySQL", "POO (Programación Orientada a Objetos)", "Clases y Objetos", "Herencia", "Polimorfismo", "Interfaces", "Clases Abstractas", "PDO", "Seguridad Web", "FPDF", "PHPMailer", "CAPTCHA", "Manejo de Archivos", "Imágenes Dinámicas", "Bootstrap", "CRUD", "Sesiones", "Backend Development"],
+        featured: false
+    },
+    {
+        id: "programacion-javascript",
+        title: "Programación Web con JavaScript",
+        institution: "Universidad Tecnológica Nacional - FRR",
+        date: "2023",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/pwjs.jpg",
+        description: "Curso completo de Javascript para desarrollo frontend. Cubre desde fundamentos del lenguaje (variables, operadores, ciclos, funciones) hasta manipulación del DOM, eventos, validación de formularios e introducción a jQuery. Enfocado en dar dinamismo e interactividad a sitios web desarrollados con HTML y CSS.",
+        skills: ["Javascript", "DOM Manipulation", "Event Handling", "Form Validation", "jQuery", "BOM", "Arrays", "Loops", "Functions", "Conditionals", "Frontend Development", "Client-side Scripting"],
+        featured: false
+    },
+    {
+        id: "desarrollo-web-fullstack",
+        title: "Diplomatura en Programación Web Full Stack",
+        institution: "Universidad Tecnológica Nacional - FRR",
+        date: "2024",
+        type: "Diplomatura",
+        status: "Completado",
+        image: "/education/dpwfs.jpg",
+        description: "Diplomatura integral que consolida y certifica la formación completa en desarrollo web FullStack. Cubre desde el diseño frontend responsivo con HTML5 y CSS3, la programación interactiva con JavaScript y jQuery, hasta el desarrollo backend avanzado con PHP y MySQL, incluyendo programación orientada a objetos, seguridad, manejo de sesiones, y operaciones CRUD. Formación estructurada y avalada por la UTN, abarcando 210 horas de contenido especializado.",
+        skills: ["FullStack Development", "HTML5", "CSS3", "Responsive Design", "JavaScript", "jQuery", "PHP", "MySQL", "POO", "CRUD Operations", "Session Management", "Form Validation", "DOM Manipulation", "Bootstrap", "Backend Security", "RESTful Concepts", "Git", "Web Deployment"],
+        featured: false
+    },
+    {
+        id: "react-js",
+        title: "React JS",
+        institution: "Coderhouse",
+        date: "2024",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/rjs.jpg",
+        description: "Curso intensivo de React JS que abarca desde los fundamentos de JSX, componentes y props, hasta hooks avanzados como useState, useEffect y useContext. Incluye routing con React Router, manejo de eventos, consumo de APIs con Fetch, y técnicas de renderizado condicional y optimización con React.memo. Enfoque práctico en el desarrollo de aplicaciones interactivas y escalables.",
+        skills: ["React", "JSX", "Hooks (useState, useEffect, useContext, useRef)", "React Router", "Componentes", "Props", "Event Handling", "Fetch API", "Renderizado Condicional", "React.memo", "Patrones de Diseño", "Firebase (mención)", "Frontend Moderno"],
+        featured: false
+    },
+    {
+        id: "desarrollo-apps",
+        title: "Desarrollo de Aplicaciones",
+        institution: "Coderhouse",
+        date: "2024",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/dapp.jpg",
+        description: "Curso práctico de desarrollo de aplicaciones móviles cross-platform con React Native. Aprende a crear aplicaciones nativas para iOS y Android desde cero, utilizando componentes core, navegación entre pantallas, manejo de estado, conexión a APIs REST y bases de datos en tiempo real (Firebase/Realm). Incluye estilos responsivos, debug, y proceso de publicación en tiendas de aplicaciones.",
+        skills: ["React Native", "JavaScript", "Cross-Platform Development", "Core Components", "Navigation", "State Management", "REST APIs", "Firebase", "Realm DB", "Async/Await", "Responsive Design", "Android Studio", "Xcode", "Debugging", "App Deployment", "UI/UX Mobile"],
+        featured: false
+    },
+    {
+        id: "python-coderhouse",
+        title: "Programación con Python",
+        institution: "Coderhouse",
+        date: "2025",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/pch.png",
+        description: "Curso completo de Python desde cero hasta desarrollo web con Django Framework. Incluye fundamentos del lenguaje (tipos de datos, control de flujo, POO, manejo de archivos), creación de aplicaciones web con arquitectura MVT, implementación de CRUD, autenticación de usuarios, gestión de formularios con ModelForms, y despliegue en plataformas como Heroku y PythonAnywhere. Enfoque en buenas prácticas, TDD y uso de Git/GitHub.",
+        skills: ["Python", "Django", "MVT Architecture", "POO", "CRUD", "ModelForms", "Authentication", "User Management", "Git", "GitHub", "Heroku", "PythonAnywhere", "Unit Testing", "TDD", "RESTful Concepts", "JSON", "Virtual Environments", "Database Management", "Backend Development"],
+        featured: false
+    },
+    {
+        id: "python-midudev",
+        title: "Python Desde Cero",
+        institution: "MiduDev",
+        date: "2025",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/pmd.jpg",
+        description: "Curso introductorio a Python diseñado para aprender los fundamentos del lenguaje desde cero. Cubre sintaxis básica, estructuras de datos, control de flujo, funciones, y conceptos esenciales de programación. Enfoque práctico y moderno, impartido por Miguel Ángel Durán (Midudev), con énfasis en la resolución de problemas y buenas prácticas desde el primer día.",
+        skills: ["Python", "Sintaxis Básica", "Estructuras de Datos", "Control de Flujo", "Funciones", "Programación Estructurada", "Resolución de Problemas", "Buenas Prácticas", "Algoritmos Básicos", "Ejercicios Prácticos"],
+        featured: false
+    },
+    {
+        id: "opcw-cert",
+        title: "Operador PC Windows",
+        institution: "CENEDI",
+        date: "2017",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/opcw.jpg",
+        description: "Curso integral de ofimática y manejo del sistema operativo Windows XP. Cubre el uso de herramientas del sistema (Bloc de notas, Calculadora, Paint, Explorador), gestión de archivos y carpetas, mantenimiento básico (Scandisk, desfragmentador, antivirus), y el dominio de aplicaciones de Office 2003: Word (procesamiento de texto), Excel (planillas electrónicas y bases de datos) y Access (bases de datos relacionales). Enfoque en conocimientos teóricos y procedimentales esenciales para el entorno laboral.",
+        skills: ["Windows XP", "Microsoft Word 2003", "Microsoft Excel 2003", "Microsoft Access 2003", "Gestión de Archivos", "Mantenimiento de PC", "Ofimática", "Procesamiento de Texto", "Planillas Electrónicas", "Bases de Datos", "Sistemas Operativos", "Herramientas del Sistema"],
+        featured: false
+    },
+    {
+        id: "reparacion-celulares",
+        title: "Reparación de Teléfonos Celulares",
+        institution: "CENEDI",
+        date: "2017",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/rtc.jpg",
+        description: "Curso técnico especializado en la reparación de teléfonos celulares de diferentes marcas y modelos. Incluye fundamentos de telefonía celular, electrónica básica, uso de herramientas de taller, diagnóstico de fallas, desarme y armado de dispositivos, soldadura de componentes, limpieza de placas mojadas, cambio de pantallas táctiles, reparación de audio, y desbloqueo por software. Ideal para iniciarse en el ámbito de la reparación electrónica con un enfoque teórico-práctico.",
+        skills: ["Electrónica Básica", "Diagnóstico de Fallas", "Desarme y Armado", "Soldadura", "Limpieza de Placas", "Cambio de Pantallas", "Reparación de Audio", "Desbloqueo por Software", "Herramientas de Taller", "Telefonía Celular", "Reparación de Dispositivos Móviles"],
+        featured: false
+    },
+    {
+        id: "cb-cert",
+        title: "Conciliación Bancaria",
+        institution: "ClMe",
+        date: "2021",
+        type: "Certificación",
+        status: "Completado",
+        image: "/education/cb.jpg",
+        description: "Curso práctico de conciliación bancaria, enfocado en el control y ajuste de diferencias entre los registros contables de una empresa y los movimientos bancarios. Cubre conceptos fundamentales de cuentas corrientes, extractos bancarios, cheques comunes y diferidos, diferencias transitorias y permanentes, y aplicación de metodologías para conciliar saldos contables y bancarios mediante ejercicios reales con hojas de cálculo y registros contables.",
+        skills: ["Conciliación Bancaria", "Contabilidad", "Extractos Bancarios", "Cuentas Corrientes", "Cheques Comunes y Diferidos", "Diferencias Transitorias", "Diferencias Permanentes", "Registros Contables", "Control Financiero", "Ajustes Contables", "Saldo Contable vs Saldo Bancario", "Ejercicios Prácticos", "Excel para Contabilidad", "Gestión de Cuentas Bancarias"],
+        featured: false
+    }
+]
+
+const getStatusColor = (status: string): string => {
+    switch (status) {
+        case 'Completado':
+            return 'bg-emerald-500'
+        case 'En Curso':
+            return 'bg-blue-500'
+        case 'Pausado':
+            return 'bg-amber-500'
+        default:
+            return 'bg-gray-500'
+    }
+}
+---
+
+<!-- Contenedor principal de la galería -->
+<div class="max-w-7xl mx-auto">
+    <!-- Header con estadísticas -->
+    <div class="text-center mb-12">
+        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-2xl p-6 backdrop-blur-sm border border-indigo-100/50 dark:border-indigo-900/30 max-w-2xl mx-auto">
+            <div class="grid grid-cols-3 gap-6 text-center">
+                <div class="space-y-2">
+                    <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">{EDUCATION.length}</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Certificaciones</div>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">{EDUCATION.filter(item => item.type === 'Título Universitario').length}</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Títulos</div>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">{new Date().getFullYear() - 2017}</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Años de formación</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor de galería con animación -->
+    <div class="relative overflow-hidden">
+        <!-- Container de scroll horizontal con animación continua -->
+        <div
+            id="education-gallery"
+            class="flex gap-6 py-4 education-scroll"
+        >
+            {
+                EDUCATION.map((item, index) => (
+                <div
+                    class="group relative flex-shrink-0 cursor-pointer transition-all duration-500 hover:-translate-y-2"
+                    style={`animation-delay: ${index * 150}ms`}
+                    onclick={`openEducationModal('${item.id}')`}
+                    data-index={index}
+                >
+                    <!-- Card de diploma/certificado -->
+                    <div class="relative w-80 h-60 bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                    
+                        <!-- Badge de tipo -->
+                        <div class="absolute top-3 left-3 z-20">
+                            <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full backdrop-blur-sm bg-white/90 dark:bg-gray-800/90 text-gray-700 dark:text-gray-300">
+                                {item.type}
+                            </span>
+                        </div>
+
+                        <!-- Badge de estado -->
+                        <div class="absolute top-3 right-3 z-20">
+                            <div class={`w-3 h-3 rounded-full ${getStatusColor(item.status)} animate-pulse shadow-md`}></div>
+                        </div>
+
+                        <!-- Badge de destacado -->
+                        {item.featured && (
+                            <div class="absolute top-12 left-3 z-20">
+                                <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
+                                    ⭐ Principal
+                                </div>
+                            </div>
+                        )}
+
+                        <!-- Imagen del diploma/certificado real -->
+                        <div class="relative h-full overflow-hidden">
+                            <img 
+                                src={item.image} 
+                                alt={`Certificado de ${item.title}`}
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                loading="lazy"
+                            />
+
+                            <!-- Overlay de hover -->
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 flex items-center justify-center">
+                                <div class="opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-75 group-hover:scale-100">
+                                    <div class="bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-full p-4">
+                                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Información en la parte inferior -->
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white p-4">
+                            <h3 class="font-bold text-lg mb-1 line-clamp-2 leading-tight">
+                                {item.title}
+                            </h3>
+                            <p class="text-sm text-white/80 mb-1">{item.institution}</p>
+                            <p class="text-xs text-white/60">{item.date}</p>
+                        </div>
+
+                        <!-- Efecto de brillo -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"></div>
+                    </div>
+                </div>
+                ))
+            }
+        </div>
+    </div>
+
+    <!-- Call to action -->
+    <div class="text-center mt-12">
+        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/20 dark:to-purple-950/20 rounded-xl p-6 border border-indigo-100/50 dark:border-indigo-900/20 max-w-2xl mx-auto">
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                <span class="font-semibold text-indigo-600 dark:text-indigo-400">Formación continua:</span>
+                Mi compromiso con el aprendizaje constante se refleja en estas {EDUCATION.length} certificaciones especializadas en desarrollo web y tecnologías modernas, desde mis inicios en 2017 hasta la actualidad.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para ver diploma ampliado -->
+<div id="education-modal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="relative max-w-6xl w-full max-h-[90vh] bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
+        <!-- Header del modal -->
+        <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30">
+            <h3 id="modal-title" class="text-2xl font-bold text-gray-900 dark:text-white"></h3>
+            <button onclick="closeEducationModal()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Contenido del modal -->
+        <div class="p-6 max-h-[calc(90vh-120px)] overflow-y-auto">
+            <!-- Imagen del diploma ampliada con navegación -->
+            <div class="relative mb-8 bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden group">
+                <!-- Flecha izquierda -->
+                <button 
+                    onclick="navigateToPreviousCertificate()" 
+                    class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full p-3 text-white transition-all duration-300 opacity-0 group-hover:opacity-100"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Imagen -->
+                <img 
+                    id="modal-image" 
+                    class="w-full max-h-96 object-contain"
+                    alt="Certificado ampliado"
+                />
+                
+                <!-- Flecha derecha -->
+                <button 
+                    onclick="navigateToNextCertificate()" 
+                    class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full p-3 text-white transition-all duration-300 opacity-0 group-hover:opacity-100"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Indicador de posición -->
+                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span id="modal-position"></span>
+                </div>
+            </div>
+            
+            <!-- Información detallada -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Información básica -->
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6"></path>
+                            </svg>
+                            Institución
+                        </h4>
+                        <p id="modal-institution" class="text-gray-600 dark:text-gray-400"></p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            Período
+                        </h4>
+                        <p id="modal-date" class="text-gray-600 dark:text-gray-400"></p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                            </svg>
+                            Estado
+                        </h4>
+                        <div id="modal-status" class="inline-flex items-center gap-2">
+                            <!-- Status se inserta dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Descripción y habilidades -->
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Descripción
+                        </h4>
+                        <p id="modal-description" class="text-gray-600 dark:text-gray-400 leading-relaxed"></p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                            Habilidades Adquiridas
+                        </h4>
+                        <div id="modal-skills" class="flex flex-wrap gap-2 max-h-48 overflow-y-auto">
+                            <!-- Skills se insertan dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Animación continua de scroll mejorada */
+    .education-scroll {
+        animation: autoScroll 30s linear infinite;
+        width: max-content;
+    }
+
+    .education-scroll:hover {
+        animation-play-state: paused;
+    }
+
+    /* Estado acelerado para navegación rápida */
+    .education-scroll.fast-navigation {
+        animation: fastScroll 8s ease-in-out forwards;
+    }
+
+    @keyframes autoScroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    @keyframes fastScroll {
+        to {
+            transform: translateX(var(--target-position, -50%));
+        }
+    }
+
+    /* Animaciones de entrada */
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .group {
+        animation: slideIn 0.6s ease-out both;
+    }
+
+    /* Efecto de hover mejorado */
+    .group:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+
+    /* Línea clampada para texto */
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Scrollbar personalizada para modal skills */
+    #modal-skills::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    #modal-skills::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    #modal-skills::-webkit-scrollbar-thumb {
+        background: rgba(99, 102, 241, 0.5);
+        border-radius: 3px;
+    }
+
+    #modal-skills::-webkit-scrollbar-thumb:hover {
+        background: rgba(99, 102, 241, 0.7);
+    }
+</style>
+
+<script>
+    // Interface para TypeScript
+    interface EducationItem {
+        id: string;
+        title: string;
+        institution: string;
+        date: string;
+        type: string;
+        status: string;
+        image: string;
+        description: string;
+        skills: string[];
+    }
+
+    // Detectar idioma actual
+    const getCurrentLanguage = (): string => {
+        return window.location.pathname.startsWith('/en') ? 'en' : 'es';
+    };
+
+    // Datos de educación para modal (versión en español)
+    const EDUCATION_DATA_ES: EducationItem[] = [
+        {
+            id: "tuig",
+            title: "Técnico Universitario en Informática",
+            institution: "Universidad Nacional del Litoral - FICH",
+            date: "2021 - 2024",
+            type: "Título Universitario",
+            status: "Completado",
+            image: "/education/tuig.jpg",
+            description: "Formación técnica orientada a la gestión informática en organizaciones, con énfasis en desarrollo de software, bases de datos, redes, sistemas operativos y herramientas web. Capacita para analizar necesidades administrativas, implementar soluciones tecnológicas y optimizar procesos mediante el uso eficiente de sistemas de información.",
+            skills: ["Programación", "Bases de Datos", "Desarrollo Web", "Sistemas", "Metodologías Ágiles"]
+        },
+        {
+            id: "desarrollo-web-responsive",
+            title: "Diseño Web Responsive - HTML5 y CSS3",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2020",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/dwr.jpg",
+            description: "Formación en diseño web responsive con foco en HTML5 y CSS3, abordando maquetación semántica, estilos avanzados, uso de multimedia, animaciones, tipografías web y adaptación de interfaces a distintos dispositivos y resoluciones, priorizando usabilidad, accesibilidad y compatibilidad entre navegadores.",
+            skills: ["HTML5", "CSS3", "Diseño Responsive", "Frontend", "Web Design"]
+        },
+        {
+            id: "programacion-web-inicial",
+            title: "Programación Web Inicial",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2024",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/pwi.jpg",
+            description: "Curso introductorio al desarrollo web, abarcando desde el registro de dominios hasta la creación de sitios responsivos con HTML5, CSS3, JavaScript y Bootstrap. Incluye fundamentos de maquetación, estilos, interactividad y diseño adaptable.",
+            skills: ["HTML", "CSS", "JavaScript", "Desarrollo Web", "Frontend Básico"]
+        },
+        {
+            id: "php-mysql",
+            title: "Programación Web con PHP y MySQL",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2023",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/pwphpmysql.jpg",
+            description: "Curso de desarrollo web backend con PHP y MySQL. Abarca estructuras de control, manejo de formularios (GET/POST), sesiones, funciones personalizadas, integración con bases de datos mediante MySQLi, y desarrollo de un panel de administración con operaciones CRUD completas.",
+            skills: ["PHP", "MySQL", "MySQLi", "CRUD", "Sesiones", "Formularios", "Estructuras de Control", "Arrays", "Bootstrap", "Backend Development", "Panel de Administración"]
+        },
+        {
+            id: "php-mysql-avanzado",
+            title: "Programación Web con PHP y MySQL Avanzado",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2023",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/pwphpmysqlna.jpg",
+            description: "Curso avanzado de PHP y MySQL con enfoque en programación orientada a objetos (POO), manejo de fechas, archivos, imágenes dinámicas, implementación de CAPTCHA, seguridad web y uso de bibliotecas como FPDF y PHPMailer. Incluye desarrollo de sistemas web complejos con integración de bases de datos y contenido dinámico.",
+            skills: ["PHP Avanzado", "MySQL", "POO (Programación Orientada a Objetos)", "Clases y Objetos", "Herencia", "Polimorfismo", "Interfaces", "Clases Abstractas", "PDO", "Seguridad Web", "FPDF", "PHPMailer", "CAPTCHA", "Manejo de Archivos", "Imágenes Dinámicas", "Bootstrap", "CRUD", "Sesiones", "Backend Development"]
+        },
+        {
+            id: "programacion-javascript",
+            title: "Programación Web con JavaScript",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2023",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/pwjs.jpg",
+            description: "Curso completo de Javascript para desarrollo frontend. Cubre desde fundamentos del lenguaje (variables, operadores, ciclos, funciones) hasta manipulación del DOM, eventos, validación de formularios e introducción a jQuery. Enfocado en dar dinamismo e interactividad a sitios web desarrollados con HTML y CSS.",
+            skills: ["Javascript", "DOM Manipulation", "Event Handling", "Form Validation", "jQuery", "BOM", "Arrays", "Loops", "Functions", "Conditionals", "Frontend Development", "Client-side Scripting"]
+        },
+        {
+            id: "desarrollo-web-fullstack",
+            title: "Diplomatura en Programación Web Full Stack",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2024",
+            type: "Diplomatura",
+            status: "Completado",
+            image: "/education/dpwfs.jpg",
+            description: "Diplomatura integral que consolida y certifica la formación completa en desarrollo web FullStack. Cubre desde el diseño frontend responsivo con HTML5 y CSS3, la programación interactiva con JavaScript y jQuery, hasta el desarrollo backend avanzado con PHP y MySQL, incluyendo programación orientada a objetos, seguridad, manejo de sesiones, y operaciones CRUD. Formación estructurada y avalada por la UTN, abarcando 210 horas de contenido especializado.",
+            skills: ["FullStack Development", "HTML5", "CSS3", "Responsive Design", "JavaScript", "jQuery", "PHP", "MySQL", "POO", "CRUD Operations", "Session Management", "Form Validation", "DOM Manipulation", "Bootstrap", "Backend Security", "RESTful Concepts", "Git", "Web Deployment"]
+        },
+        {
+            id: "react-js",
+            title: "React JS",
+            institution: "Coderhouse",
+            date: "2024",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/rjs.jpg",
+            description: "Curso intensivo de React JS que abarca desde los fundamentos de JSX, componentes y props, hasta hooks avanzados como useState, useEffect y useContext. Incluye routing con React Router, manejo de eventos, consumo de APIs con Fetch, y técnicas de renderizado condicional y optimización con React.memo. Enfoque práctico en el desarrollo de aplicaciones interactivas y escalables.",
+            skills: ["React", "JSX", "Hooks (useState, useEffect, useContext, useRef)", "React Router", "Componentes", "Props", "Event Handling", "Fetch API", "Renderizado Condicional", "React.memo", "Patrones de Diseño", "Firebase (mención)", "Frontend Moderno"]
+        },
+        {
+            id: "desarrollo-apps",
+            title: "Desarrollo de Aplicaciones",
+            institution: "Coderhouse",
+            date: "2024",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/dapp.jpg",
+            description: "Curso práctico de desarrollo de aplicaciones móviles cross-platform con React Native. Aprende a crear aplicaciones nativas para iOS y Android desde cero, utilizando componentes core, navegación entre pantallas, manejo de estado, conexión a APIs REST y bases de datos en tiempo real (Firebase/Realm). Incluye estilos responsivos, debug, y proceso de publicación en tiendas de aplicaciones.",
+            skills: ["React Native", "JavaScript", "Cross-Platform Development", "Core Components", "Navigation", "State Management", "REST APIs", "Firebase", "Realm DB", "Async/Await", "Responsive Design", "Android Studio", "Xcode", "Debugging", "App Deployment", "UI/UX Mobile"]
+        },
+        {
+            id: "python-coderhouse",
+            title: "Programación con Python",
+            institution: "Coderhouse",
+            date: "2025",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/pch.png",
+            description: "Curso completo de Python desde cero hasta desarrollo web con Django Framework. Incluye fundamentos del lenguaje (tipos de datos, control de flujo, POO, manejo de archivos), creación de aplicaciones web con arquitectura MVT, implementación de CRUD, autenticación de usuarios, gestión de formularios con ModelForms, y despliegue en plataformas como Heroku y PythonAnywhere. Enfoque en buenas prácticas, TDD y uso de Git/GitHub.",
+            skills: ["Python", "Django", "MVT Architecture", "POO", "CRUD", "ModelForms", "Authentication", "User Management", "Git", "GitHub", "Heroku", "PythonAnywhere", "Unit Testing", "TDD", "RESTful Concepts", "JSON", "Virtual Environments", "Database Management", "Backend Development"]
+        },
+        {
+            id: "python-midudev",
+            title: "Python Desde Cero",
+            institution: "MiduDev",
+            date: "2025",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/pmd.jpg",
+            description: "Curso introductorio a Python diseñado para aprender los fundamentos del lenguaje desde cero. Cubre sintaxis básica, estructuras de datos, control de flujo, funciones, y conceptos esenciales de programación. Enfoque práctico y moderno, impartido por Miguel Ángel Durán (Midudev), con énfasis en la resolución de problemas y buenas prácticas desde el primer día.",
+            skills: ["Python", "Sintaxis Básica", "Estructuras de Datos", "Control de Flujo", "Funciones", "Programación Estructurada", "Resolución de Problemas", "Buenas Prácticas", "Algoritmos Básicos", "Ejercicios Prácticos"]
+        },
+        {
+            id: "opcw-cert",
+            title: "Operador PC Windows",
+            institution: "CENEDI",
+            date: "2017",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/opcw.jpg",
+            description: "Curso integral de ofimática y manejo del sistema operativo Windows XP. Cubre el uso de herramientas del sistema (Bloc de notas, Calculadora, Paint, Explorador), gestión de archivos y carpetas, mantenimiento básico (Scandisk, desfragmentador, antivirus), y el dominio de aplicaciones de Office 2003: Word (procesamiento de texto), Excel (planillas electrónicas y bases de datos) y Access (bases de datos relacionales). Enfoque en conocimientos teóricos y procedimentales esenciales para el entorno laboral.",
+            skills: ["Windows XP", "Microsoft Word 2003", "Microsoft Excel 2003", "Microsoft Access 2003", "Gestión de Archivos", "Mantenimiento de PC", "Ofimática", "Procesamiento de Texto", "Planillas Electrónicas", "Bases de Datos", "Sistemas Operativos", "Herramientas del Sistema"]
+        },
+        {
+            id: "reparacion-celulares",
+            title: "Reparación de Teléfonos Celulares",
+            institution: "CENEDI",
+            date: "2017",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/rtc.jpg",
+            description: "Curso técnico especializado en la reparación de teléfonos celulares de diferentes marcas y modelos. Incluye fundamentos de telefonía celular, electrónica básica, uso de herramientas de taller, diagnóstico de fallas, desarme y armado de dispositivos, soldadura de componentes, limpieza de placas mojadas, cambio de pantallas táctiles, reparación de audio, y desbloqueo por software. Ideal para iniciarse en el ámbito de la reparación electrónica con un enfoque teórico-práctico.",
+            skills: ["Electrónica Básica", "Diagnóstico de Fallas", "Desarme y Armado", "Soldadura", "Limpieza de Placas", "Cambio de Pantallas", "Reparación de Audio", "Desbloqueo por Software", "Herramientas de Taller", "Telefonía Celular", "Reparación de Dispositivos Móviles"]
+        },
+        {
+            id: "cb-cert",
+            title: "Conciliación Bancaria",
+            institution: "ClMe",
+            date: "2021",
+            type: "Certificación",
+            status: "Completado",
+            image: "/education/cb.jpg",
+            description: "Curso práctico de conciliación bancaria, enfocado en el control y ajuste de diferencias entre los registros contables de una empresa y los movimientos bancarios. Cubre conceptos fundamentales de cuentas corrientes, extractos bancarios, cheques comunes y diferidos, diferencias transitorias y permanentes, y aplicación de metodologías para conciliar saldos contables y bancarios mediante ejercicios reales con hojas de cálculo y registros contables.",
+            skills: ["Conciliación Bancaria", "Contabilidad", "Extractos Bancarios", "Cuentas Corrientes", "Cheques Comunes y Diferidos", "Diferencias Transitorias", "Diferencias Permanentes", "Registros Contables", "Control Financiero", "Ajustes Contables", "Saldo Contable vs Saldo Bancario", "Ejercicios Prácticos", "Excel para Contabilidad", "Gestión de Cuentas Bancarias"]
+        }
+    ];
+
+    // Datos de educación para modal (versión en inglés)
+    const EDUCATION_DATA_EN: EducationItem[] = [
+        {
+            id: "tuig",
+            title: "University Technician in Computer Science",
+            institution: "Universidad Nacional del Litoral - FICH",
+            date: "2021 - 2024",
+            type: "University Degree",
+            status: "Completed",
+            image: "/education/tuig.jpg",
+            description: "Technical training oriented to computer management in organizations, with emphasis on software development, databases, networks, operating systems and web tools. Enables to analyze administrative needs, implement technological solutions and optimize processes through efficient use of information systems.",
+            skills: ["Programming", "Databases", "Web Development", "Systems", "Agile Methodologies"]
+        },
+        {
+            id: "desarrollo-web-responsive",
+            title: "Responsive Web Design - HTML5 and CSS3",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2020",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/dwr.jpg",
+            description: "Training in responsive web design focused on HTML5 and CSS3, addressing semantic layout, advanced styles, multimedia use, animations, web typography and interface adaptation to different devices and resolutions, prioritizing usability, accessibility and browser compatibility.",
+            skills: ["HTML5", "CSS3", "Responsive Design", "Frontend", "Web Design"]
+        },
+        {
+            id: "programacion-web-inicial",
+            title: "Initial Web Programming",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2024",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/pwi.jpg",
+            description: "Introductory course to web development, covering from domain registration to creating responsive sites with HTML5, CSS3, JavaScript and Bootstrap. Includes fundamentals of layout, styles, interactivity and adaptive design.",
+            skills: ["HTML", "CSS", "JavaScript", "Web Development", "Frontend Basics"]
+        },
+        {
+            id: "php-mysql",
+            title: "Web Programming with PHP and MySQL",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2023",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/pwphpmysql.jpg",
+            description: "Backend web development course with PHP and MySQL. Covers control structures, form handling (GET/POST), sessions, custom functions, database integration through MySQLi, and development of an administration panel with complete CRUD operations.",
+            skills: ["PHP", "MySQL", "MySQLi", "CRUD", "Sessions", "Forms", "Control Structures", "Arrays", "Bootstrap", "Backend Development", "Admin Panel"]
+        },
+        {
+            id: "php-mysql-avanzado",
+            title: "Advanced Web Programming with PHP and MySQL",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2023",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/pwphpmysqlna.jpg",
+            description: "Advanced PHP and MySQL course with focus on object-oriented programming (OOP), date handling, files, dynamic images, CAPTCHA implementation, web security and use of libraries like FPDF and PHPMailer. Includes development of complex web systems with database integration and dynamic content.",
+            skills: ["Advanced PHP", "MySQL", "OOP (Object-Oriented Programming)", "Classes and Objects", "Inheritance", "Polymorphism", "Interfaces", "Abstract Classes", "PDO", "Web Security", "FPDF", "PHPMailer", "CAPTCHA", "File Handling", "Dynamic Images", "Bootstrap", "CRUD", "Sessions", "Backend Development"]
+        },
+        {
+            id: "programacion-javascript",
+            title: "Web Programming with JavaScript",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2023",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/pwjs.jpg",
+            description: "Complete JavaScript course for frontend development. Covers from language fundamentals (variables, operators, loops, functions) to DOM manipulation, events, form validation and introduction to jQuery. Focused on providing dynamism and interactivity to websites developed with HTML and CSS.",
+            skills: ["Javascript", "DOM Manipulation", "Event Handling", "Form Validation", "jQuery", "BOM", "Arrays", "Loops", "Functions", "Conditionals", "Frontend Development", "Client-side Scripting"]
+        },
+        {
+            id: "desarrollo-web-fullstack",
+            title: "Diploma in Full Stack Web Programming",
+            institution: "Universidad Tecnológica Nacional - FRR",
+            date: "2024",
+            type: "Diploma",
+            status: "Completed",
+            image: "/education/dpwfs.jpg",
+            description: "Comprehensive diploma that consolidates and certifies complete FullStack web development training. Covers from responsive frontend design with HTML5 and CSS3, interactive programming with JavaScript and jQuery, to advanced backend development with PHP and MySQL, including object-oriented programming, security, session management, and CRUD operations. Structured and endorsed training by UTN, covering 210 hours of specialized content.",
+            skills: ["FullStack Development", "HTML5", "CSS3", "Responsive Design", "JavaScript", "jQuery", "PHP", "MySQL", "OOP", "CRUD Operations", "Session Management", "Form Validation", "DOM Manipulation", "Bootstrap", "Backend Security", "RESTful Concepts", "Git", "Web Deployment"]
+        },
+        {
+            id: "react-js",
+            title: "React JS",
+            institution: "Coderhouse",
+            date: "2024",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/rjs.jpg",
+            description: "Intensive React JS course covering from JSX fundamentals, components and props, to advanced hooks like useState, useEffect and useContext. Includes routing with React Router, event handling, API consumption with Fetch, and conditional rendering and optimization techniques with React.memo. Practical focus on developing interactive and scalable applications.",
+            skills: ["React", "JSX", "Hooks (useState, useEffect, useContext, useRef)", "React Router", "Components", "Props", "Event Handling", "Fetch API", "Conditional Rendering", "React.memo", "Design Patterns", "Firebase (mention)", "Modern Frontend"]
+        },
+        {
+            id: "desarrollo-apps",
+            title: "Application Development",
+            institution: "Coderhouse",
+            date: "2024",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/dapp.jpg",
+            description: "Practical course in cross-platform mobile application development with React Native. Learn to create native applications for iOS and Android from scratch, using core components, screen navigation, state management, REST API connection and real-time databases (Firebase/Realm). Includes responsive styles, debugging, and app store publishing process.",
+            skills: ["React Native", "JavaScript", "Cross-Platform Development", "Core Components", "Navigation", "State Management", "REST APIs", "Firebase", "Realm DB", "Async/Await", "Responsive Design", "Android Studio", "Xcode", "Debugging", "App Deployment", "UI/UX Mobile"]
+        },
+        {
+            id: "python-coderhouse",
+            title: "Python Programming",
+            institution: "Coderhouse",
+            date: "2025",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/pch.png",
+            description: "Complete Python course from scratch to web development with Django Framework. Includes language fundamentals (data types, control flow, OOP, file handling), web application creation with MVT architecture, CRUD implementation, user authentication, form management with ModelForms, and deployment on platforms like Heroku and PythonAnywhere. Focus on best practices, TDD and Git/GitHub usage.",
+            skills: ["Python", "Django", "MVT Architecture", "OOP", "CRUD", "ModelForms", "Authentication", "User Management", "Git", "GitHub", "Heroku", "PythonAnywhere", "Unit Testing", "TDD", "RESTful Concepts", "JSON", "Virtual Environments", "Database Management", "Backend Development"]
+        },
+        {
+            id: "python-midudev",
+            title: "Python From Zero",
+            institution: "MiduDev",
+            date: "2025",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/pmd.jpg",
+            description: "Introductory Python course designed to learn language fundamentals from scratch. Covers basic syntax, data structures, control flow, functions, and essential programming concepts. Practical and modern approach, taught by Miguel Ángel Durán (Midudev), with emphasis on problem solving and best practices from day one.",
+            skills: ["Python", "Basic Syntax", "Data Structures", "Control Flow", "Functions", "Structured Programming", "Problem Solving", "Best Practices", "Basic Algorithms", "Practical Exercises"]
+        },
+        {
+            id: "opcw-cert",
+            title: "PC Windows Operator",
+            institution: "CENEDI",
+            date: "2017",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/opcw.jpg",
+            description: "Comprehensive course in office automation and Windows XP operating system management. Covers system tools usage (Notepad, Calculator, Paint, Explorer), file and folder management, basic maintenance (Scandisk, defragmenter, antivirus), and mastery of Office 2003 applications: Word (word processing), Excel (spreadsheets and databases) and Access (relational databases). Focus on theoretical and procedural knowledge essential for the work environment.",
+            skills: ["Windows XP", "Microsoft Word 2003", "Microsoft Excel 2003", "Microsoft Access 2003", "File Management", "PC Maintenance", "Office Automation", "Word Processing", "Spreadsheets", "Databases", "Operating Systems", "System Tools"]
+        },
+        {
+            id: "reparacion-celulares",
+            title: "Mobile Phone Repair",
+            institution: "CENEDI",
+            date: "2017",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/rtc.jpg",
+            description: "Technical course specialized in repairing mobile phones of different brands and models. Includes cellular telephony fundamentals, basic electronics, workshop tools usage, fault diagnosis, device disassembly and assembly, component soldering, wet board cleaning, touch screen replacement, audio repair, and software unlocking. Ideal for entering the electronic repair field with a theoretical-practical approach.",
+            skills: ["Basic Electronics", "Fault Diagnosis", "Disassembly and Assembly", "Soldering", "Board Cleaning", "Screen Replacement", "Audio Repair", "Software Unlocking", "Workshop Tools", "Cellular Telephony", "Mobile Device Repair"]
+        },
+        {
+            id: "cb-cert",
+            title: "Bank Reconciliation",
+            institution: "ClMe",
+            date: "2021",
+            type: "Certification",
+            status: "Completed",
+            image: "/education/cb.jpg",
+            description: "Practical bank reconciliation course, focused on controlling and adjusting differences between a company's accounting records and bank movements. Covers fundamental concepts of checking accounts, bank statements, common and deferred checks, transitory and permanent differences, and application of methodologies to reconcile accounting and bank balances through real exercises with spreadsheets and accounting records.",
+            skills: ["Bank Reconciliation", "Accounting", "Bank Statements", "Checking Accounts", "Common and Deferred Checks", "Transitory Differences", "Permanent Differences", "Accounting Records", "Financial Control", "Accounting Adjustments", "Accounting vs Bank Balance", "Practical Exercises", "Excel for Accounting", "Bank Account Management"]
+        }
+    ];
+
+    // Variables globales
+    let currentEducation: EducationItem | null = null;
+    let currentSection = 0;
+    const cardsPerSection = 4;
+    const totalSections = Math.ceil(15 / cardsPerSection); // 15 certificados / 4 = 4 secciones
+
+    // Obtener datos según idioma
+    const getCurrentEducationData = (): EducationItem[] => {
+        const lang = getCurrentLanguage();
+        return lang === 'en' ? EDUCATION_DATA_EN : EDUCATION_DATA_ES;
+    };
+
+    // Función para navegación acelerada por secciones
+    function navigateToSection(direction: 'left' | 'right'): void {
+        const gallery = document.getElementById('education-gallery');
+        if (!gallery) return;
+
+        // Calcular nueva sección
+        if (direction === 'right') {
+            currentSection = (currentSection + 1) % totalSections;
+        } else {
+            currentSection = currentSection === 0 ? totalSections - 1 : currentSection - 1;
+        }
+
+        // Calcular posición objetivo
+        const cardWidth = 320; // w-80 = 320px
+        const gap = 24; // gap-6 = 24px
+        const targetPosition = -(currentSection * cardsPerSection * (cardWidth + gap));
+
+        // Aplicar navegación rápida
+        gallery.style.setProperty('--target-position', `${targetPosition}px`);
+        gallery.classList.remove('education-scroll');
+        gallery.classList.add('fast-navigation');
+
+        // Restaurar animación normal después de la navegación
+        setTimeout(() => {
+            gallery.classList.remove('fast-navigation');
+            gallery.classList.add('education-scroll');
+        }, 8000);
+    }
+
+    // Variables para navegación en modal
+    let currentCertificateIndex = 0;
+    let allCertificates: string[] = [];
+
+    // Función para navegar al certificado anterior
+    function navigateToPreviousCertificate(): void {
+        currentCertificateIndex = currentCertificateIndex > 0 
+            ? currentCertificateIndex - 1 
+            : allCertificates.length - 1;
+        openEducationModal(allCertificates[currentCertificateIndex]);
+    }
+
+    // Función para navegar al certificado siguiente
+    function navigateToNextCertificate(): void {
+        currentCertificateIndex = currentCertificateIndex < allCertificates.length - 1 
+            ? currentCertificateIndex + 1 
+            : 0;
+        openEducationModal(allCertificates[currentCertificateIndex]);
+    }
+
+    // Función para abrir modal con datos multiidioma
+    function openEducationModal(id: string): void {
+        const educationData = getCurrentEducationData();
+        currentEducation = educationData.find(item => item.id === id) || null;
+        
+        if (!currentEducation) return;
+        
+        const modal = document.getElementById('education-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalImage = document.getElementById('modal-image') as HTMLImageElement | null;
+        const modalInstitution = document.getElementById('modal-institution');
+        const modalDate = document.getElementById('modal-date');
+        const modalStatus = document.getElementById('modal-status');
+        const modalDescription = document.getElementById('modal-description');
+        const modalSkills = document.getElementById('modal-skills');
+        
+        if (!modal || !modalTitle || !modalImage || !modalInstitution || !modalDate || !modalStatus || !modalDescription || !modalSkills) {
+            console.error('No se pudieron encontrar todos los elementos del modal');
+            return;
+        }
+        
+        // Llenar contenido del modal
+        modalTitle.textContent = currentEducation.title;
+        modalImage.src = currentEducation.image;
+        modalImage.alt = `Certificado de ${currentEducation.title}`;
+        modalInstitution.textContent = currentEducation.institution;
+        modalDate.textContent = currentEducation.date;
+        modalDescription.textContent = currentEducation.description;
+        
+        // Status con color
+        modalStatus.innerHTML = `
+            <div class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+            <span class="text-emerald-700 dark:text-emerald-300 font-medium">${currentEducation.status}</span>
+        `;
+        
+        // Skills con scroll si son muchas
+        modalSkills.innerHTML = currentEducation.skills.map((skill: string) => 
+            `<span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-sm rounded-full font-medium">${skill}</span>`
+        ).join('');
+        
+        // Mostrar modal
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+
+        // Actualizar índice y posición
+        currentCertificateIndex = allCertificates.indexOf(id);
+        const positionElement = document.getElementById('modal-position');
+        if (positionElement) {
+            positionElement.textContent = `${currentCertificateIndex + 1} / ${allCertificates.length}`;
+        }
+    }
+
+    // Función para cerrar modal
+    function closeEducationModal(): void {
+        const modal = document.getElementById('education-modal');
+        if (!modal) return;
+        
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+        currentEducation = null;
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inicializar array de certificados
+        allCertificates = ['tuig', 'desarrollo-web-responsive', 'programacion-web-inicial', 'php-mysql', 'php-mysql-avanzado', 'programacion-javascript', 'desarrollo-web-fullstack', 'react-js', 'desarrollo-apps', 'python-coderhouse', 'python-midudev', 'opcw-cert', 'reparacion-celulares', 'cb-cert'];
+        // Duplicar elementos para scroll infinito
+        const gallery = document.getElementById('education-gallery');
+        if (gallery) {
+            const items = Array.from(gallery.children);
+            items.forEach(item => {
+                const clone = item.cloneNode(true) as HTMLElement;
+                const originalOnclick = item.getAttribute('onclick');
+                if (originalOnclick) {
+                    clone.setAttribute('onclick', originalOnclick);
+                }
+                gallery.appendChild(clone);
+            });
+        }
+        
+        // Cerrar modal con ESC
+        document.addEventListener('keydown', (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                closeEducationModal();
+            }
+        });
+        
+        // Cerrar modal clicking fuera
+        const modal = document.getElementById('education-modal');
+        if (modal) {
+            modal.addEventListener('click', (e: MouseEvent) => {
+                const target = e.target as HTMLElement | null;
+                if (target && target.id === 'education-modal') {
+                    closeEducationModal();
+                }
+            });
+        }
+        
+        // Hacer funciones globales
+        (window as any).openEducationModal = openEducationModal;
+        (window as any).closeEducationModal = closeEducationModal;
+        (window as any).navigateToPreviousCertificate = navigateToPreviousCertificate;
+        (window as any).navigateToNextCertificate = navigateToNextCertificate;
+    });
+</script>

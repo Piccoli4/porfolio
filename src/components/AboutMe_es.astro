@@ -1,31 +1,112 @@
 ---
- const personalImageAlt = "Piccoli Guido Augusto"
+const personalImageAlt = "Piccoli Guido Augusto"
 ---
 
-<article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
-  <div
-    class="[&>p]:mb-4 [&>p>strong]:text-red-600 dark:[&>p>strong]:text-red-300 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
-  >
-    <p>
-      Mi nombre es Guido Augusto Piccoli, un desarrollador con pasión por crear soluciones digitales. 
-      Desde mis inicios en la programación, <strong>he trabajado en diversos proyectos que me han permitido mejorar mis 
-      habilidades</strong> y ampliar mis conocimientos en el desarrollo web y móvil.
-    </p>
+<article class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-center max-w-6xl mx-auto">
+  <!-- Contenido textual -->
+  <div class="flex-1 order-2 lg:order-1 space-y-6">
+    <!-- Header con estadísticas -->
+    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-2xl p-6 backdrop-blur-sm border border-indigo-100/50 dark:border-indigo-900/30">
+      <h2 class="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
+        Sobre mí
+      </h2>
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div class="space-y-1">
+          <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">+2</div>
+          <div class="text-xs text-gray-600 dark:text-gray-400">Años experiencia</div>
+        </div>
+        <div class="space-y-1">
+          <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">10+</div>
+          <div class="text-xs text-gray-600 dark:text-gray-400">Tecnologías</div>
+        </div>
+        <div class="space-y-1">
+          <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">3+</div>
+          <div class="text-xs text-gray-600 dark:text-gray-400">Proyectos</div>
+        </div>
+      </div>
+    </div>
 
-    <p>
-      A lo largo de mi trayectoria, he trabajado con diversas tecnologías en el desarrollo web y móvil, incluyendo 
-      <strong>React, React Native, PHP con Symfony, Node.js, MySQL y Firebase</strong>. También tengo experiencia en el uso 
-      de <strong>Tailwind CSS, Chakra UI y Bootstrap</strong> para la creación de interfaces modernas y responsivas.
-    </p>
+    <!-- Contenido principal -->
+    <div class="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+      <div class="bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-gray-200/30 dark:border-gray-700/30">
+        <p class="text-base lg:text-lg">
+          Mi nombre es <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">Guido Augusto Piccoli</strong>, 
+          un desarrollador con pasión por crear soluciones digitales innovadoras. Actualmente trabajo como 
+          <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">Técnico Informático en el Sanatorio Santa Fe</strong>, 
+          donde combino desarrollo de aplicaciones web con soporte técnico integral.
+        </p>
+      </div>
 
-    <p>
-      Además de mi experiencia práctica, he complementado mi formación con estudios en <strong>Desarrollo de Software</strong> 
-      y cursos especializados en <strong>arquitectura de software, bases de datos y optimización de aplicaciones</strong>. 
-      Siempre estoy en constante aprendizaje, explorando nuevas tecnologías y metodologías para mejorar mis habilidades 
-      y crear soluciones más eficientes.
-    </p>
+      <div class="bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-gray-200/30 dark:border-gray-700/30">
+        <p class="text-base lg:text-lg">
+          En mi rol actual, desarrollo herramientas web internas utilizando 
+          <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">HTML, CSS, Bootstrap, PHP y Python</strong>, 
+          mientras gestiono infraestructura tecnológica y proporciono soporte técnico. Esta experiencia me ha permitido 
+          desarrollar una perspectiva integral del ciclo de vida de las aplicaciones, desde el desarrollo hasta la implementación y mantenimiento.
+        </p>
+      </div>
+
+      <div class="bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-gray-200/30 dark:border-gray-700/30">
+        <p class="text-base lg:text-lg">
+          Mi experiencia abarca tecnologías modernas como 
+          <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">React, React Native, Node.js, MySQL y Firebase</strong>, 
+          con expertise en frameworks como <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">Symfony</strong> 
+          y herramientas de diseño como <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">Tailwind CSS</strong>. 
+          También manejo herramientas de base de datos como <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">Navicat</strong> 
+          para análisis y reportes de datos.
+        </p>
+      </div>
+
+      <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/20 dark:to-purple-950/20 rounded-xl p-6 border border-indigo-100/50 dark:border-indigo-900/20">
+        <p class="text-base lg:text-lg">
+          Estoy constantemente explorando nuevas tecnologías y metodologías para crear soluciones más eficientes. 
+          Mi enfoque se centra en escribir código limpio, implementar arquitecturas escalables y optimizar el rendimiento, 
+          siempre con el objetivo de proporcionar la mejor experiencia de usuario posible.
+        </p>
+      </div>
+    </div>
+
+    <!-- Badges de tecnologías -->
+    <div class="flex flex-wrap gap-2">
+      {["React", "PHP", "Python", "MySQL", "Tailwind", "Bootstrap"].map(tech => (
+        <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-sm font-medium rounded-full border border-indigo-200 dark:border-indigo-800">
+          {tech}
+        </span>
+      ))}
+    </div>
   </div>
 
-  <img width="200" height="200" src="/yo.webp" alt={personalImageAlt} class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-red-500/5 ring-1 ring-black/70 dark:ring-white/20 " style="object-position: 50% 50%">
-
+  <!-- Imagen mejorada -->
+  <div class="flex-shrink-0 order-1 lg:order-2">
+    <div class="relative group">
+      <!-- Anillo gradiente animado -->
+      <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+      
+      <!-- Imagen -->
+      <div class="relative">
+        <img 
+          width="300" 
+          height="300" 
+          src="/yo.webp" 
+          alt={personalImageAlt} 
+          class="relative w-64 h-64 lg:w-80 lg:h-80 object-cover rounded-full shadow-2xl transform transition-all duration-500 hover:scale-105 ring-4 ring-white/70 dark:ring-gray-800/70"
+          style="object-position: 50% 50%"
+        />
+        
+        <!-- Indicador de estado -->
+        <div class="absolute bottom-6 right-6 w-8 h-8 bg-green-500 rounded-full border-4 border-white dark:border-gray-800 shadow-lg">
+          <div class="w-full h-full bg-green-400 rounded-full animate-ping"></div>
+        </div>
+        
+        <!-- Badge flotante -->
+        <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+          <div class="bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-lg border border-gray-200 dark:border-gray-700">
+            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">
+              💻 Full Stack Developer
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </article>

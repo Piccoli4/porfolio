@@ -1,0 +1,378 @@
+---
+import React from "@/components/icons/React.astro"
+import Chakra from "@/components/icons/Chakra.astro"
+import Firebase from "@/components/icons/Firebase.astro"
+import GitHub from "@/components/icons/GitHub.astro"
+import Expo from "@/components/icons/Expo.astro"
+import Nextjs from "@/components/icons/NextJS.astro"
+import Html from "@/components/icons/Html.astro"
+import Css from "@/components/icons/Css.astro"
+import JavaScript from "@/components/icons/JavaScript.astro"
+import Tailwind from "@/components/icons/Tailwind.astro"
+import Php from "@/components/icons/Php.astro"
+import Mysql from "@/components/icons/Mysql.astro"
+import AstroIcon from "@/components/icons/Astro.astro"
+import Bootstrap from "@/components/icons/Bootstrap.astro"
+import Redux from "@/components/icons/Redux.astro"
+import Typescript from "@/components/icons/Typescript.astro"
+import Symfony from "@/components/icons/Symfony.astro"
+import Laravel from "@/components/icons/Laravel.astro"
+import Python from "@/components/icons/Python.astro"
+import Git from "@/components/icons/Git.astro"
+import GitLab from "@/components/icons/GitLab.astro"
+import Vercel from "@/components/icons/Vercel.astro"
+import Netlify from "@/components/icons/Netlifi.astro"
+import Django from "./icons/Django.astro"
+import Sqlite from "./icons/Sqlite.astro"
+import Postgresql from "./icons/Postgresql.astro"
+
+const TAGS = {
+    REACT: {
+        name: "React",
+        icon: React,
+        level: "Avanzado",
+        category: "frontend"
+    },
+    REACTNATIVE: {
+        name: "React Native",
+        icon: React,
+        level: "Intermedio",
+        category: "mobile"
+    },
+    CHAKRA: {
+        name: "Chakra UI",
+        icon: Chakra,
+        level: "Intermedio",
+        category: "ui"
+    },
+    FIREBASE: {
+        name: "Firebase",
+        icon: Firebase,
+        level: "Intermedio",
+        category: "backend"
+    },
+    EXPO: {
+        name: "Expo",
+        icon: Expo,
+        level: "Intermedio",
+        category: "tools"
+    },
+    NEXTJS: {
+        name: "Next.js",
+        icon: Nextjs,
+        level: "Intermedio",
+        category: "frontend"
+    },
+    HTML: {
+        name: "HTML5",
+        icon: Html,
+        level: "Avanzado",
+        category: "frontend"
+    },
+    CSS: {
+        name: "CSS3",
+        icon: Css,
+        level: "Avanzado",
+        category: "frontend"
+    }, 
+    JAVASCRIPT: {
+        name: "JavaScript",
+        icon: JavaScript,
+        level: "Avanzado",
+        category: "language"
+    },
+    TAILWIND: {
+        name: "Tailwind CSS",
+        icon: Tailwind,
+        level: "Avanzado",
+        category: "ui"
+    },
+    PHP: {
+        name: "PHP",
+        icon: Php,
+        level: "Avanzado",
+        category: "backend"
+    },
+    MYSQL: {
+        name: "MySQL",
+        icon: Mysql,
+        level: "Intermedio",
+        category: "database"
+    },
+    ASTROICON: {
+        name: "Astro",
+        icon: AstroIcon,
+        level: "Intermedio",
+        category: "frontend"
+    },
+    BOOTSTRAP: {
+        name: "Bootstrap",
+        icon: Bootstrap,
+        level: "Avanzado",
+        category: "ui"
+    },
+    REDUX: {
+        name: "Redux",
+        icon: Redux,
+        level: "Intermedio",
+        category: "state"
+    },
+    TYPESCRIPT: {
+        name: "TypeScript",
+        icon: Typescript,
+        level: "Intermedio",
+        category: "language"
+    },
+    SYMFONY: {
+        name: "Symfony",
+        icon: Symfony,
+        level: "Avanzado",
+        category: "backend"
+    },
+    LARAVEL: {
+        name: "Laravel",
+        icon: Laravel,
+        level: "Básico",
+        category: "backend"
+    },
+    PYTHON: {
+        name: "Python",
+        icon: Python,
+        level: "Intermedio",
+        category: "backend"
+    },
+    DJANGO: {
+        name: "Django",
+        icon: Django,
+        level: "Intermedio",
+        category: "backend"
+    },
+    SQLITE: {
+        name: "SQLite",
+        icon: Sqlite,
+        level: "Básico",
+        category: "database"
+    },
+    POSTGRESQL: {
+        name: "PostgreSQL",
+        icon: Postgresql,
+        level: "Básico",
+        category: "database"
+    },
+    GIT: {
+        name: "Git",
+        icon: Git,
+        level: "Intermedio",
+        category: "tools"
+    },
+    GITHUB: {
+        name: "GitHub",
+        icon: GitHub,
+        level: "Intermedio",
+        category: "tools"
+    },
+    GITLAB: {
+        name: 'GitLab',
+        icon: GitLab,
+        level: "Intermedio",
+        category: "tools"
+    },
+    VERCEL: {
+        name: "Vercel",
+        icon: Vercel,
+        level: "Básico",
+        category: "deployment"
+    },
+    NETLIFY: {
+        name: "Netlify",
+        icon: Netlify,
+        level: "Básico",
+        category: "deployment"
+    }
+}
+
+const TECHSTACK = [
+    {
+        name: 'Frontend & UI',
+        description: 'Desarrollo de interfaces modernas y responsivas',
+        icon: '🎨',
+        tags: [
+            TAGS.HTML,
+            TAGS.CSS,
+            TAGS.JAVASCRIPT,
+            TAGS.TYPESCRIPT,
+            TAGS.REACT,
+            TAGS.NEXTJS,
+            TAGS.ASTROICON,
+            TAGS.TAILWIND,
+            TAGS.BOOTSTRAP,
+            TAGS.CHAKRA,
+            TAGS.REDUX
+        ]
+    },
+    {
+        name: 'Backend & Database',
+        description: 'APIs, servicios y gestión de datos',
+        icon: '⚙️',
+        tags: [
+            TAGS.PHP,
+            TAGS.PYTHON,
+            TAGS.DJANGO,
+            TAGS.SYMFONY,
+            TAGS.LARAVEL,
+            TAGS.MYSQL,
+            TAGS.SQLITE,
+            TAGS.POSTGRESQL,
+            TAGS.FIREBASE
+        ]
+    },
+    {
+        name: 'Mobile & Tools',
+        description: 'Desarrollo móvil y herramientas de trabajo',
+        icon: '📱',
+        tags: [
+            TAGS.REACTNATIVE,
+            TAGS.EXPO,
+            TAGS.GIT,
+            TAGS.GITHUB,
+            TAGS.GITLAB,
+            TAGS.VERCEL,
+            TAGS.NETLIFY
+        ]
+    }
+]
+
+const getLevelColor = (level: string): string => {
+    switch (level) {
+        case 'Avanzado':
+            return 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-700/50'
+        case 'Intermedio':
+            return 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700/50'
+        case 'Básico':
+            return 'bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700/50'
+        default:
+            return 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-900/30 dark:text-gray-300 dark:border-gray-700/50'
+    }
+}
+---
+
+<div class="max-w-7xl mx-auto">
+    <!-- Header con estadísticas -->
+    <div class="text-center mb-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+            <div class="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-xl p-4 border border-indigo-100/50 dark:border-indigo-900/30">
+                <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">27</div>
+                <div class="text-xs text-gray-600 dark:text-gray-400">Tecnologías</div>
+            </div>
+            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 rounded-xl p-4 border border-emerald-100/50 dark:border-emerald-900/30">
+                <div class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">7</div>
+                <div class="text-xs text-gray-600 dark:text-gray-400">Avanzadas</div>
+            </div>
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 rounded-xl p-4 border border-blue-100/50 dark:border-blue-900/30">
+                <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">12</div>
+                <div class="text-xs text-gray-600 dark:text-gray-400">Intermedias</div>
+            </div>
+            <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 rounded-xl p-4 border border-amber-100/50 dark:border-amber-900/30">
+                <div class="text-2xl font-bold text-amber-600 dark:text-amber-400">8</div>
+                <div class="text-xs text-gray-600 dark:text-gray-400">En progreso</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid de categorías -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {TECHSTACK.map(({ name, description, icon, tags }, categoryIndex) => (
+            <div class="group relative">
+                <!-- Card principal -->
+                <div class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-500 h-full">
+                    <!-- Header de categoría -->
+                    <div class="text-center mb-6">
+                        <div class="text-3xl mb-3">{icon}</div>
+                        <h3 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                            {name}
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">
+                            {description}
+                        </p>
+                    </div>
+
+                    <!-- Grid de tecnologías -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        {tags.map((tag, index) => (
+                            <div 
+                                class="group/tech relative bg-white/40 dark:bg-gray-700/40 backdrop-blur-sm rounded-xl p-3 border border-gray-200/30 dark:border-gray-600/30 hover:border-indigo-300/50 dark:hover:border-indigo-600/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                                style={`animation-delay: ${(categoryIndex * 200) + (index * 50)}ms`}
+                            >
+                                <!-- Icono contenido apropiadamente -->
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 h-8 flex items-center justify-center text-gray-600 dark:text-gray-300 group-hover/tech:text-indigo-600 dark:group-hover/tech:text-indigo-400 transition-colors duration-300 overflow-hidden">
+                                        <tag.icon style="width: 24px; height: 24px; max-width: 24px; max-height: 24px;"/>
+                                    </div>
+                                    
+                                    <!-- Nombre de la tecnología -->
+                                    <span class="text-xs font-medium text-gray-700 dark:text-gray-300 text-center leading-tight group-hover/tech:text-indigo-600 dark:group-hover/tech:text-indigo-400 transition-colors duration-300">
+                                        {tag.name}
+                                    </span>
+                                    
+                                    <!-- Badge de nivel -->
+                                    <span class={`text-[10px] px-2 py-0.5 rounded-full border font-medium ${getLevelColor(tag.level)}`}>
+                                        {tag.level}
+                                    </span>
+                                </div>
+
+                                <!-- Indicador de experiencia -->
+                                <div class="absolute top-1 right-1">
+                                    <div class={`w-2 h-2 rounded-full ${
+                                        tag.level === 'Avanzado' ? 'bg-emerald-400' :
+                                        tag.level === 'Intermedio' ? 'bg-blue-400' :
+                                        'bg-amber-400'
+                                    }`}></div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <!-- Footer con contador -->
+                    <div class="mt-6 pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+                        <div class="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                            </svg>
+                            {tags.length} tecnologías dominadas
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Efecto de brillo en hover -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"></div>
+            </div>
+        ))}
+    </div>
+
+    <!-- Nota final -->
+    <div class="mt-12 text-center">
+        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/20 dark:to-purple-950/20 rounded-xl p-6 border border-indigo-100/50 dark:border-indigo-900/20 max-w-2xl mx-auto">
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                <span class="font-semibold text-indigo-600 dark:text-indigo-400">En constante aprendizaje:</span>
+                Siempre explorando nuevas tecnologías y mejorando mis skills existentes para crear soluciones más innovadoras y eficientes.
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .group\/tech {
+        animation: fadeInUp 0.6s ease-out both;
+    }
+</style>

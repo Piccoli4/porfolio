@@ -9,12 +9,14 @@ const navItems = currentLang === 'en' ? [
   { title: "Home", label: "inicio", url: "#inicio" },
   { title: "Projects", label: "proyectos", url: "#proyectos" },
   { title: "Experience", label: "experiencia", url: "#experiencia" },
+  { title: "Education", label: "formacion", url: "#formacion" },
   { title: "About Me", label: "sobre-mi", url: "#sobre-mi" },
   { title: "Tech Stack", label: "techstack", url: "#techstack" },
 ] : [
   { title: "Inicio", label: "inicio", url: "#inicio" },
   { title: "Proyectos", label: "proyectos", url: "#proyectos" },
   { title: "Experiencia", label: "experiencia", url: "#experiencia" },
+  { title: "Formación", label: "formacion", url: "#formacion" },
   { title: "Sobre mí", label: "sobre-mi", url: "#sobre-mi" },
   { title: "Tech Stack", label: "techstack", url: "#techstack" },
 ];
@@ -22,111 +24,142 @@ const navItems = currentLang === 'en' ? [
 const logoUrl = currentLang === 'en' ? "/en/" : "/es/";
 ---
 
-<header 
-  class="flex justify-between items-center pt-1 mb-10 font-bold border-black dark:border-white sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4"
+<header
+  id="header-nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 sm:px-6 lg:px-8 py-4"
 >
-  <!-- LOGO -->
-  <a href={logoUrl}>
-    <img 
-      class="size-12 md:size-14 ml-2 transition-transform hover:scale-110 cursor-pointer" 
-      src="/pga_blanco.svg" 
-      alt="Logo de Piccoli Guido Augusto"
-      onmouseover="this.src='/pga_rojo.svg'" 
-      onmouseout="this.src='/pga_blanco.svg'"
-    />
-  </a>
+  <div class="max-w-7xl mx-auto">
+    <div class="flex justify-between items-center bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl border border-white/20 dark:border-gray-700/20 shadow-lg px-6 py-3">
+      
+      <!-- LOGO -->
+      <a href={logoUrl} class="flex items-center group">
+        <div class="relative">
+          <div class="absolute -inset-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-20 blur transition-opacity duration-300"></div>
+          <img
+            class="relative size-10 md:size-12 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12"
+            src="/pga_blanco.svg"
+            alt="Logo de Piccoli Guido Augusto"
+          />
+        </div>
+      </a>
 
-  <!-- NAV DESKTOP (oculto en móvil) -->
-  <nav class="hidden sm:flex flex-row gap-6 md:gap-12 text-xs lg:text-lg text-black dark:text-white items-center">
-    {
-      navItems.map((link) => (
+      <!-- NAV DESKTOP -->
+      <nav class="hidden lg:flex items-center space-x-8">
+        {
+          navItems.map((link) => (
+            <a
+              class="relative text-gray-700 dark:text-gray-300 font-medium text-sm xl:text-base hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 group py-2 px-3"
+              aria-label={link.label}
+              href={link.url}
+            >
+              <span class="relative z-10">{link.title}</span>
+              <div class="absolute inset-0 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 origin-center"></div>
+              <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+            </a>
+          ))
+        }
+      </nav>
+      
+      <!-- CONTROLES DERECHA -->
+      <div class="flex items-center space-x-3 md:space-x-4">
+        <!-- LANGUAGE PICKER -->
+        <div class="hidden sm:block">
+          <LanguagePicker />
+        </div>
+        
+        <!-- THEME TOGGLE -->
+        <ThemeToggle />
+        
+        <!-- BOTÓN CV -->
         <a
-          class="hover:scale-110 hover:text-[#DD1D18] transition dark:hover:text-[#DD1D18]"
-          aria-label={link.label}
-          href={link.url}
+          href={currentLang === 'en' ? "/CV_Piccoli_Guido_A_English.pdf" : "/CV_Piccoli_Guido_A.pdf"}
+          download="CV_Piccoli_Guido_Augusto.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="
+            hidden sm:inline-flex items-center gap-2
+            bg-gradient-to-r from-indigo-600 to-purple-600
+            text-white text-sm font-semibold
+            px-4 py-2 rounded-xl
+            hover:from-indigo-700 hover:to-purple-700
+            transform transition-all duration-300 hover:scale-105 hover:-translate-y-0.5
+            shadow-lg hover:shadow-xl
+            relative overflow-hidden group
+          "
         >
-          {link.title}
+          <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+          <svg class="w-4 h-4 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          <span class="relative z-10">
+            {currentLang === 'en' ? "Download CV" : "Descargar CV"}
+          </span>
         </a>
-      ))
-    }
-  </nav>
-  
-  <div class="flex flex-row items-center gap-12 sm:gap-6">
-
-    <!-- BOTÓN CAMBIO DE IDIOMA -->
-    <LanguagePicker />
-  
-    <!-- BOTÓN CAMBIO DE TEMA -->
-    <ThemeToggle />
-    
-    <!-- BOTÓN DESCARGAR CV (siempre visible) -->
-    <a
-      href={currentLang === 'en' ? "/CV_Piccoli_Guido_A_English.pdf" : "/CV_Piccoli_Guido_A.pdf"}
-      download="CV_Piccoli_Guido_Augusto.pdf"
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="
-        bg-[#DD1D18] 
-        hover:bg-[#690D0A] 
-        text-white 
-        text-xs
-        lg:text-md
-        drop-shadow-lg
-        font-bold 
-        py-1
-        lg:py-2
-        px-2
-        lg:px-4 
-        rounded 
-        cursor-pointer
-        hover:scale-110
-        transition
-        hidden sm:block
-      "
-    >
-      {currentLang === 'en' ? "Download CV" : "Descargar CV"}
-    </a>  
-    
-    <!-- ICONO MENU (visible solo en móviles) -->
-    <button 
-        id="menu-button"
-        class="sm:hidden text-white text-3xl"
-        aria-label={currentLang === 'en' ? "Open menu" : "Abrir menú"}
-    >
-        ☰
-    </button>
+        
+        <!-- MENU MOBILE -->
+        <button
+          id="menu-button"
+          class="lg:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+          aria-label={currentLang === 'en' ? "Open menu" : "Abrir menú"}
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <!-- MENU DESPLEGABLE (oculto por defecto) -->
-  <div 
-    id="mobile-menu" 
-    class="hidden absolute top-14 right-4 bg-[#282828] w-48 rounded-lg shadow-lg flex-col items-start text-white sm:hidden"
+  <!-- MENU MOBILE DESPLEGABLE -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden absolute top-full left-4 right-4 mt-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl border border-white/20 dark:border-gray-700/20 shadow-xl opacity-0 invisible transform translate-y-2 transition-all duration-300"
   >
-    {
-      navItems.map((link) => (
+    <div class="p-6 space-y-4">
+      <!-- Navigation Links -->
+      <div class="space-y-3">
+        {
+          navItems.map((link) => (
+            <a
+              class="block text-gray-700 dark:text-gray-300 font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/30"
+              aria-label={link.label}
+              href={link.url}
+            >
+              {link.title}
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Divider -->
+      <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+
+      <!-- Mobile Controls -->
+      <div class="flex items-center justify-between">
+        <div class="sm:hidden">
+          <LanguagePicker />
+        </div>
+        
         <a
-          class="block px-4 py-2 w-full"
-          aria-label={link.label}
-          href={link.url}
+          href={currentLang === 'en' ? "/CV_Piccoli_Guido_A_English.pdf" : "/CV_Piccoli_Guido_A.pdf"}
+          download="CV_Piccoli_Guido_Augusto.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors duration-300"
         >
-          {link.title}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          {currentLang === 'en' ? "Download CV" : "Descargar CV"}
         </a>
-      ))
-    }
-    <a 
-      href={currentLang === 'en' ? "/CV_Piccoli_Guido_A_English.pdf" : "/CV_Piccoli_Guido_A.pdf"} 
-      download="CV_Piccoli_Guido_Augusto.pdf" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="block px-4 py-2 w-full"
-    >
-      {currentLang === 'en' ? "Download CV" : "Descargar CV"}
-    </a>
+      </div>
+    </div>
   </div>
 </header>
 
 <script>
   document.addEventListener("astro:page-load", () => {
+    // Navigation highlighting
     const sections = document.querySelectorAll("section");
     const navItems = document.querySelectorAll("header nav a");
 
@@ -135,9 +168,9 @@ const logoUrl = currentLang === 'en' ? "/en/" : "/es/";
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-red-600");
+              item.classList.add("text-indigo-600", "dark:text-indigo-400");
             } else {
-              item.classList.remove("text-red-600");
+              item.classList.remove("text-indigo-600", "dark:text-indigo-400");
             }
           });
         }
@@ -163,22 +196,39 @@ const logoUrl = currentLang === 'en' ? "/en/" : "/es/";
         });
       }
     };
-  });
 
-  document.addEventListener("DOMContentLoaded", function () {
+    // Mobile menu functionality
     const menuButton = document.getElementById("menu-button");
     const mobileMenu = document.getElementById("mobile-menu");
 
     if (menuButton && mobileMenu) {
-        menuButton.addEventListener("click", () => {
-            mobileMenu.classList.toggle("hidden");
-        });
+      menuButton.addEventListener("click", () => {
+        const isHidden = mobileMenu.classList.contains("invisible");
+        
+        if (isHidden) {
+          mobileMenu.classList.remove("invisible", "opacity-0", "translate-y-2");
+          mobileMenu.classList.add("visible", "opacity-100", "translate-y-0");
+        } else {
+          mobileMenu.classList.remove("visible", "opacity-100", "translate-y-0");
+          mobileMenu.classList.add("invisible", "opacity-0", "translate-y-2");
+        }
+      });
 
-        mobileMenu.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", () => {
-                mobileMenu.classList.add("hidden");
-            });
+      // Close menu when clicking links
+      mobileMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("visible", "opacity-100", "translate-y-0");
+          mobileMenu.classList.add("invisible", "opacity-0", "translate-y-2");
         });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!mobileMenu.contains(e.target as Node) && !menuButton.contains(e.target as Node)) {
+          mobileMenu.classList.remove("visible", "opacity-100", "translate-y-0");
+          mobileMenu.classList.add("invisible", "opacity-0", "translate-y-2");
+        }
+      });
     }
   });
 </script>

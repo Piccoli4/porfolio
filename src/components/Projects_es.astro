@@ -7,6 +7,13 @@ import React from "./icons/React.astro"
 import Chakra from "./icons/Chakra.astro"
 import Firebase from "./icons/Firebase.astro"
 import Expo from "./icons/Expo.astro"
+import Python from "./icons/Python.astro"
+import JavaScript from "./icons/JavaScript.astro"
+import Tailwind from "./icons/Tailwind.astro"
+import Git from "./icons/Git.astro"
+import Django from "./icons/Django.astro"
+import Sqlite from "./icons/Sqlite.astro"
+import Postgresql from "./icons/Postgresql.astro"
 
 const TAGS = {
   REACT: {
@@ -38,17 +45,93 @@ const TAGS = {
     name: "Next.js",
     class: "bg-blue-500 text-white",
     icon: NextJS,
+  },
+  DJANGO: {
+    name: "Django",
+    class: "bg-green-600 text-white",
+    icon: Django,
+  },
+  PYTHON: {
+    name: "Python",
+    class: "bg-yellow-500 text-white",
+    icon: Python,
+  },
+  TAILWIND: {
+    name: "Tailwind CSS",
+    class: "bg-cyan-500 text-white",
+    icon: Tailwind,
+  },
+  JAVASCRIPT: {
+    name: "JavaScript",
+    class: "bg-yellow-400 text-black",
+    icon: JavaScript,
+  },
+  SQLITE: {
+    name: "SQLite",
+    class: "bg-blue-700 text-white",
+    icon: Sqlite
+  },
+  POSTGRESQL: {
+    name: "PostgreSQL",
+    class: "bg-blue-800 text-white",
+    icon: Postgresql,
+  },
+  GIT: {
+    name: "Git",
+    class: "bg-red-600 text-white",
+    icon: Git,
+  },
+  AJAX: {
+    name: "AJAX",
+    class: "bg-purple-600 text-white",
+    icon: JavaScript,
   }
 }
 
 const PROJECTS = [
+  {
+    title: "Pilates Gravity",
+    description: "PilatesGravity es una plataforma web completa para la gestión integral del estudio de Pilates. Permite a los usuarios reservar clases, administrar sus planes y realizar seguimiento de pagos, mientras que los administradores pueden gestionar horarios, clientes y facturación desde un panel centralizado. Con diseño responsive y notificaciones automáticas, optimiza la experiencia tanto para estudiantes como para el personal del estudio.",
+    link: "",
+    github: "https://github.com/Piccoli4/PilatesGravity",
+    image: "/projects/gravity.webp",
+    gallery: [
+      "/projects/gravity/gravity-gallery-1.webp",
+      "/projects/gravity/gravity-gallery-2.webp",
+      "/projects/gravity/gravity-gallery-3.webp",
+      "/projects/gravity/gravity-gallery-4.webp",
+      "/projects/gravity/gravity-gallery-5.webp",
+      "/projects/gravity/gravity-gallery-6.webp",
+      "/projects/gravity/gravity-gallery-7.webp",
+      "/projects/gravity/gravity-gallery-8.webp",
+      "/projects/gravity/gravity-gallery-9.webp",
+      "/projects/gravity/gravity-gallery-10.webp",
+      "/projects/gravity/gravity-gallery-11.webp",
+      "/projects/gravity/gravity-gallery-12.webp",
+      "/projects/gravity/gravity-gallery-13.webp",
+      "/projects/gravity/gravity-gallery-14.webp"
+    ],
+    tags: [TAGS.DJANGO, TAGS.PYTHON, TAGS.TAILWIND, TAGS.JAVASCRIPT, TAGS.SQLITE, TAGS.POSTGRESQL, TAGS.GIT],
+    status: "En Desarrollo",
+    featured: true
+  },
   {
     title: "Emercor",
     description: "Aplicación de Marketplace desarrollada con React Native y Firebase, que permite a los usuarios comprar y vender productos de forma sencilla.",
     link: "",
     github: "https://github.com/Piccoli4/Emercor",
     image: "/projects/emercor.webp",
-    tags: [TAGS.REACTNATIVE, TAGS.NEXTJS, TAGS.EXPO, TAGS.FIREBASE]
+    gallery: [
+      "/projects/emercor/emercor.webp",
+      "/projects/emercor/emercor-gallery-1.webp",
+      "/projects/emercor/emercor-gallery-2.webp",
+      "/projects/emercor/emercor-gallery-3.webp",
+      "/projects/emercor/emercor-gallery-4.webp",
+      "/projects/emercor/emercor-gallery-5.webp"
+    ],
+    tags: [TAGS.REACTNATIVE, TAGS.NEXTJS, TAGS.EXPO, TAGS.FIREBASE],
+    status: "Completado",
+    featured: false
   },
   {
     title: "TurnoSmart",
@@ -56,62 +139,421 @@ const PROJECTS = [
     link: "",
     github: "https://github.com/Piccoli4/TurnoSmart",
     image: "/projects/turnosmart.webp",
-    tags: [TAGS.REACTNATIVE, TAGS.NEXTJS, TAGS.EXPO, TAGS.FIREBASE]
+    gallery: [
+      "/projects/turnosmart/turnosmart.webp",
+      "/projects/turnosmart/turnosmart-gallery-1.webp",
+      "/projects/turnosmart/turnosmart-gallery-2.webp",
+      "/projects/turnosmart/turnosmart-gallery-3.webp",
+      "/projects/turnosmart/turnosmart-gallery-4.webp",
+      "/projects/turnosmart/turnosmart-gallery-5.webp",
+      "/projects/turnosmart/turnosmart-gallery-6.webp",
+      "/projects/turnosmart/turnosmart-gallery-7.webp"
+    ],
+    tags: [TAGS.REACTNATIVE, TAGS.NEXTJS, TAGS.EXPO, TAGS.FIREBASE],
+    status: "Completado",
+    featured: false
   },
   {
     title: "BasketDrip",
-    description: "BasketDrip es un sitio web responsive para amantes del baloncesto, donde pueden descubrir y comprar ropa y accesorios exclusivos con un diseño intuitivo y sin complicaciones. ",
+    description: "BasketDrip es un sitio web responsive para amantes del baloncesto, donde pueden descubrir y comprar ropa y accesorios exclusivos con un diseño intuitivo y sin complicaciones.",
     link: "https://basketdrip.vercel.app/",
     github: "https://github.com/Piccoli4/BasketDrip",
     image: "/projects/Basketdrip.webp",
-    tags: [TAGS.REACT, TAGS.CHAKRA, TAGS.FIREBASE]
+    gallery: [
+      "/projects/basketdrip/basketdrip.webp",
+      "/projects/basketdrip/basketdrip-gallery-1.webp",
+      "/projects/basketdrip/basketdrip-gallery-2.webp"
+    ],
+    tags: [TAGS.REACT, TAGS.CHAKRA, TAGS.FIREBASE],
+    status: "En Línea",
+    featured: false
   },
 ];
 ---
 
-<div class="flex flex-col gap-y-16">
+<!-- Grid con alturas iguales -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
-      <article class="flex flex-col justify-center items-center space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-        <div class="flex flex-col items-center w-[45%] col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+    PROJECTS.map(({ image, title, description, tags, link, github, status, featured, gallery }, index) => (
+      <article 
+        class="group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col h-[580px]"
+        style={`animation-delay: ${index * 100}ms`}
+      >
+        <!-- Badge destacado más pequeño -->
+        {featured && (
+          <div class="absolute top-3 left-3 z-30">
+            <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
+              ⭐ Destacado
+            </div>
+          </div>
+        )}
+
+        <!-- Imagen del proyecto con clic para galería -->
+        <div class="relative overflow-hidden cursor-pointer group/image" onclick={`openGallery('project-${index}')`}>
+          <!-- Indicador de estado -->
+          <div class="absolute top-3 right-3 z-20">
+            <span class={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full backdrop-blur-sm ${
+              status === 'En Línea' ? 'bg-green-100/90 text-green-700 dark:bg-green-900/70 dark:text-green-300' :
+              status === 'Completado' ? 'bg-blue-100/90 text-blue-700 dark:bg-blue-900/70 dark:text-blue-300' :
+              status === 'En Desarrollo' ? 'bg-purple-100/90 text-purple-700 dark:bg-purple-900/70 dark:text-purple-300' :
+              'bg-amber-100/90 text-amber-700 dark:bg-amber-900/70 dark:text-amber-300'
+            }`}>
+              <div class={`w-1.5 h-1.5 rounded-full ${
+                status === 'En Línea' ? 'bg-green-500' :
+                status === 'Completado' ? 'bg-blue-500' :
+                status === 'En Desarrollo' ? 'bg-purple-500' :
+                'bg-amber-500'
+              } animate-pulse`}></div>
+              {status}
+            </span>
+          </div>
+
+          <!-- Indicador de galería -->
+          <div class="absolute bottom-3 right-3 z-20 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
+            <div class="bg-black/70 text-white px-2 py-1 rounded-lg text-xs flex items-center gap-1">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              {gallery.length} fotos
+            </div>
+          </div>
+
+          <!-- Overlay para mostrar que es clickeable -->
+          <div class="absolute inset-0 bg-black/0 group-hover/image:bg-black/20 transition-all duration-300 flex items-center justify-center">
+            <div class="opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm rounded-full p-3">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+              </svg>
+            </div>
+          </div>
+          
           <img 
-              alt={`Captura de pantalla del proyecto ${image}`} 
-              class="object-cover object-top w-full transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" 
-              loading="lazy" 
-              src={image} 
+            alt={`Captura de pantalla del proyecto ${title}`}
+            class="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110" 
+            loading="lazy" 
+            src={image} 
           />
         </div>
 
-        <div class="w-[90%] md:w-full justify-center items-center md:justify-start md:items-start">
-          <h3 class="text-lg xl:text-2xl font-semibold text-red-600 mb-1 ml-2 dark:text-red-400 text-center md:text-start">{title}</h3>
-          <p class="text-sm xl:text-lg mb-2 text-pretty ml-2 flex-grow">{description}</p>
-          <ul class="flex flex-row gap-6 justify-center md:justify-start items-center ml-6">
-              {tags.map(tag => (
-                  <li class="flex flex-col items-center text-black dark:text-white size-11 whitespace-nowrap my-3">
-                      <tag.icon/> 
-                      <span class="text-xs mt-1">{tag.name}</span>
-                  </li>
-              ))} 
-          </ul>
-          <footer class="flex items-end justify-center md:justify-start gap-x-4 m-2">
-              {github && (
-                  <LinkButton href={github}>
-                      <GitHub class="size-6" />
-                      Ver en GitHub
-                  </LinkButton>
+        <!-- Contenido con flex-grow para ocupar espacio restante -->
+        <div class="p-5 flex-grow flex flex-col">
+          <!-- Título -->
+          <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent group-hover:from-indigo-600 group-hover:to-purple-600 transition-all duration-300">
+            {title}
+          </h3>
+          
+          <!-- Descripción con altura fija -->
+          <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 flex-grow line-clamp-4">
+            {description}
+          </p>
+
+          <!-- Tecnologías -->
+          <div class="mb-5">
+            <div class="flex flex-wrap gap-2">
+              {tags.slice(0, 4).map((tag, tagIndex) => (
+                <div 
+                  class="group/tech flex items-center gap-1.5 px-2.5 py-1.5 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-all duration-300 hover:scale-105 text-xs border border-gray-200/50 dark:border-gray-600/50"
+                  style={`animation-delay: ${(index * 100) + (tagIndex * 30)}ms`}
+                >
+                  <div class="w-3 h-3 flex items-center justify-center text-gray-600 dark:text-gray-300 group-hover/tech:text-indigo-600 dark:group-hover/tech:text-indigo-400 transition-colors duration-300 overflow-hidden">
+                    <tag.icon style="width: 12px; height: 12px; max-width: 12px; max-height: 12px;"/>
+                  </div>
+                  <span class="font-medium text-gray-700 dark:text-gray-300 group-hover/tech:text-indigo-600 dark:group-hover/tech:text-indigo-400 transition-colors duration-300">
+                    {tag.name}
+                  </span>
+                </div>
+              ))}
+              {tags.length > 4 && (
+                <div class="flex items-center px-2.5 py-1.5 bg-gray-100 dark:bg-gray-600 rounded-lg text-xs text-gray-500 dark:text-gray-400">
+                  +{tags.length - 4} más
+                </div>
               )}
-              {link && (
-                  <LinkButton href={link}>
-                      <Link class="size-5" />
-                      Vista previa
-                  </LinkButton>
-              )}
-          </footer>
+            </div>
+          </div>
+
+          <!-- Botones en la parte inferior -->
+          <div class="flex gap-3 mt-auto">
+            {github && (
+              <LinkButton href={github}>
+                <GitHub class="w-4 h-4" />
+                GitHub
+              </LinkButton>
+            )}
+            {link && (
+              <LinkButton href={link}>
+                <Link class="w-4 h-4" />
+                Demo
+              </LinkButton>
+            )}
+          </div>
+
+          <!-- Footer info -->
+          <div class="mt-4 pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+            <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+              <span class="flex items-center gap-1">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                </svg>
+                {tags.length} tecnologías
+              </span>
+              <span class="text-gray-400 dark:text-gray-500">
+                2024
+              </span>
+            </div>
+          </div>
         </div>
+
+        <!-- Efecto de brillo -->
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"></div>
       </article>
     ))
   }
 </div>
 
+<!-- Modal de Galería -->
+<div id="gallery-modal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4 backdrop-blur-sm">
+  <div class="relative max-w-5xl w-full max-h-[90vh] bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
+    <!-- Header del modal -->
+    <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
+      <h3 id="gallery-title" class="text-xl font-bold text-gray-900 dark:text-white"></h3>
+      <button onclick="closeGallery()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Contenido de la galería -->
+    <div class="p-6">
+      <!-- Imagen principal -->
+      <div class="relative mb-6">
+        <img id="gallery-main-image" class="w-full h-96 object-contain bg-gray-100 dark:bg-gray-800 rounded-xl" alt="">
+        
+        <!-- Controles de navegación -->
+        <button onclick="previousImage()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 dark:bg-black/20 dark:hover:bg-black/40 backdrop-blur-sm rounded-full p-2 transition-all">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <button onclick="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 dark:bg-black/20 dark:hover:bg-black/40 backdrop-blur-sm rounded-full p-2 transition-all">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Miniaturas -->
+      <div id="gallery-thumbnails" class="flex gap-3 overflow-x-auto pb-2">
+        <!-- Las miniaturas se insertan aquí dinámicamente -->
+      </div>
+    </div>
+  </div>
+</div>
 
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  article {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+
+  /* Smooth scrolling para las miniaturas */
+  #gallery-thumbnails {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  }
+
+  #gallery-thumbnails::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  #gallery-thumbnails::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  #gallery-thumbnails::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+  }
+</style>
+
+<script>
+  // Interfaces TypeScript
+  interface ProjectData {
+    title: string;
+    gallery: string[];
+  }
+
+  // Variables globales con tipado
+  let currentProject: ProjectData | null = null;
+  let currentImageIndex: number = 0;
+
+  // Datos de los proyectos con tipado
+  const PROJECTS_DATA: ProjectData[] = [
+    {
+      title: "Pilates Gravity",
+      gallery: [
+        "/projects/gravity/gravity-gallery-1.webp",
+        "/projects/gravity/gravity-gallery-2.webp",
+        "/projects/gravity/gravity-gallery-3.webp",
+        "/projects/gravity/gravity-gallery-4.webp",
+        "/projects/gravity/gravity-gallery-5.webp",
+        "/projects/gravity/gravity-gallery-6.webp",
+        "/projects/gravity/gravity-gallery-7.webp",
+        "/projects/gravity/gravity-gallery-8.webp",
+        "/projects/gravity/gravity-gallery-9.webp",
+        "/projects/gravity/gravity-gallery-10.webp",
+        "/projects/gravity/gravity-gallery-11.webp",
+        "/projects/gravity/gravity-gallery-12.webp",
+        "/projects/gravity/gravity-gallery-13.webp",
+        "/projects/gravity/gravity-gallery-14.webp"
+      ]
+    },
+    {
+      title: "Emercor",
+      gallery: [
+        "/projects/emercor/emercor.webp",
+        "/projects/emercor/emercor-gallery-1.webp",
+        "/projects/emercor/emercor-gallery-2.webp",
+        "/projects/emercor/emercor-gallery-3.webp",
+        "/projects/emercor/emercor-gallery-4.webp",
+        "/projects/emercor/emercor-gallery-5.webp"
+      ]
+    },
+    {
+      title: "TurnoSmart",
+      gallery: [
+        "/projects/turnosmart/turnosmart.webp",
+        "/projects/turnosmart/turnosmart-gallery-1.webp",
+        "/projects/turnosmart/turnosmart-gallery-2.webp",
+        "/projects/turnosmart/turnosmart-gallery-3.webp",
+        "/projects/turnosmart/turnosmart-gallery-4.webp",
+        "/projects/turnosmart/turnosmart-gallery-5.webp",
+        "/projects/turnosmart/turnosmart-gallery-6.webp",
+        "/projects/turnosmart/turnosmart-gallery-7.webp"
+      ]
+    },
+    {
+      title: "BasketDrip",
+      gallery: [
+        "/projects/basketdrip/basketdrip.webp",
+        "/projects/basketdrip/basketdrip-gallery-1.webp",
+        "/projects/basketdrip/basketdrip-gallery-2.webp"
+      ]
+    }
+  ];
+
+  function openGallery(projectId: string): void {
+    const projectIndex = parseInt(projectId.split('-')[1]);
+    currentProject = PROJECTS_DATA[projectIndex];
+    currentImageIndex = 0;
+    
+    const modal = document.getElementById('gallery-modal');
+    const title = document.getElementById('gallery-title');
+    
+    if (!modal || !title || !currentProject) return;
+    
+    title.textContent = `Galería de ${currentProject.title}`;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    
+    updateGalleryContent();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGallery(): void {
+    const modal = document.getElementById('gallery-modal');
+    if (!modal) return;
+    
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+    currentProject = null;
+  }
+
+  function updateGalleryContent(): void {
+    if (!currentProject) return;
+    
+    const mainImage = document.getElementById('gallery-main-image') as HTMLImageElement;
+    const thumbnailsContainer = document.getElementById('gallery-thumbnails');
+    
+    if (!mainImage || !thumbnailsContainer) return;
+    
+    // Actualizar imagen principal
+    mainImage.src = currentProject.gallery[currentImageIndex];
+    mainImage.alt = `${currentProject.title} - Imagen ${currentImageIndex + 1}`;
+    
+    // Actualizar miniaturas
+    thumbnailsContainer.innerHTML = '';
+    currentProject.gallery.forEach((image: string, index: number) => {
+      const thumbnail = document.createElement('img') as HTMLImageElement;
+      thumbnail.src = image;
+      thumbnail.alt = `Miniatura ${index + 1}`;
+      thumbnail.className = `w-20 h-16 object-cover rounded-lg cursor-pointer transition-all border-2 ${
+        index === currentImageIndex 
+          ? 'border-indigo-500 opacity-100' 
+          : 'border-gray-300 dark:border-gray-600 opacity-70 hover:opacity-100'
+      }`;
+      thumbnail.onclick = () => {
+        currentImageIndex = index;
+        updateGalleryContent();
+      };
+      thumbnailsContainer.appendChild(thumbnail);
+    });
+  }
+
+  function previousImage(): void {
+    if (!currentProject) return;
+    currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : currentProject.gallery.length - 1;
+    updateGalleryContent();
+  }
+
+  function nextImage(): void {
+    if (!currentProject) return;
+    currentImageIndex = currentImageIndex < currentProject.gallery.length - 1 ? currentImageIndex + 1 : 0;
+    updateGalleryContent();
+  }
+
+  // Event listeners
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      closeGallery();
+    }
+    if (e.key === 'ArrowLeft') {
+      previousImage();
+    }
+    if (e.key === 'ArrowRight') {
+      nextImage();
+    }
+  });
+
+  // Cerrar modal haciendo clic fuera del contenido
+  document.getElementById('gallery-modal')?.addEventListener('click', (e: Event) => {
+    const target = e.target as HTMLElement;
+    if (target?.id === 'gallery-modal') {
+      closeGallery();
+    }
+  });
+
+  // Hacer funciones globales accesibles
+  (window as any).openGallery = openGallery;
+  (window as any).closeGallery = closeGallery;
+  (window as any).previousImage = previousImage;
+  (window as any).nextImage = nextImage;
+</script>

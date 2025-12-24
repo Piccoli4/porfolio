@@ -9,15 +9,17 @@ import Projects from "@/components/Projects_es.astro"
 import SectionContainer from "@/components/SectionContainer.astro"
 import Hero from "@/components/Hero_es.astro"
 import TitleSection from "@/components/TitleSection.astro"
-import TechStack from "@/components/TechStack.astro"
+import TechStack from "@/components/TechStack_es.astro"
+import Education from "@/components/Education_es.astro"
+import GraduationCap from "@/components/icons/GraduationCap.astro"
 ---
 
 <Layout
   title="PGA - FullStack Dev"
   description="Desarrollador Full Stack con experiencia en React, React Native, PHP y Node.js. Construyo aplicaciones eficientes y escalables."
 >
-  <main class="px-4 overflow-x-hidden">
-    <SectionContainer class="py-16 md:py-24" id="inicio">
+  <main class="pt-32 px-4 overflow-x-hidden">
+    <SectionContainer id="inicio">
       <Hero>
         </slot>
       </Hero>
@@ -41,6 +43,13 @@ import TechStack from "@/components/TechStack.astro"
         <Experience />
       </SectionContainer>
 
+      <SectionContainer id="formacion">
+        <TitleSection>
+          <GraduationCap class="size-10" />
+          Formación Académica
+        </TitleSection>
+        <Education />
+      </SectionContainer>
 
       <SectionContainer id="sobre-mi">
         <TitleSection>

@@ -7,40 +7,45 @@ const { href } = Astro.props;
     href={href}
     role="link"
     class="
+        group
+        relative
         inline-flex 
-        bg-gray-100 
-        text-gray-800 
-        border-gray-300 
         items-center 
         justify-center 
         gap-2 
-        px-2 
-        py-1 
-        lg:px-3 
-        lg:py-2 
-        space-x-2 
-        text-base 
-        transition 
-        text-white 
-        bg-red-600 
+        px-4 
+        py-2.5 
+        text-sm
+        font-medium
+        text-white
+        bg-gradient-to-r
+        from-indigo-600
+        to-purple-600
+        hover:from-indigo-700
+        hover:to-purple-700
         border 
-        dark:border-gray-600 
-        focus-visible:ring-blue-500/80 
-        text-md 
-        hover:bg-red-800 
-        hover:border-gray-900 
-        group 
-        max-w-fit 
-        rounded-xl 
-        hover:text-white 
-        hover:scale-110 
+        border-indigo-500/20
+        dark:border-indigo-400/30
+        rounded-xl
+        shadow-lg
+        shadow-indigo-500/25
+        hover:shadow-xl
+        hover:shadow-indigo-500/40
         focus:outline-none 
-        focus-visible:outline-none 
-        focus-visible:ring 
-        focus-visible:ring-white 
-        focus-visible:ring-offset-2 
-        active:bg-black
+        focus:ring-4
+        focus:ring-indigo-500/30
+        transition-all
+        duration-300
+        hover:scale-105
+        active:scale-95
+        overflow-hidden
     "
 >
-    <slot />
+    <!-- Efecto de brillo -->
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+    
+    <!-- Contenido -->
+    <span class="relative flex items-center gap-2">
+        <slot />
+    </span>
 </a>

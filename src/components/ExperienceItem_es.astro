@@ -13,44 +13,63 @@ const { title, company, description, link, date } = Astro.props
 ---
 
 <div
-  class="relative mx-12 pb-12 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-black/20 dark:before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4]"
+  class="relative mx-4 sm:mx-8 md:mx-12 pb-12 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-indigo-200/50 dark:before:border-indigo-700/30 before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4 group hover:before:border-indigo-400/70 dark:hover:before:border-indigo-500/50 before:transition-colors before:duration-300"
 >
   <div class="relative pb-12 md:col-span-2">
-    <div class="sticky top-0">
-      <span class="text-red-400 -left-[42px] absolute rounded-full text-5xl"
-        >&bull;</span
-      >
+    <div class="sticky top-24">
+      <!-- Dot mejorado con gradiente -->
+      <div class="absolute -left-[42px] top-1">
+        <div class="relative">
+          <div class="w-4 h-4 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
+          <div class="absolute inset-0 w-4 h-4 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full animate-pulse opacity-30"></div>
+        </div>
+      </div>
 
-      <h3 class="text-xl font-bold text-red-600 dark:text-red-400">{title}</h3>
-      <h4 class="font-semibold text-xl text-gray-600 dark:text-white">{company}</h4>
-      <time class="p-0 m-0 text-sm text-gray-600/80 dark:text-white/80">{date}</time>
+      <!-- Contenido de la fecha/empresa -->
+      <div class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50">
+        <h3 class="text-lg md:text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2 group-hover:from-indigo-500 group-hover:to-purple-500 transition-all duration-300">
+          {title}
+        </h3>
+        <h4 class="font-semibold text-base md:text-lg text-gray-700 dark:text-gray-200 mb-2 leading-tight">
+          {company}
+        </h4>
+        <time class="inline-flex items-center gap-2 text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          {date}
+        </time>
+      </div>
     </div>
   </div>
-  <div class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3">
-    {description}
-    {
-      link && (
-        <LinkInline href={link}>
-          Saber más{" "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 icon icon-tabler icon-tabler-chevron-right"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <>
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M9 6l6 6l-6 6" />
-            </>
-          </svg>
-        </LinkInline>
-      )
-    }
+
+  <div class="relative md:col-span-3">
+    <div class="bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200/30 dark:border-gray-700/30 group-hover:bg-white/60 dark:group-hover:bg-gray-800/60">
+      <div class="prose prose-sm md:prose-base dark:prose-invert prose-gray max-w-none">
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm md:text-base">
+          {description}
+        </p>
+      </div>
+      
+      {link && (
+        <div class="mt-6 pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+          <LinkInline href={link}>
+            <span class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium">
+              Saber más
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4 transition-transform group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </LinkInline>
+        </div>
+      )}
+    </div>
   </div>
 </div>
