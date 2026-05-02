@@ -14,6 +14,8 @@ import Git from "./icons/Git.astro"
 import Django from "./icons/Django.astro"
 import Sqlite from "./icons/Sqlite.astro"
 import Postgresql from "./icons/Postgresql.astro"
+import Vite from "./icons/Vite.astro"
+import Wordpress from "./icons/Wordpress.astro"
 
 const TAGS = {
   REACT: {
@@ -85,7 +87,17 @@ const TAGS = {
     name: "AJAX",
     class: "bg-purple-600 text-white",
     icon: JavaScript,
-  }
+  },
+  VITE: {
+    name: "Vite",
+    class: "bg-blue-500 text-white",
+    icon: Vite,
+  },
+  WORDPRESS: {
+    name: "WordPress",
+    class: "bg-blue-500 text-white",
+    icon: Wordpress,
+  },
 }
 
 const PROJECTS = [
@@ -93,7 +105,7 @@ const PROJECTS = [
     title: "Pilates Gravity",
     description: "PilatesGravity is a complete web platform for comprehensive Pilates studio management. It allows users to book classes, manage their plans, and track payments, while administrators can manage schedules, clients, and billing from a centralized panel. With responsive design and automatic notifications, it optimizes the experience for both students and studio staff.",
     link: "https://pilatesgravity.com.ar",
-    github: "https://github.com/Piccoli4/PilatesGravity",
+    github: "",
     image: "/projects/gravity.webp",
     gallery: [
       "/projects/gravity/gravity-gallery-1.webp",
@@ -114,6 +126,39 @@ const PROJECTS = [
     tags: [TAGS.DJANGO, TAGS.PYTHON, TAGS.TAILWIND, TAGS.JAVASCRIPT, TAGS.SQLITE, TAGS.POSTGRESQL, TAGS.GIT],
     status: "Live",
     featured: true
+  },
+  {
+    title: "Drabble Legal",
+    description: "Professional website for a trademark and IP lawyer End-to-end development of a single-page application (SPA) for Melina Drabble, a lawyer specializing in trademarks and intellectual property based in Paraná, Argentina, serving clients remotely across the country. The project covers everything from visual design to production deployment. Built with React 18, Vite, and Tailwind CSS v3, it follows an editorial luxury aesthetic: warm dark tones, gold accents, Cormorant Garamond serif typography, and a visual identity anchored by the 'MD' monogram. Key features include: a light/dark theme system with localStorage persistence and system preference detection; a mobile hamburger menu with overlay and outside-tap dismissal; a services section, a step-by-step process breakdown, and a contact block with direct links to WhatsApp, Instagram, email, and Google Maps. Full technical SEO was implemented: meta tags, Open Graph, Twitter Cards, three chained JSON-LD schemas (WebSite, LegalService/LocalBusiness, Person), sitemap, robots.txt, cross-platform favicons, and an optimized OG image. The architecture follows a centralized configuration pattern (config.js) that allows the client to update content without touching component code.",
+    link: "https://drabblelegal.com.ar/",
+    github: "",
+    image: "/projects/drabble.webp",
+    gallery: [
+      "/projects/drabble/drabble.webp",
+      "/projects/drabble/drabble2.webp",
+      "/projects/drabble/drabble3.webp",
+      "/projects/drabble/drabble4.webp",
+      "/projects/drabble/drabble5.webp",
+    ],
+    tags: [TAGS.REACT, TAGS.TAILWIND, TAGS.JAVASCRIPT, TAGS.VITE, TAGS.GIT],
+    status: "Live",
+    featured: false
+  },
+  {
+    title: "OnTrip",
+    description: "OnTrip is a professional website for a tourism company based in Coronda, Santa Fe, Argentina. The project presents four travel modes —Educational, Graduates, Quince (15th birthday), and Trip— through a modern, responsive interface. The process included building a fully functional prototype with Next.js 15, TypeScript, and Tailwind CSS, which served as a visual and functional mockup for the client. The final site was implemented in WordPress. The prototype featured an animated hero with video background, per-mode pages with a reusable template, responsive navbar with hamburger menu, contact page, full SEO with Open Graph and JSON-LD, auto-generated sitemap, custom 404 page, and smooth page transitions.",
+    link: "https://ontripoficial.com/",
+    github: "",
+    image: "/projects/ontrip.webp",
+    gallery: [
+      "/projects/ontrip.webp",
+      "/projects/ontrip/ontrip_proximamente.webp",
+      "/projects/ontrip/ontrip_inicio.webp",
+      "/projects/ontrip/ontrip_contacto.webp",
+    ],
+    tags: [TAGS.REACT, TAGS.TAILWIND, TAGS.JAVASCRIPT, TAGS.GIT, TAGS.NEXTJS, TAGS.WORDPRESS],
+    status: "In Progress",
+    featured: false
   },
   {
     title: "Emercor",
@@ -176,7 +221,7 @@ const PROJECTS = [
   {
     PROJECTS.map(({ image, title, description, tags, link, github, status, featured, gallery }, index) => (
       <article 
-        class="group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col h-[580px]"
+        class="group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col min-h-[580px]"
         style={`animation-delay: ${index * 100}ms`}
       >
         <!-- Badge destacado más pequeño -->
@@ -242,10 +287,22 @@ const PROJECTS = [
             {title}
           </h3>
           
-          <!-- Descripción con altura fija -->
-          <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 flex-grow line-clamp-4">
-            {description}
-          </p>
+          <!-- Descripción con "Ver más" -->
+          <div class="mb-4">
+            <p 
+              class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed desc-text line-clamp-4"
+              data-idx={index}
+            >
+              {description}
+            </p>
+            <button 
+              class="ver-mas-btn text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 text-xs font-medium mt-1 transition-colors duration-200"
+              data-idx={index}
+              data-expanded="false"
+            >
+              Show more ↓
+            </button>
+          </div>
 
           <!-- Tecnologías -->
           <div class="mb-5">
@@ -295,9 +352,6 @@ const PROJECTS = [
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
                 </svg>
                 {tags.length} technologies
-              </span>
-              <span class="text-gray-400 dark:text-gray-500">
-                2024
               </span>
             </div>
           </div>
@@ -426,6 +480,26 @@ const PROJECTS = [
       ]
     },
     {
+      title: "Drabble Legal",
+      gallery: [
+        "/projects/drabble.webp",
+        "/projects/drabble/drabble.webp",
+        "/projects/drabble/drabble2.webp",
+        "/projects/drabble/drabble3.webp",
+        "/projects/drabble/drabble4.webp",
+        "/projects/drabble/drabble5.webp"
+      ]
+    },
+    {
+      title: "OnTrip",
+      gallery: [
+        "/projects/ontrip.webp",
+        "/projects/ontrip/ontrip_proximamente.webp",
+        "/projects/ontrip/ontrip_inicio.webp",
+        "/projects/ontrip/ontrip_contacto.webp",
+      ]
+    },
+    {
       title: "Emercor",
       gallery: [
         "/projects/emercor/emercor.webp",
@@ -549,6 +623,31 @@ const PROJECTS = [
     if (target?.id === 'gallery-modal') {
       closeGallery();
     }
+  });
+
+  // Toggle "Ver más / Ver menos"
+  document.querySelectorAll('.ver-mas-btn').forEach((btn) => {
+    const button = btn as HTMLElement;
+    const idx = button.dataset.idx;
+    const p = document.querySelector(`.desc-text[data-idx="${idx}"]`) as HTMLElement;
+
+    // Ocultar botón si el texto no está cortado
+    if (p && p.scrollHeight <= p.clientHeight) {
+      button.style.display = 'none';
+    }
+
+    button.addEventListener('click', () => {
+      const expanded = button.dataset.expanded === 'true';
+      if (expanded) {
+        p.classList.add('line-clamp-4');
+        button.textContent = 'Show more ↓';
+        button.dataset.expanded = 'false';
+      } else {
+        p.classList.remove('line-clamp-4');
+        button.textContent = 'Show less ↑';
+        button.dataset.expanded = 'true';
+      }
+    });
   });
 
   // Hacer funciones globales accesibles
