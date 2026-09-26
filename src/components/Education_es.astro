@@ -133,6 +133,18 @@ const EDUCATION = [
         featured: false
     },
     {
+        id: "rid-esba",
+        title: "Diplomatura en Redes Informáticas",
+        institution: "ESBA",
+        date: "2026",
+        type: "Diplomatura",
+        status: "Completado",
+        image: "/education/dri.jpg",
+        description: "Diplomatura en Redes Informáticas con énfasis en la configuración, administración y mantenimiento de redes locales y de área amplia. Se cubren temas como topologías de red, protocolos de comunicación, seguridad informática, y gestión de recursos en entornos empresariales.",
+        skills: ["Redes Locales", "Protocolos de Comunicación", "Seguridad Informática", "Gestión de Recursos", "Configuración de Redes", "Mantenimiento de Redes"],
+        featured: false
+    },
+    {
         id: "opcw-cert",
         title: "Operador PC Windows",
         institution: "CENEDI",
@@ -633,6 +645,17 @@ const getStatusColor = (status: string): string => {
             skills: ["Python", "Sintaxis Básica", "Estructuras de Datos", "Control de Flujo", "Funciones", "Programación Estructurada", "Resolución de Problemas", "Buenas Prácticas", "Algoritmos Básicos", "Ejercicios Prácticos"]
         },
         {
+            id: "rid-esba",
+            title: "Diplomatura en Redes Informáticas",
+            institution: "ESBA",
+            date: "2026",
+            type: "Diplomatura",
+            status: "Completado",
+            image: "/education/dri.jpg",
+            description: "Diplomatura en Redes Informáticas con énfasis en la configuración, administración y mantenimiento de redes locales y de área amplia. Se cubren temas como topologías de red, protocolos de comunicación, seguridad informática, y gestión de recursos en entornos empresariales.",
+            skills: ["Redes Locales", "Protocolos de Comunicación", "Seguridad Informática", "Gestión de Recursos", "Configuración de Redes", "Mantenimiento de Redes"]
+        },
+        {
             id: "opcw-cert",
             title: "Operador PC Windows",
             institution: "CENEDI",
@@ -953,7 +976,7 @@ const getStatusColor = (status: string): string => {
     // Event listeners
     document.addEventListener('DOMContentLoaded', function() {
         // Inicializar array de certificados
-        allCertificates = ['tuig', 'desarrollo-web-responsive', 'programacion-web-inicial', 'php-mysql', 'php-mysql-avanzado', 'programacion-javascript', 'desarrollo-web-fullstack', 'react-js', 'desarrollo-apps', 'python-coderhouse', 'python-midudev', 'opcw-cert', 'reparacion-celulares', 'cb-cert'];
+        allCertificates = ['tuig', 'desarrollo-web-responsive', 'programacion-web-inicial', 'php-mysql', 'php-mysql-avanzado', 'programacion-javascript', 'desarrollo-web-fullstack', 'react-js', 'desarrollo-apps', 'python-coderhouse', 'python-midudev', 'rid-esba', 'opcw-cert', 'reparacion-celulares', 'cb-cert'];
         // Duplicar elementos para scroll infinito
         const gallery = document.getElementById('education-gallery');
         if (gallery) {

@@ -133,6 +133,18 @@ const EDUCATION = [
         featured: false
     },
     {
+        id: "rid-esba",
+        title: "Diploma in Computer Networks",
+        institution: "ESBA",
+        date: "2026",
+        type: "Diploma",
+        status: "Completed",
+        image: "/education/dri.jpg",
+        description: "Diploma in Computer Networks with emphasis on configuration, administration and maintenance of local and wide area networks. Topics covered include network topologies, communication protocols, information security, and resource management in enterprise environments.",
+        skills: ["Local Networks", "Communication Protocols", "Information Security", "Resource Management", "Network Configuration", "Network Maintenance"],
+        featured: false
+    },
+    {
         id: "opcw-cert",
         title: "PC Windows Operator",
         institution: "CENEDI",
@@ -649,6 +661,17 @@ const getStatusColor = (status: string): string => {
             skills: ["Python", "Basic Syntax", "Data Structures", "Control Flow", "Functions", "Structured Programming", "Problem Solving", "Best Practices", "Basic Algorithms", "Practical Exercises"]
         },
         {
+            id: "rid-esba",
+            title: "Diploma in Computer Networks",
+            institution: "ESBA",
+            date: "2026",
+            type: "Diploma",
+            status: "Completed",
+            image: "/education/dri.jpg",
+            description: "Diploma in Computer Networks with emphasis on configuration, administration and maintenance of local and wide area networks. Topics covered include network topologies, communication protocols, information security, and resource management in enterprise environments.",
+            skills: ["Local Networks", "Communication Protocols", "Information Security", "Resource Management", "Network Configuration", "Network Maintenance"]
+        },
+        {
             id: "opcw-cert",
             title: "PC Windows Operator",
             institution: "CENEDI",
@@ -811,7 +834,7 @@ const getStatusColor = (status: string): string => {
     // Event listeners
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize certificates array
-        allCertificates = ['tuig', 'desarrollo-web-responsive', 'programacion-web-inicial', 'php-mysql', 'php-mysql-avanzado', 'programacion-javascript', 'desarrollo-web-fullstack', 'react-js', 'desarrollo-apps', 'python-coderhouse', 'python-midudev', 'opcw-cert', 'reparacion-celulares', 'cb-cert'];
+        allCertificates = ['tuig', 'desarrollo-web-responsive', 'programacion-web-inicial', 'php-mysql', 'php-mysql-avanzado', 'programacion-javascript', 'desarrollo-web-fullstack', 'react-js', 'desarrollo-apps', 'python-coderhouse', 'python-midudev', 'rid-esba', 'opcw-cert', 'reparacion-celulares', 'cb-cert'];
         
         // Duplicate elements for infinite scroll
         const gallery = document.getElementById('education-gallery');
