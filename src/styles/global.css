@@ -136,25 +136,25 @@
     @apply inline-flex items-center gap-1.5 border border-line bg-surface-2/60 px-2.5 py-1 font-mono text-[11px] font-medium text-ink-2;
   }
 
-  /* Íconos de tecnologías: monocromos, toman color en hover */
+  /* Íconos de tecnologías: monocromos, toman color en hover.
+     Los filtros se combinan con variables para no pisarse entre sí. */
   .tech-icon {
-    @apply inline-flex shrink-0 items-center justify-center;
-  }
-  .tech-icon svg {
-    width: 100%;
-    height: 100%;
-  }
-  .mono-icon .tech-icon {
-    filter: grayscale(1);
-    opacity: 0.75;
+    --tone-f: opacity(1);
+    --mono-f: opacity(1);
+    @apply shrink-0 object-contain;
+    filter: var(--tone-f) var(--mono-f);
     transition: filter 0.3s ease, opacity 0.3s ease;
   }
+  .mono-icon .tech-icon {
+    --mono-f: grayscale(1);
+    opacity: 0.75;
+  }
   .dark .mono-icon .tech-icon {
-    filter: grayscale(1) brightness(1.7);
+    --mono-f: grayscale(1) brightness(1.7);
   }
   .mono-icon:hover .tech-icon,
   .mono-icon:focus-within .tech-icon {
-    filter: none;
+    --mono-f: opacity(1);
     opacity: 1;
   }
 
@@ -219,9 +219,9 @@
 }
 
 /* Íconos monocolor: se invierten para mantener el contraste en cada tema */
-html:not(.dark) .tech-icon[data-tone="light"] img,
-.dark .tech-icon[data-tone="dark"] img {
-  filter: invert(1) hue-rotate(180deg);
+html:not(.dark) .tech-icon[data-tone="light"],
+.dark .tech-icon[data-tone="dark"] {
+  --tone-f: invert(1) hue-rotate(180deg);
 }
 
 /* ---- Estilos de secciones ---- */
@@ -240,6 +240,9 @@ html:not(.dark) .tech-icon[data-tone="light"] img,
   }
 
 /* Experience.astro */
+  .bullet {
+    @apply relative pl-6 leading-relaxed;
+  }
   .bullet::before {
     content: "//";
     @apply absolute left-0 top-0 font-mono text-sm font-semibold text-red-ink;
@@ -268,4 +271,117 @@ html:not(.dark) .tech-icon[data-tone="light"] img,
   .meter[data-level="3"] i:nth-child(-n + 3) {
     background: #d7263e;
   }
+
+/* Education.astro: tarjeta de certificado */
+  .edu-card {
+    @apply block h-full w-full text-left;
+  }
+  .edu-card-inner {
+    @apply flex flex-col;
+  }
+  .edu-card-media {
+    @apply relative block aspect-[1.414] overflow-hidden bg-surface-2;
+  }
+  .edu-card-media img {
+    @apply size-full object-cover transition-transform duration-700;
+  }
+  .edu-card:hover .edu-card-media img {
+    @apply scale-105;
+  }
+  .edu-card-overlay {
+    @apply absolute inset-0 grid place-items-center bg-brand-navy/0 opacity-0 transition-all duration-300;
+  }
+  .edu-card-overlay > span {
+    @apply bg-brand-red px-3 py-1.5 font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-white;
+  }
+  .edu-card:hover .edu-card-overlay,
+  .edu-card:focus-visible .edu-card-overlay {
+    @apply bg-brand-navy/50 opacity-100;
+  }
+  .edu-card-body {
+    @apply flex flex-1 flex-col p-5;
+  }
+  .edu-card-kind {
+    @apply font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-red-ink;
+  }
+  .edu-card-title {
+    @apply mt-2 line-clamp-2 font-display text-lg font-semibold leading-snug text-ink;
+  }
+  .edu-card-meta {
+    @apply mt-auto flex items-center justify-between gap-3 pt-4 text-xs text-muted;
+  }
+
+/* TechStack.astro: tarjeta de tecnología */
+  .tech-tile {
+    @apply flex flex-col gap-3 border border-line bg-surface-2/40 p-3 transition-colors hover:border-brand-red/50 hover:bg-surface-2;
+  }
+  .tech-tile-head {
+    @apply flex items-center gap-2.5;
+  }
+  .tech-tile-name {
+    @apply truncate text-sm font-medium text-ink;
+  }
+  .tech-tile-foot {
+    @apply flex items-center justify-between gap-2;
+  }
+  .tech-tile-level {
+    @apply font-mono text-[9px] uppercase tracking-[0.12em] text-muted;
+  }
 }
+
+/* ---- Hero, Sobre mí y Footer ---- */
+/* Hero.astro */
+  .photo-panel {
+    clip-path: polygon(0 0, calc(100% - 44px) 0, 100% 44px, 100% 100%, 0 100%);
+  }
+  .caret {
+    animation: blink 1s steps(2, start) infinite;
+  }
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+  .hero-in {
+    animation: hero-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
+  .hero-stats > div {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+/* About.astro */
+  .about-photo {
+    clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 0 100%);
+  }
+
+/* Footer.astro */
+  .egg-shield {
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%);
+    transition: transform 0.3s ease;
+  }
+  .egg-btn:hover .egg-shield,
+  .egg.open .egg-shield {
+    transform: translateY(-3px) rotate(-6deg);
+  }
+  .egg-card {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  }
+  .egg:hover .egg-card,
+  .egg:focus-within .egg-card,
+  .egg.open .egg-card {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+

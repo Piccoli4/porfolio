@@ -1,13 +1,16 @@
 ---
 // Visor compartido por Proyectos (galerías) y Formación (certificados).
-// Cualquier botón con data-lightbox='{"title", "subtitle", "images":[{src,alt}], "description", "skills", "skillsLabel"}' lo abre.
+// Cualquier botón con data-lightbox="<clave>" lo abre. Los datos de cada clave
+// (ver src/data/lightbox.ts) se descargan de /lightbox-<lang>.json al primer uso.
 import { useT, type Lang } from "@/i18n/ui"
 
 interface Props {
   lang: Lang
 }
 
-const t = useT(Astro.props.lang).lightbox
+const { lang } = Astro.props
+const t = useT(lang).lightbox
+const dataUrl = `/lightbox-${lang}.json`
 ---
 
 <dialog
@@ -75,7 +78,7 @@ const t = useT(Astro.props.lang).lightbox
   }
 </style>
 
-<script define:vars={{ ofLabel: t.of }}>
+<script define:vars={{ ofLabel: t.of, dataUrl }}>
   const dialog = document.getElementById("lightbox")
   const $ = (id) => document.getElementById(id)
   let images = []
@@ -146,11 +149,25 @@ const t = useT(Astro.props.lang).lightbox
     render()
   }
 
-  document.addEventListener("click", (e) => {
+  // Descarga única y perezosa de los datos del visor
+  let dataPromise = null
+  const loadData = () =>
+    (dataPromise ??= fetch(dataUrl)
+      .then((r) => r.json())
+      .catch((err) => {
+        dataPromise = null
+        throw err
+      }))
+  const prefetch = (e) => e.target.closest?.("[data-lightbox]") && loadData()
+  document.addEventListener("pointerover", prefetch, { passive: true })
+  document.addEventListener("focusin", prefetch)
+
+  document.addEventListener("click", async (e) => {
     const trigger = e.target.closest("[data-lightbox]")
     if (!trigger) return
     e.preventDefault()
-    open(JSON.parse(trigger.dataset.lightbox), trigger)
+    const data = (await loadData())[trigger.dataset.lightbox]
+    if (data) open(data, trigger)
   })
   dialog.querySelector("[data-lb-close]").addEventListener("click", () => dialog.close())
   dialog.querySelector("[data-lb-prev]").addEventListener("click", () => step(-1))

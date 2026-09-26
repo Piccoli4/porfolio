@@ -4,6 +4,7 @@ import TechIcon from "./TechIcon.astro"
 import { useT, type Lang } from "@/i18n/ui"
 import { PROJECTS, type Project } from "@/data/projects"
 import { TECH } from "@/data/tech"
+import { projectKey } from "@/data/lightbox"
 
 interface Props {
   lang: Lang
@@ -15,12 +16,7 @@ const t = useT(lang)
 const featured = PROJECTS.find((p) => p.featured)!
 const others = PROJECTS.filter((p) => !p.featured)
 
-const gallery = (p: Project) =>
-  JSON.stringify({
-    title: p.title,
-    subtitle: `${t.lightbox.galleryOf} ${p.title}`,
-    images: p.gallery.map((src, i) => ({ src, alt: `${p.title} — ${t.projects.screenshot} ${i + 1}` })),
-  })
+const gallery = (p: Project) => projectKey(p.id)
 ---
 
 <section id="proyectos" class="container-site py-20 md:py-28">

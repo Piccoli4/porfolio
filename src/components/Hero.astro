@@ -125,7 +125,7 @@ const stats = [
     </div>
 
     <!-- Métricas -->
-    <dl class="mt-16 grid grid-cols-3 border-y border-line md:mt-20" data-reveal>
+    <dl class="hero-stats mt-16 grid grid-cols-3 border-y border-line md:mt-20" data-reveal>
       {
         stats.map((s, i) => (
           <div class:list={["px-2 py-6 sm:px-6 md:py-8", i > 0 && "border-l border-line"]}>
@@ -140,33 +140,6 @@ const stats = [
   </div>
 </section>
 
-<style>
-  .photo-panel {
-    clip-path: polygon(0 0, calc(100% - 44px) 0, 100% 44px, 100% 100%, 0 100%);
-  }
-  .caret {
-    animation: blink 1s steps(2, start) infinite;
-  }
-  @keyframes blink {
-    to {
-      visibility: hidden;
-    }
-  }
-  .hero-in {
-    animation: hero-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-    animation-delay: var(--d, 0ms);
-  }
-  @keyframes hero-in {
-    from {
-      opacity: 0;
-      transform: translateY(18px);
-    }
-  }
-  dl > div {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-</style>
 
 <script>
   // Escribe y borra los roles en la línea "/// ..."

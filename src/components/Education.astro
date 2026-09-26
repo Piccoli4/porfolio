@@ -2,6 +2,7 @@
 import SectionHeading from "./SectionHeading.astro"
 import { useT, type Lang } from "@/i18n/ui"
 import { EDUCATION, type EducationItem } from "@/data/education"
+import { educationKey } from "@/data/lightbox"
 
 interface Props {
   lang: Lang
@@ -28,15 +29,7 @@ const stats = [
   { value: Math.min(...EDUCATION.map((e) => Number(e.date.slice(0, 4)))), label: t.education.stats.since },
 ]
 
-const payload = (item: EducationItem) =>
-  JSON.stringify({
-    title: item.title[lang],
-    subtitle: `${item.institution} · ${item.date}`,
-    images: [{ src: item.image, alt: `${t.education.certificate} ${item.title[lang]}` }],
-    description: item.description[lang],
-    skills: item.skills[lang],
-    skillsLabel: t.education.skills,
-  })
+const payload = (item: EducationItem) => educationKey(item.id)
 ---
 
 <section id="formacion" class="container-site py-20 md:py-28">
@@ -101,33 +94,16 @@ const payload = (item: EducationItem) =>
     {
       rest.map((item, i) => (
         <li data-kind={item.kind} data-reveal style={`--reveal-delay:${(i % 3) * 70}ms`}>
-          <button
-            type="button"
-            data-lightbox={payload(item)}
-            class="frame frame-hover group block h-full w-full text-left"
-            aria-label={`${t.education.view}: ${item.title[lang]}`}
-          >
-            <span class="frame-inner flex flex-col">
-              <span class="relative block aspect-[1.414] overflow-hidden bg-surface-2">
-                <img
-                  src={thumb(item.image)}
-                  alt=""
-                  width="640"
-                  height="453"
-                  loading="lazy"
-                  decoding="async"
-                  class="size-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <span class="absolute inset-0 grid place-items-center bg-brand-navy/0 opacity-0 transition-all duration-300 group-hover:bg-brand-navy/50 group-hover:opacity-100">
-                  <span class="bg-brand-red px-3 py-1.5 font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
-                    {t.education.view}
-                  </span>
-                </span>
+          <button type="button" data-lightbox={payload(item)} class="frame frame-hover edu-card" aria-label={`${t.education.view}: ${item.title[lang]}`}>
+            <span class="frame-inner edu-card-inner">
+              <span class="edu-card-media">
+                <img src={thumb(item.image)} alt="" width="640" height="453" loading="lazy" decoding="async" />
+                <span class="edu-card-overlay"><span>{t.education.view}</span></span>
               </span>
-              <span class="flex flex-1 flex-col p-5">
-                <span class="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-red-ink">{t.education.kind[item.kind]}</span>
-                <span class="mt-2 line-clamp-2 font-display text-lg font-semibold leading-snug text-ink">{item.title[lang]}</span>
-                <span class="mt-auto flex items-center justify-between gap-3 pt-4 text-xs text-muted">
+              <span class="edu-card-body">
+                <span class="edu-card-kind">{t.education.kind[item.kind]}</span>
+                <span class="edu-card-title">{item.title[lang]}</span>
+                <span class="edu-card-meta">
                   <span class="truncate">{item.institution}</span>
                   <span class="font-mono">{item.date}</span>
                 </span>

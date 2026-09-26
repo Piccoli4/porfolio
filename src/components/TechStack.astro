@@ -56,14 +56,14 @@ const SPAN: Record<string, string> = {
                 const tech = TECH[key]
                 const level = "level" in tech ? tech.level : "basic"
                 return (
-                  <li class="mono-icon group flex flex-col gap-3 border border-line bg-surface-2/40 p-3 transition-colors hover:border-brand-red/50 hover:bg-surface-2">
-                    <div class="flex items-center gap-2.5">
+                  <li class="tech-tile mono-icon">
+                    <div class="tech-tile-head">
                       <TechIcon tech={key} class="size-6" />
-                      <span class="truncate text-sm font-medium text-ink">{tech.name}</span>
+                      <span class="tech-tile-name">{tech.name}</span>
                     </div>
-                    <span class="flex items-center justify-between gap-2">
+                    <span class="tech-tile-foot">
                       <span class="meter" data-level={LEVEL_BARS[level]} aria-hidden="true"><i /><i /><i /></span>
-                      <span class="font-mono text-[9px] uppercase tracking-[0.12em] text-muted">{t.stack.levels[level]}</span>
+                      <span class="tech-tile-level">{t.stack.levels[level]}</span>
                     </span>
                   </li>
                 )

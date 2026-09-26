@@ -10,7 +10,7 @@ export const UI = {
     meta: {
       title: "Piccoli Augusto · Desarrollador Full Stack",
       description:
-        "Piccoli Augusto, Técnico Universitario en Informática y Desarrollador Full Stack con más de 5 años creando aplicaciones web y móviles con React, React Native, PHP, Python y Node.js.",
+        "Desarrollador Full Stack y Técnico Universitario en Informática. Más de 5 años creando apps web y móviles con React, React Native, PHP, Python y Node.js.",
       ogAlt: "Piccoli Augusto — Técnico en Informática y Desarrollador Full Stack",
       locale: "es_AR",
     },
@@ -111,7 +111,7 @@ export const UI = {
     meta: {
       title: "Piccoli Augusto · Full Stack Developer",
       description:
-        "Piccoli Augusto, IT Technician and Full Stack Developer with 5+ years building web and mobile applications with React, React Native, PHP, Python and Node.js.",
+        "Full Stack Developer and IT Technician. 5+ years building fast, scalable web and mobile apps with React, React Native, PHP, Python and Node.js.",
       ogAlt: "Piccoli Augusto — IT Technician and Full Stack Developer",
       locale: "en_US",
     },
