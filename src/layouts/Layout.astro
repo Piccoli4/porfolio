@@ -1,295 +1,74 @@
 ---
-import "@fontsource-variable/onest"
-import { ViewTransitions } from "astro:transitions"
-import Header from "../components/Header.astro"
-import Footer_es from "../components/Footer_es.astro"
-import Footer_en from "../components/Footer_en.astro"
+import "@fontsource-variable/saira"
+import "@fontsource-variable/inter"
+import "@fontsource-variable/jetbrains-mono"
+import "@/styles/global.css"
+import SEO from "@/components/SEO.astro"
+import Header from "@/components/Header.astro"
+import Footer from "@/components/Footer.astro"
+import { useT, type Lang } from "@/i18n/ui"
 
 interface Props {
-  title: string
-  description: string
+  lang: Lang
 }
 
-const { description, title } = Astro.props
-
-// Determinamos el idioma por la URL
-const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es'
-
-// Seleccionamos el footer según el idioma
-const Footer = lang === 'en' ? Footer_en : Footer_es
+const { lang } = Astro.props
+const t = useT(lang)
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang === "es" ? "es-AR" : "en"}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <!-- Descripción optimizada para SEO -->
-    <meta name="description" content="Desarrollador Full Stack con experiencia en React, React Native, PHP y Node.js. Construyo aplicaciones eficientes y escalables." />
-    <!-- Palabras clave -->
-    <meta name="keywords" content="Full Stack Developer, React, Node.js, PHP, Desarrollo Web, Astro, Tailwind, MySQL, Piccoli Guido Augusto, piccoli guido augusto, piccoli, augusto, pga, PGA" />
-    <!-- Autor -->
-    <meta name="author" content="Piccoli Guido Augusto" />
-    <!-- Open Graph (para compartir en redes sociales) -->
-    <meta property="og:title" content="PGA - Full Stack Developer" />
-    <meta property="og:description" content="Desarrollador Full Stack enfocado en la creación de aplicaciones web y móviles eficientes y escalables." />
-    <meta property="og:image" content="/pga_blanco.svg" />
-    <meta property="og:url" content="https://piccoliaugusto.com.ar" />
-    <meta property="og:type" content="website" />
-    <link rel="icon" type="image/svg+xml" href="/pga_blanco.svg" />
-    <title>{title}</title>
-    <ViewTransitions />
+    <SEO lang={lang} />
+
+    <!-- Aplica el tema antes de pintar para evitar parpadeos -->
+    <script is:inline>
+      (() => {
+        const root = document.documentElement
+        root.classList.add("js")
+        let pref = "system"
+        try { pref = localStorage.getItem("theme") || "system" } catch {}
+        const dark = pref === "dark" || (pref === "system" && matchMedia("(prefers-color-scheme: dark)").matches)
+        root.classList.toggle("dark", dark)
+        root.dataset.themePref = pref
+      })()
+    </script>
   </head>
 
-  <body class="relative text-gray-800 dark:text-gray-100 overflow-x-hidden w-full antialiased">
-    <!-- Fondo principal con gradientes modernos -->
-    <div class="fixed inset-0 z-[-3] bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-100/50 dark:from-slate-900 dark:via-blue-950/30 dark:to-indigo-950/50"></div>
-    
-    <!-- Patrón de partículas animadas -->
-    <div class="fixed inset-0 z-[-2] overflow-hidden">
-      <div class="absolute -top-4 -left-4 w-72 h-72 bg-purple-300/20 dark:bg-purple-500/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-70 animate-blob"></div>
-      <div class="absolute top-20 -right-4 w-72 h-72 bg-yellow-300/20 dark:bg-yellow-500/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-      <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300/20 dark:bg-pink-500/10 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-    </div>
-    
-    <!-- Overlay de glassmorphism -->
-    <div class="fixed inset-0 z-[-1] bg-white/30 dark:bg-black/20 backdrop-blur-[0.5px]"></div>
-    
-    <Header />
-    <slot/>
-    <Footer />
-    
-    <style is:global>
-      :root {
-        color-scheme: light dark;
-        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        --accent-color: #6366f1;
-        --accent-hover: #4f46e5;
-      }
+  <body>
+    <a
+      href="#contenido"
+      class="sr-only z-[100] bg-brand-red px-4 py-2 font-display text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+    >
+      {t.nav.skip}
+    </a>
+    <Header lang={lang} />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer lang={lang} />
 
-      html {
-        font-family: "Onest Variable", system-ui, sans-serif;
-        scroll-behavior: smooth;
-        font-feature-settings: 'cv11', 'ss01';
-        font-variant-numeric: oldstyle-nums;
+    <script>
+      // Aparición progresiva de bloques marcados con data-reveal
+      const items = document.querySelectorAll<HTMLElement>("[data-reveal]")
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue
+              entry.target.classList.add("is-visible")
+              io.unobserve(entry.target)
+            }
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+        )
+        items.forEach((el) => io.observe(el))
+      } else {
+        items.forEach((el) => el.classList.add("is-visible"))
       }
-
-      body {
-        color: rgb(55, 65, 81);
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        overscroll-behavior: none;
-        overflow-x: hidden;
-        line-height: 1.6;
-        font-weight: 400;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-        
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          color: rgb(209, 213, 219);
-        }
-      }
-
-      /* Animaciones personalizadas */
-      @keyframes blob {
-        0%, 100% {
-          transform: translate(0px, 0px) scale(1);
-        }
-        33% {
-          transform: translate(30px, -50px) scale(1.1);
-        }
-        66% {
-          transform: translate(-20px, 20px) scale(0.9);
-        }
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes float {
-        0%, 100% {
-          transform: translatey(0px);
-        }
-        50% {
-          transform: translatey(-20px);
-        }
-      }
-
-      .animate-blob {
-        animation: blob 7s infinite;
-      }
-
-      .animate-blob:nth-child(2) {
-        animation-delay: 2s;
-      }
-
-      .animate-blob:nth-child(3) {
-        animation-delay: 4s;
-      }
-
-      .animation-delay-2000 {
-        animation-delay: 2s;
-      }
-
-      .animation-delay-4000 {
-        animation-delay: 4s;
-      }
-
-      /* Efecto de glassmorphism mejorado */
-      .glass-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      }
-
-      .dark .glass-card {
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      /* Header con efecto de scroll mejorado */
-      #header-nav {
-        animation: headerBlur linear both;
-        animation-timeline: scroll();
-        animation-range: 0 500px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      @keyframes headerBlur {
-        to {
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          padding: 0.5rem 1rem;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 2rem;
-          box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        @keyframes headerBlur {
-          to {
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.5rem 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 2rem;
-            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
-          }
-        }
-      }
-
-      /* Mejoras tipográficas */
-      h1, h2, h3, h4, h5, h6 {
-        font-weight: 700;
-        letter-spacing: -0.025em;
-        line-height: 1.2;
-      }
-
-      /* Efectos de hover modernos */
-      .modern-hover {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .modern-hover:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      }
-
-      /* Gradientes personalizados para botones */
-      .btn-gradient {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        background-size: 200% auto;
-        transition: all 0.3s ease;
-      }
-
-      .btn-gradient:hover {
-        background-position: right center;
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-      }
-
-      /* Animación de entrada para elementos */
-      .fade-in-up {
-        animation: fadeInUp 0.6s ease-out;
-      }
-
-      .float {
-        animation: float 6s ease-in-out infinite;
-      }
-
-      /* Scroll suave personalizado */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.1);
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 4px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-      }
-
-      /* Efectos de selección de texto */
-      ::selection {
-        background: rgba(102, 126, 234, 0.2);
-        color: inherit;
-      }
-
-      ::-moz-selection {
-        background: rgba(102, 126, 234, 0.2);
-        color: inherit;
-      }
-
-      /* Mejoras para modo oscuro */
-      @media (prefers-color-scheme: dark) {
-        ::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.1);
-        }
-        
-        ::selection {
-          background: rgba(139, 92, 246, 0.3);
-        }
-        
-        ::-moz-selection {
-          background: rgba(139, 92, 246, 0.3);
-        }
-      }
-    </style>
+    </script>
   </body>
 </html>

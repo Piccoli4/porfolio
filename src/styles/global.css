@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   Tokens: paleta del escudo CSP (rojo #D7263E, azul #1E3A9A, blanco)
+   sobre azul noche #0A1230 / blanco hueso #F5F6FA.
+   Se guardan como canales RGB para poder usar opacidad en Tailwind.
+------------------------------------------------------------------- */
+:root {
+  --bg: 245 246 250;
+  --surface: 255 255 255;
+  --surface-2: 236 239 245;
+  --ink: 10 18 48;
+  --ink-2: 55 63 90;
+  --muted: 95 104 130;
+  --line: 219 223 233;
+  --red-ink: 196 30 54;
+  --blue-ink: 30 58 154;
+  --grid: 10 18 48;
+  --tri-white: #DDE1EB;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: 10 18 48;
+  --surface: 16 27 66;
+  --surface-2: 22 36 84;
+  --ink: 240 242 248;
+  --ink-2: 196 202 219;
+  --muted: 142 151 178;
+  --line: 34 48 96;
+  --red-ink: 255 92 110;
+  --blue-ink: 124 150 255;
+  --grid: 124 150 255;
+  --tri-white: #FFFFFF;
+  color-scheme: dark;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+@layer base {
+  html {
+    @apply bg-bg font-sans text-ink-2 antialiased;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply min-h-screen overflow-x-hidden bg-bg;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-ink;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: rgb(215 38 62 / 0.85);
+    color: #fff;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--blue-ink));
+    outline-offset: 3px;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--muted) / 0.5) transparent;
+  }
+}
+
+@layer components {
+  /* Contenedor general */
+  .container-site {
+    @apply mx-auto w-full max-w-site px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Corte a 45° tomado del isotipo AP (esquina superior derecha) */
+  .cut {
+    --c: 14px;
+    clip-path: polygon(0 0, calc(100% - var(--c)) 0, 100% var(--c), 100% 100%, 0 100%);
+  }
+
+  /* Corte doble: superior derecha + inferior izquierda (botones) */
+  .cut-2 {
+    --c: 9px;
+    clip-path: polygon(0 0, calc(100% - var(--c)) 0, 100% var(--c), 100% 100%, var(--c) 100%, 0 calc(100% - var(--c)));
+  }
+
+  /* Tarjeta con borde de 1px que respeta el corte diagonal:
+     el marco pinta el borde, el hijo .frame-inner la superficie. */
+  .frame {
+    --c: 18px;
+    @apply relative bg-line p-px transition-colors duration-300;
+    clip-path: polygon(0 0, calc(100% - var(--c)) 0, 100% var(--c), 100% 100%, 0 100%);
+  }
+  .frame-inner {
+    @apply relative h-full bg-surface;
+    clip-path: polygon(0 0, calc(100% - var(--c) + 0.4px) 0, 100% calc(var(--c) - 0.4px), 100% 100%, 0 100%);
+  }
+  .frame-hover:hover,
+  .frame-hover:focus-within {
+    @apply bg-brand-red/70;
+  }
+
+  /* Botones */
+  .btn {
+    @apply cut-2 inline-flex items-center justify-center gap-2 px-5 py-3 font-display text-sm font-semibold uppercase tracking-[0.12em] transition-all duration-300;
+  }
+  .btn-primary {
+    @apply btn bg-brand-red text-white hover:bg-brand-red-dark;
+  }
+  .btn-ghost {
+    @apply btn bg-ink/5 text-ink ring-1 ring-inset ring-ink/15 hover:bg-ink/10;
+  }
+  .btn-sm {
+    @apply px-3.5 py-2 text-xs;
+  }
+
+  /* Etiqueta monoespaciada tipo comentario de código */
+  .eyebrow {
+    @apply font-mono text-xs font-medium uppercase tracking-[0.18em] text-red-ink;
+  }
+
+  /* Chip de tecnología / habilidad */
+  .chip {
+    @apply inline-flex items-center gap-1.5 border border-line bg-surface-2/60 px-2.5 py-1 font-mono text-[11px] font-medium text-ink-2;
+  }
+
+  /* Íconos de tecnologías: monocromos, toman color en hover */
+  .tech-icon {
+    @apply inline-flex shrink-0 items-center justify-center;
+  }
+  .tech-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  .mono-icon .tech-icon {
+    filter: grayscale(1);
+    opacity: 0.75;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+  }
+  .dark .mono-icon .tech-icon {
+    filter: grayscale(1) brightness(1.7);
+  }
+  .mono-icon:hover .tech-icon,
+  .mono-icon:focus-within .tech-icon {
+    filter: none;
+    opacity: 1;
+  }
+
+  /* Franja azul · blanco · rojo del escudo */
+  .tricolor {
+    background: linear-gradient(90deg, #1E3A9A 0 33.33%, var(--tri-white) 33.33% 66.66%, #D7263E 66.66% 100%);
+  }
+  .tricolor-v {
+    background: linear-gradient(180deg, #1E3A9A 0 33.33%, var(--tri-white) 33.33% 66.66%, #D7263E 66.66% 100%);
+  }
+
+  /* Grilla técnica de fondo */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgb(var(--grid) / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--grid) / 0.07) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* Subrayado con barras "///" en links de navegación */
+  .slash-link {
+    @apply relative;
+  }
+  .slash-link::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 h-[3px] w-full origin-left scale-x-0 transition-transform duration-300;
+    background: repeating-linear-gradient(-60deg, #D7263E 0 3px, transparent 3px 6px);
+  }
+  .slash-link:hover::after,
+  .slash-link[aria-current="true"]::after {
+    @apply scale-x-100;
+  }
+}
+
+/* Aparición al hacer scroll (solo si hay JS) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Íconos monocolor: se invierten para mantener el contraste en cada tema */
+html:not(.dark) .tech-icon[data-tone="light"] img,
+.dark .tech-icon[data-tone="dark"] img {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* ---- Estilos de secciones ---- */
+@layer components {
+/* Projects.astro */
+  .status {
+    @apply inline-flex items-center gap-1.5 bg-surface/90 px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-ink ring-1 ring-inset ring-line backdrop-blur;
+  }
+  .status::before {
+    content: "";
+    @apply size-1.5 rounded-full bg-brand-blue;
+  }
+  .status[data-status="live"]::before {
+    @apply bg-emerald-500;
+    box-shadow: 0 0 0 3px rgb(16 185 129 / 0.2);
+  }
+
+/* Experience.astro */
+  .bullet::before {
+    content: "//";
+    @apply absolute left-0 top-0 font-mono text-sm font-semibold text-red-ink;
+  }
+
+/* Education.astro */
+  .filter-btn[aria-pressed="true"] {
+    @apply bg-brand-red text-white;
+  }
+
+/* TechStack.astro */
+  /* Medidor de nivel con barras inclinadas, como el "///" del isotipo */
+  .meter {
+    display: inline-flex;
+    gap: 3px;
+  }
+  .meter i {
+    display: block;
+    width: 5px;
+    height: 12px;
+    transform: skewX(-24deg);
+    background: rgb(var(--line));
+  }
+  .meter[data-level="1"] i:nth-child(-n + 1),
+  .meter[data-level="2"] i:nth-child(-n + 2),
+  .meter[data-level="3"] i:nth-child(-n + 3) {
+    background: #d7263e;
+  }
+}

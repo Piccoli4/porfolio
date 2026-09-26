@@ -1,234 +1,146 @@
 ---
-import LanguagePicker from "./LanguagePicker.astro";
-import ThemeToggle from "./ThemeToggle.astro";
+import Logo from "./Logo.astro"
+import LanguagePicker from "./LanguagePicker.astro"
+import ThemeToggle from "./ThemeToggle.astro"
+import { useT, type Lang } from "@/i18n/ui"
+import { getSections } from "@/i18n/nav"
 
-const currentLang = Astro.url.pathname.startsWith('/en') ? 'en' : 'es';
+interface Props {
+  lang: Lang
+}
 
-// Definir los elementos del menú para cada idioma
-const navItems = currentLang === 'en' ? [
-  { title: "Home", label: "inicio", url: "#inicio" },
-  { title: "Projects", label: "proyectos", url: "#proyectos" },
-  { title: "Experience", label: "experiencia", url: "#experiencia" },
-  { title: "Education", label: "formacion", url: "#formacion" },
-  { title: "About Me", label: "sobre-mi", url: "#sobre-mi" },
-  { title: "Tech Stack", label: "techstack", url: "#techstack" },
-] : [
-  { title: "Inicio", label: "inicio", url: "#inicio" },
-  { title: "Proyectos", label: "proyectos", url: "#proyectos" },
-  { title: "Experiencia", label: "experiencia", url: "#experiencia" },
-  { title: "Formación", label: "formacion", url: "#formacion" },
-  { title: "Sobre mí", label: "sobre-mi", url: "#sobre-mi" },
-  { title: "Tech Stack", label: "techstack", url: "#techstack" },
-];
-
-const logoUrl = currentLang === 'en' ? "/en/" : "/es/";
+const { lang } = Astro.props
+const t = useT(lang)
+const sections = getSections(lang)
 ---
 
-<header
-  id="header-nav"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 sm:px-6 lg:px-8 py-4"
->
-  <div class="max-w-7xl mx-auto">
-    <div class="flex justify-between items-center bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl border border-white/20 dark:border-gray-700/20 shadow-lg px-6 py-3">
-      
-      <!-- LOGO -->
-      <a href={logoUrl} class="flex items-center group">
-        <div class="relative">
-          <div class="absolute -inset-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-20 blur transition-opacity duration-300"></div>
-          <img
-            class="relative size-10 md:size-12 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12"
-            src="/pga_blanco.svg"
-            alt="Logo de Piccoli Guido Augusto"
-          />
-        </div>
-      </a>
+<header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+  <div class="container-site flex h-16 items-center justify-between gap-6 md:h-20">
+    <!-- Lockup: isotipo + PICCOLI / AUGUSTO -->
+    <a href={`/${lang}/`} class="group flex items-center gap-3" aria-label={`Piccoli Augusto — ${t.nav.home}`}>
+      <Logo class="h-7 w-auto text-brand-red transition-transform duration-300 group-hover:-translate-y-0.5 md:h-8" />
+      <span class="h-7 w-px bg-line" aria-hidden="true"></span>
+      <span class="font-display text-[11px] font-semibold uppercase leading-[1.2] tracking-[0.24em] text-ink" aria-hidden="true">
+        Piccoli<br />Augusto
+      </span>
+    </a>
 
-      <!-- NAV DESKTOP -->
-      <nav class="hidden lg:flex items-center space-x-8">
+    <nav class="hidden lg:block" aria-label="Principal">
+      <ul class="flex items-center gap-7">
         {
-          navItems.map((link) => (
-            <a
-              class="relative text-gray-700 dark:text-gray-300 font-medium text-sm xl:text-base hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 group py-2 px-3"
-              aria-label={link.label}
-              href={link.url}
-            >
-              <span class="relative z-10">{link.title}</span>
-              <div class="absolute inset-0 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 origin-center"></div>
-              <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-            </a>
+          sections.map((s) => (
+            <li>
+              <a href={`#${s.id}`} data-nav={s.id} class="slash-link py-2 text-sm font-medium text-ink-2 transition-colors hover:text-ink aria-[current=true]:text-ink">
+                {s.label}
+              </a>
+            </li>
           ))
         }
-      </nav>
-      
-      <!-- CONTROLES DERECHA -->
-      <div class="flex items-center space-x-3 md:space-x-4">
-        <!-- LANGUAGE PICKER -->
-        <div class="hidden sm:block">
-          <LanguagePicker />
-        </div>
-        
-        <!-- THEME TOGGLE -->
-        <ThemeToggle />
-        
-        <!-- BOTÓN CV -->
-        <a
-          href={currentLang === 'en' ? "/CV_Piccoli_Guido_A_English.pdf" : "/CV_Piccoli_Guido_A.pdf"}
-          download="CV_Piccoli_Guido_Augusto.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="
-            hidden sm:inline-flex items-center gap-2
-            bg-gradient-to-r from-indigo-600 to-purple-600
-            text-white text-sm font-semibold
-            px-4 py-2 rounded-xl
-            hover:from-indigo-700 hover:to-purple-700
-            transform transition-all duration-300 hover:scale-105 hover:-translate-y-0.5
-            shadow-lg hover:shadow-xl
-            relative overflow-hidden group
-          "
-        >
-          <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-          <svg class="w-4 h-4 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-          </svg>
-          <span class="relative z-10">
-            {currentLang === 'en' ? "Download CV" : "Descargar CV"}
-          </span>
-        </a>
-        
-        <!-- MENU MOBILE -->
-        <button
-          id="menu-button"
-          class="lg:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
-          aria-label={currentLang === 'en' ? "Open menu" : "Abrir menú"}
-        >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <div class="hidden sm:block"><LanguagePicker lang={lang} /></div>
+      <ThemeToggle lang={lang} />
+      <a href={t.cv.file} download class="btn-primary btn-sm hidden sm:inline-flex">
+        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14"></path>
+        </svg>
+        CV
+        <span class="sr-only">— {t.cv.label}</span>
+      </a>
+      <button
+        id="menu-btn"
+        type="button"
+        class="grid size-10 place-items-center text-ink lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label={t.nav.menu}
+        data-label-open={t.nav.menu}
+        data-label-close={t.nav.close}
+      >
+        <span class="menu-lines relative block h-3.5 w-6" aria-hidden="true">
+          <span class="absolute left-0 top-0 h-0.5 w-6 bg-current transition-transform duration-300"></span>
+          <span class="absolute bottom-0 right-0 h-0.5 w-4 bg-brand-red transition-all duration-300"></span>
+        </span>
+      </button>
     </div>
   </div>
 
-  <!-- MENU MOBILE DESPLEGABLE -->
-  <div
-    id="mobile-menu"
-    class="lg:hidden absolute top-full left-4 right-4 mt-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl border border-white/20 dark:border-gray-700/20 shadow-xl opacity-0 invisible transform translate-y-2 transition-all duration-300"
-  >
-    <div class="p-6 space-y-4">
-      <!-- Navigation Links -->
-      <div class="space-y-3">
+  <!-- Menú mobile -->
+  <div id="mobile-menu" class="hidden h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line bg-bg lg:hidden">
+    <nav class="container-site py-6" aria-label="Mobile">
+      <ol class="space-y-1">
         {
-          navItems.map((link) => (
-            <a
-              class="block text-gray-700 dark:text-gray-300 font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/30"
-              aria-label={link.label}
-              href={link.url}
-            >
-              {link.title}
-            </a>
+          sections.map((s) => (
+            <li>
+              <a href={`#${s.id}`} class="flex items-baseline gap-4 py-2.5 font-display text-2xl font-semibold text-ink">
+                <span class="font-mono text-xs text-red-ink">{s.num}</span>
+                {s.label}
+              </a>
+            </li>
           ))
         }
+      </ol>
+      <div class="mt-6 flex items-center justify-between border-t border-line pt-5">
+        <LanguagePicker lang={lang} />
+        <a href={t.cv.file} download class="btn-primary btn-sm">{t.cv.label}</a>
       </div>
-
-      <!-- Divider -->
-      <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
-
-      <!-- Mobile Controls -->
-      <div class="flex items-center justify-between">
-        <div class="sm:hidden">
-          <LanguagePicker />
-        </div>
-        
-        <a
-          href={currentLang === 'en' ? "/CV_Piccoli_Guido_A_English.pdf" : "/CV_Piccoli_Guido_A.pdf"}
-          download="CV_Piccoli_Guido_Augusto.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors duration-300"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-          </svg>
-          {currentLang === 'en' ? "Download CV" : "Descargar CV"}
-        </a>
-      </div>
-    </div>
+    </nav>
   </div>
 </header>
 
+<style>
+  #site-header[data-scrolled="true"],
+  #site-header[data-open="true"] {
+    background: rgb(var(--bg) / 0.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 rgb(var(--line));
+  }
+  #site-header[data-open="true"] #mobile-menu {
+    display: block;
+  }
+  #site-header[data-open="true"] .menu-lines span:first-child {
+    transform: translateY(6px) rotate(45deg);
+  }
+  #site-header[data-open="true"] .menu-lines span:last-child {
+    width: 1.5rem;
+    transform: translateY(-6px) rotate(-45deg);
+  }
+</style>
+
 <script>
-  document.addEventListener("astro:page-load", () => {
-    // Navigation highlighting
-    const sections = document.querySelectorAll("section");
-    const navItems = document.querySelectorAll("header nav a");
+  const header = document.getElementById("site-header")!
+  const menuBtn = document.getElementById("menu-btn") as HTMLButtonElement
+  const menu = document.getElementById("mobile-menu")!
 
-    const callback = (entries: any[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navItems.forEach((item) => {
-            if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-indigo-600", "dark:text-indigo-400");
-            } else {
-              item.classList.remove("text-indigo-600", "dark:text-indigo-400");
-            }
-          });
-        }
-      });
-    };
+  // Fondo al hacer scroll
+  const onScroll = () => header.setAttribute("data-scrolled", String(window.scrollY > 12))
+  onScroll()
+  window.addEventListener("scroll", onScroll, { passive: true })
 
-    const observer = new IntersectionObserver(callback, {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.3,
-    });
+  // Menú mobile
+  const setOpen = (open: boolean) => {
+    header.setAttribute("data-open", String(open))
+    menuBtn.setAttribute("aria-expanded", String(open))
+    menuBtn.setAttribute("aria-label", (open ? menuBtn.dataset.labelClose : menuBtn.dataset.labelOpen) || "")
+  }
+  menuBtn.addEventListener("click", () => setOpen(header.dataset.open !== "true"))
+  menu.querySelectorAll("a[href^='#']").forEach((a) => a.addEventListener("click", () => setOpen(false)))
+  document.addEventListener("keydown", (e) => e.key === "Escape" && setOpen(false))
+  window.matchMedia("(min-width: 1024px)").addEventListener("change", () => setOpen(false))
 
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    document.onvisibilitychange = () => {
-      if (document.visibilityState === "hidden") {
-        observer.disconnect();
-      } else {
-        sections.forEach((section) => {
-          observer.observe(section);
-        });
+  // Sección activa en la navegación
+  const links = document.querySelectorAll<HTMLAnchorElement>("[data-nav]")
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue
+        links.forEach((link) => link.setAttribute("aria-current", String(link.dataset.nav === entry.target.id)))
       }
-    };
-
-    // Mobile menu functionality
-    const menuButton = document.getElementById("menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
-
-    if (menuButton && mobileMenu) {
-      menuButton.addEventListener("click", () => {
-        const isHidden = mobileMenu.classList.contains("invisible");
-        
-        if (isHidden) {
-          mobileMenu.classList.remove("invisible", "opacity-0", "translate-y-2");
-          mobileMenu.classList.add("visible", "opacity-100", "translate-y-0");
-        } else {
-          mobileMenu.classList.remove("visible", "opacity-100", "translate-y-0");
-          mobileMenu.classList.add("invisible", "opacity-0", "translate-y-2");
-        }
-      });
-
-      // Close menu when clicking links
-      mobileMenu.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.remove("visible", "opacity-100", "translate-y-0");
-          mobileMenu.classList.add("invisible", "opacity-0", "translate-y-2");
-        });
-      });
-
-      // Close menu when clicking outside
-      document.addEventListener("click", (e) => {
-        if (!mobileMenu.contains(e.target as Node) && !menuButton.contains(e.target as Node)) {
-          mobileMenu.classList.remove("visible", "opacity-100", "translate-y-0");
-          mobileMenu.classList.add("invisible", "opacity-0", "translate-y-2");
-        }
-      });
-    }
-  });
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  )
+  document.querySelectorAll("main section[id]").forEach((section) => observer.observe(section))
 </script>

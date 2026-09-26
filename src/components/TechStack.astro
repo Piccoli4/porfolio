@@ -1,0 +1,78 @@
+---
+import SectionHeading from "./SectionHeading.astro"
+import TechIcon from "./TechIcon.astro"
+import { useT, type Lang } from "@/i18n/ui"
+import { STACK, TECH, type Level } from "@/data/tech"
+
+interface Props {
+  lang: Lang
+  num: string
+}
+
+const { lang, num } = Astro.props
+const t = useT(lang)
+
+const LEVEL_BARS: Record<Level, number> = { advanced: 3, intermediate: 2, basic: 1 }
+const levels = Object.keys(LEVEL_BARS) as Level[]
+
+// Bento: frontend y backend ocupan dos filas; herramientas cierra a lo ancho
+const SPAN: Record<string, string> = {
+  frontend: "lg:col-span-2 lg:row-span-2",
+  backend: "lg:row-span-2",
+  database: "",
+  mobile: "",
+  tools: "md:col-span-2 lg:col-span-4",
+}
+---
+
+<section id="techstack" class="container-site py-20 md:py-28">
+  <SectionHeading num={num} title={t.sections.stack.title} lead={t.sections.stack.lead} />
+
+  <!-- Leyenda de niveles -->
+  <ul class="mb-8 flex flex-wrap gap-x-6 gap-y-2" data-reveal>
+    {
+      levels.map((level) => (
+        <li class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
+          <span class="meter" data-level={LEVEL_BARS[level]} aria-hidden="true"><i /><i /><i /></span>
+          {t.stack.levels[level]}
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+    {
+      STACK.map((group, gi) => (
+        <div class:list={["frame", SPAN[group.id]]} data-reveal style={`--reveal-delay:${gi * 70}ms`}>
+          <div class="frame-inner flex flex-col p-6">
+            <div class="mb-5 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+              <h3 class="font-display text-lg font-bold uppercase tracking-wide">{t.stack.categories[group.id]}</h3>
+              <span class="font-mono text-[11px] text-muted">
+                {String(group.techs.length).padStart(2, "0")} {t.stack.techs}
+              </span>
+            </div>
+            <ul class:list={["grid gap-2", group.id === "frontend" ? "grid-cols-2 sm:grid-cols-3" : group.id === "tools" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5" : "grid-cols-2 lg:grid-cols-1"]}>
+              {group.techs.map((key) => {
+                const tech = TECH[key]
+                const level = "level" in tech ? tech.level : "basic"
+                return (
+                  <li class="mono-icon group flex flex-col gap-3 border border-line bg-surface-2/40 p-3 transition-colors hover:border-brand-red/50 hover:bg-surface-2">
+                    <div class="flex items-center gap-2.5">
+                      <TechIcon tech={key} class="size-6" />
+                      <span class="truncate text-sm font-medium text-ink">{tech.name}</span>
+                    </div>
+                    <span class="flex items-center justify-between gap-2">
+                      <span class="meter" data-level={LEVEL_BARS[level]} aria-hidden="true"><i /><i /><i /></span>
+                      <span class="font-mono text-[9px] uppercase tracking-[0.12em] text-muted">{t.stack.levels[level]}</span>
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+

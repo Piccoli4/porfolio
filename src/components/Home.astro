@@ -1,0 +1,34 @@
+---
+// Página principal compartida por /es/ y /en/
+import Layout from "@/layouts/Layout.astro"
+import Hero from "./Hero.astro"
+import Projects from "./Projects.astro"
+import Experience from "./Experience.astro"
+import Education from "./Education.astro"
+import About from "./About.astro"
+import TechStack from "./TechStack.astro"
+import Lightbox from "./Lightbox.astro"
+import type { Lang } from "@/i18n/ui"
+import { getSections } from "@/i18n/nav"
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const num = Object.fromEntries(getSections(lang).map((s) => [s.id, s.num]))
+---
+
+<Layout lang={lang}>
+  <Hero lang={lang} />
+  <Projects lang={lang} num={num["proyectos"]} />
+  <div class="border-y border-line bg-surface/50">
+    <Experience lang={lang} num={num["experiencia"]} />
+  </div>
+  <Education lang={lang} num={num["formacion"]} />
+  <div class="border-y border-line bg-surface/50">
+    <About lang={lang} num={num["sobre-mi"]} />
+  </div>
+  <TechStack lang={lang} num={num["techstack"]} />
+  <Lightbox lang={lang} />
+</Layout>

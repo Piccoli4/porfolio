@@ -23,3 +23,8 @@ bun.*
 
 package-lock.json
 pnpm-lock.yaml
+# netlify build output
+.netlify/build/
+.netlify/v1/functions/
+
+.claude/

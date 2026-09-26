@@ -1,0 +1,197 @@
+---
+import Logo from "./Logo.astro"
+import SocialIcon from "./SocialIcon.astro"
+import { useT, type Lang } from "@/i18n/ui"
+import { PROFILE } from "@/data/profile"
+import { STACK_COUNT } from "@/data/tech"
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useT(lang)
+
+const socials = [
+  { name: "linkedin", label: "LinkedIn", href: PROFILE.linkedin },
+  { name: "github", label: "GitHub", href: PROFILE.github },
+  { name: "email", label: "Email", href: `mailto:${PROFILE.email}` },
+  { name: "whatsapp", label: "WhatsApp", href: PROFILE.whatsapp },
+] as const
+
+const stats = [
+  { value: `+${PROFILE.stats.years}`, label: t.hero.stats.years },
+  { value: `+${PROFILE.stats.projects}`, label: t.hero.stats.projects },
+  { value: String(STACK_COUNT), label: t.hero.stats.tech },
+]
+---
+
+<section id="inicio" class="relative overflow-hidden pb-14 pt-28 md:pb-20 md:pt-36">
+  <!-- Fondo: grilla técnica que se desvanece -->
+  <div class="bg-grid pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_75%_65%_at_30%_20%,#000_35%,transparent_100%)]" aria-hidden="true"></div>
+
+  <div class="container-site">
+    <div class="grid items-center gap-14 lg:grid-cols-[1.2fr_1fr] lg:gap-10">
+      <!-- Texto -->
+      <div>
+        <a
+          href={PROFILE.linkedin}
+          target="_blank"
+          rel="noopener"
+          class="hero-in mb-8 inline-flex items-center gap-2.5 border border-line bg-surface/70 px-3 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-ink-2 transition-colors hover:border-emerald-500/50 hover:text-ink"
+        >
+          <span class="relative flex size-2">
+            <span class="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
+            <span class="relative inline-flex size-2 rounded-full bg-emerald-500"></span>
+          </span>
+          {t.hero.available}
+        </a>
+
+        <h1 class="hero-in font-display font-bold uppercase leading-[0.84] tracking-[-0.02em]" style="--d:80ms">
+          <span class="block text-[clamp(3.6rem,13vw,8.75rem)] text-ink">Piccoli</span>
+          <span class="flex items-end gap-4 text-[clamp(3.6rem,13vw,8.75rem)] text-red-ink">
+            Augusto
+            <Logo variant="slashes" class="mb-[0.1em] hidden h-[0.36em] w-auto sm:block" />
+          </span>
+          <span class="sr-only"> — {t.hero.roles[0]}</span>
+        </h1>
+
+        <p class="hero-in mt-7 flex min-h-[1.75rem] items-center gap-2 font-mono text-sm text-ink md:text-base" style="--d:160ms" aria-hidden="true">
+          <span class="text-red-ink">///</span>
+          <span id="typed" data-roles={JSON.stringify(t.hero.roles)}>{t.hero.roles[0]}</span>
+          <span class="caret inline-block h-5 w-[2px] bg-red-ink"></span>
+        </p>
+
+        <p class="hero-in mt-5 max-w-xl text-lg leading-relaxed text-ink-2 md:text-xl" style="--d:220ms">
+          {t.hero.lead}
+          <span class="text-muted">{t.hero.stackLead}</span>
+          <strong class="font-semibold text-ink">{t.hero.stack}</strong>.
+        </p>
+
+        <div class="hero-in mt-9 flex flex-wrap items-center gap-3" style="--d:280ms">
+          <a href="#proyectos" class="btn-primary group">
+            {t.hero.ctaProjects}
+            <svg class="size-4 transition-transform group-hover:translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14m0 0-6-6m6 6 6-6"></path></svg>
+          </a>
+          <a href={t.cv.file} download class="btn-ghost">
+            {t.cv.label}
+          </a>
+        </div>
+
+        <ul class="hero-in mt-8 flex items-center gap-2" style="--d:340ms">
+          {
+            socials.map((s) => (
+              <li>
+                <a
+                  href={s.href}
+                  target={s.name === "email" ? undefined : "_blank"}
+                  rel="noopener"
+                  aria-label={s.label}
+                  title={s.label}
+                  class="cut-2 grid size-11 place-items-center bg-ink/5 text-ink-2 ring-1 ring-inset ring-ink/10 transition-all hover:bg-brand-red hover:text-white hover:ring-brand-red"
+                >
+                  <SocialIcon name={s.name} class="size-[18px]" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Foto: panel de marca con franja tricolor -->
+      <div>
+        <div class="hero-in relative mx-auto aspect-[4/5] w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[440px]" style="--d:120ms">
+          <div class="photo-panel absolute inset-0 overflow-hidden bg-brand-navy">
+            <div class="bg-grid absolute inset-0 opacity-60 [--grid:124_150_255]" aria-hidden="true"></div>
+            <Logo variant="letters" class="absolute left-1/2 top-[9%] w-[78%] -translate-x-1/2 text-brand-blue/40" />
+            <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-transparent" aria-hidden="true"></div>
+          </div>
+          <img
+            src={PROFILE.photo}
+            alt={t.hero.photoAlt}
+            width="389"
+            height="376"
+            fetchpriority="high"
+            class="absolute bottom-0 left-1/2 w-full -translate-x-1/2"
+          />
+          <!-- Franja tricolor (azul · blanco · rojo) -->
+          <span class="tricolor-v absolute -right-3 bottom-0 top-10 w-2 sm:-right-4" aria-hidden="true"></span>
+          <!-- Marca en la esquina -->
+          <span class="absolute -left-3 top-6 bg-brand-red px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white sm:-left-4" aria-hidden="true">
+            Full Stack
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Métricas -->
+    <dl class="mt-16 grid grid-cols-3 border-y border-line md:mt-20" data-reveal>
+      {
+        stats.map((s, i) => (
+          <div class:list={["px-2 py-6 sm:px-6 md:py-8", i > 0 && "border-l border-line"]}>
+            <dt class="mt-1 font-mono text-[10px] uppercase leading-snug tracking-[0.14em] text-muted sm:text-xs">{s.label}</dt>
+            <dd class="font-display text-4xl font-bold text-ink sm:text-5xl md:text-6xl">
+              {s.value}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .photo-panel {
+    clip-path: polygon(0 0, calc(100% - 44px) 0, 100% 44px, 100% 100%, 0 100%);
+  }
+  .caret {
+    animation: blink 1s steps(2, start) infinite;
+  }
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+  .hero-in {
+    animation: hero-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
+  dl > div {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+</style>
+
+<script>
+  // Escribe y borra los roles en la línea "/// ..."
+  const el = document.getElementById("typed")
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  if (el && !reduced) {
+    const roles: string[] = JSON.parse(el.dataset.roles || "[]")
+    let role = 0
+    let chars = roles[0]?.length ?? 0
+    let deleting = true
+    const tick = () => {
+      const text = roles[role]
+      chars += deleting ? -1 : 1
+      el.textContent = text.slice(0, chars)
+      let delay = deleting ? 35 : 70
+      if (!deleting && chars === text.length) {
+        deleting = true
+        delay = 2200
+      } else if (deleting && chars === 0) {
+        deleting = false
+        role = (role + 1) % roles.length
+        delay = 350
+      }
+      window.setTimeout(tick, delay)
+    }
+    window.setTimeout(tick, 2600)
+  }
+</script>

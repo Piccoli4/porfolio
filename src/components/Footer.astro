@@ -1,0 +1,159 @@
+---
+import Logo from "./Logo.astro"
+import SocialIcon from "./SocialIcon.astro"
+import { useT, type Lang } from "@/i18n/ui"
+import { getSections } from "@/i18n/nav"
+import { PROFILE } from "@/data/profile"
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useT(lang)
+const sections = getSections(lang)
+const year = new Date().getFullYear()
+
+const contacts = [
+  { name: "email", label: PROFILE.email, href: `mailto:${PROFILE.email}` },
+  { name: "whatsapp", label: "WhatsApp", href: PROFILE.whatsapp },
+  { name: "linkedin", label: "LinkedIn", href: PROFILE.linkedin },
+  { name: "github", label: "GitHub", href: PROFILE.github },
+] as const
+---
+
+<footer class="relative mt-10 bg-[#060B1F] text-[#C4CADB] [--tri-white:#fff]">
+  <div class="tricolor h-1" aria-hidden="true"></div>
+
+  <div class="container-site py-16 md:py-20">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
+      <!-- Marca -->
+      <div>
+        <a href={`/${lang}/`} class="inline-flex items-center gap-4" aria-label="Piccoli Augusto">
+          <Logo class="h-12 w-auto text-brand-red" />
+          <span class="h-12 w-px bg-white/20" aria-hidden="true"></span>
+          <span class="font-display text-lg font-semibold uppercase leading-[1.15] tracking-[0.24em] text-white" aria-hidden="true">
+            Piccoli<br />Augusto
+          </span>
+        </a>
+        <p class="mt-6 max-w-sm leading-relaxed">{t.footer.tagline}</p>
+        <a href={t.cv.file} download class="btn-primary btn-sm mt-8">{t.cv.label}</a>
+      </div>
+
+      <!-- Navegación -->
+      <nav aria-label={t.footer.navTitle}>
+        <p class="mb-5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#FF5C6E]">/// {t.footer.navTitle}</p>
+        <ul class="space-y-2.5">
+          {
+            sections.map((s) => (
+              <li>
+                <a href={`#${s.id}`} class="group inline-flex items-baseline gap-3 transition-colors hover:text-white">
+                  <span class="font-mono text-[11px] text-white/40 group-hover:text-[#FF5C6E]">{s.num}</span>
+                  {s.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Contacto -->
+      <div>
+        <p class="mb-5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#FF5C6E]">/// {t.footer.contactTitle}</p>
+        <ul class="space-y-2.5">
+          {
+            contacts.map((c) => (
+              <li>
+                <a
+                  href={c.href}
+                  target={c.name === "email" ? undefined : "_blank"}
+                  rel="noopener"
+                  class="inline-flex items-center gap-3 break-all transition-colors hover:text-white"
+                >
+                  <SocialIcon name={c.name} class="size-4 shrink-0" />
+                  {c.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-16 flex flex-col gap-5 border-t border-white/10 pt-8 text-sm sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {PROFILE.name}. {t.footer.rights}</p>
+
+      <div class="flex items-center gap-4">
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/50">{t.footer.built}</p>
+
+        <!-- Easter egg: franja del escudo de Peñarol -->
+        <div class="egg relative" data-console={t.footer.console}>
+          <button type="button" class="egg-btn block" aria-expanded="false" aria-controls="egg-card" aria-label={t.footer.easterLabel} title={t.footer.easterLabel}>
+            <span class="egg-shield tricolor-v block h-6 w-5" aria-hidden="true"></span>
+          </button>
+          <div id="egg-card" class="egg-card absolute bottom-full right-0 z-20 mb-4 w-72 border border-white/10 bg-[#101B42] p-5 text-left shadow-2xl" role="note">
+            <div class="flex items-center gap-4">
+              <img src="/easter/csp.webp" alt={t.footer.easterAlt} width="160" height="160" loading="lazy" class="size-16 shrink-0" />
+              <div>
+                <p class="font-display text-lg font-bold uppercase leading-tight text-white">{t.footer.easterTitle}</p>
+                <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-[#FF5C6E]">{t.footer.easterPlace}</p>
+              </div>
+            </div>
+            <p class="mt-4 text-sm leading-relaxed">{t.footer.easterText}</p>
+            <div class="tricolor mt-4 h-1" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .egg-shield {
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%);
+    transition: transform 0.3s ease;
+  }
+  .egg-btn:hover .egg-shield,
+  .egg.open .egg-shield {
+    transform: translateY(-3px) rotate(-6deg);
+  }
+  .egg-card {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  }
+  .egg:hover .egg-card,
+  .egg:focus-within .egg-card,
+  .egg.open .egg-card {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+</style>
+
+<script>
+  const egg = document.querySelector<HTMLElement>(".egg")
+  const btn = egg?.querySelector<HTMLButtonElement>(".egg-btn")
+  btn?.addEventListener("click", (e) => {
+    e.stopPropagation()
+    const open = !egg!.classList.contains("open")
+    egg!.classList.toggle("open", open)
+    btn.setAttribute("aria-expanded", String(open))
+  })
+  document.addEventListener("click", () => {
+    egg?.classList.remove("open")
+    btn?.setAttribute("aria-expanded", "false")
+  })
+
+  // Mensaje para los curiosos que abren la consola
+  console.log(
+    "%c/// PICCOLI AUGUSTO %c Full Stack Developer ",
+    "background:#D7263E;color:#fff;font:700 14px monospace;padding:6px 10px",
+    "background:#0A1230;color:#fff;font:14px monospace;padding:6px 10px"
+  )
+  console.log(
+    `%c${egg?.dataset.console ?? ""}`,
+    "color:#7C96FF;font:12px monospace"
+  )
+</script>

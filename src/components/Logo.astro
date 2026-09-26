@@ -1,0 +1,37 @@
+---
+// Isotipo "AP" reconstruido sobre grilla (alto 300u, patas a 56°, barras de 55u).
+// Las letras usan currentColor; las barras "///" pueden tener otro color.
+//  - variant "full":    AP + ///
+//  - variant "letters": solo AP (favicon, marcas de agua)
+//  - variant "slashes": solo /// (recurso gráfico)
+interface Props {
+  class?: string
+  variant?: "full" | "letters" | "slashes"
+  slashClass?: string
+  title?: string
+}
+
+const { class: className, variant = "full", slashClass = "", title } = Astro.props
+
+const LETTERS =
+  "M0 300L200 0L400 300L334 300L200 99L66 300ZM165.33 190L234.67 190L271.33 245L128.67 245ZM226 0L437 0L485 48L485 125L437 173L341.33 173L304.67 118L411 118L425 104L425 69L411 55L262.67 55Z"
+const SLASHES = [
+  "M426 300L447 300L497 200L476 200Z",
+  "M461 300L482 300L532 200L511 200Z",
+  "M496 300L517 300L567 200L546 200Z",
+]
+const VIEWBOX = { full: "0 0 567 300", letters: "0 0 485 300", slashes: "426 200 141 100" }
+---
+
+<svg
+  class={className}
+  viewBox={VIEWBOX[variant]}
+  fill="currentColor"
+  xmlns="http://www.w3.org/2000/svg"
+  role={title ? "img" : undefined}
+  aria-hidden={title ? undefined : "true"}
+  aria-label={title}
+>
+  {variant !== "slashes" && <path d={LETTERS}></path>}
+  {variant !== "letters" && SLASHES.map((d) => <path d={d} class={slashClass}></path>)}
+</svg>

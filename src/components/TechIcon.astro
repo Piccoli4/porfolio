@@ -1,0 +1,16 @@
+---
+import { TECH, type TechKey } from "@/data/tech"
+
+interface Props {
+  tech: TechKey
+  class?: string
+}
+
+const { tech, class: className = "size-4" } = Astro.props
+const { icon } = TECH[tech]
+const tone = "tone" in TECH[tech] ? TECH[tech].tone : undefined
+---
+
+<span class:list={["tech-icon", className]} data-tone={tone} aria-hidden="true">
+  <img src={`/tech/${icon}.svg`} alt="" width="24" height="24" loading="lazy" decoding="async" class="size-full object-contain" />
+</span>

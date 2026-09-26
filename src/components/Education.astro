@@ -1,0 +1,157 @@
+---
+import SectionHeading from "./SectionHeading.astro"
+import { useT, type Lang } from "@/i18n/ui"
+import { EDUCATION, type EducationItem } from "@/data/education"
+
+interface Props {
+  lang: Lang
+  num: string
+}
+
+const { lang, num } = Astro.props
+const t = useT(lang)
+
+const year = (item: EducationItem) => Number(item.date.slice(-4))
+const thumb = (src: string) => src.replace("/education/", "/education/thumbs/")
+const degree = EDUCATION.find((e) => e.featured)!
+const rest = EDUCATION.filter((e) => !e.featured).sort((a, b) => year(b) - year(a))
+
+const counts = {
+  all: rest.length,
+  diploma: rest.filter((e) => e.kind === "diploma").length,
+  course: rest.filter((e) => e.kind === "course").length,
+}
+const stats = [
+  { value: EDUCATION.length, label: t.education.stats.certs },
+  { value: EDUCATION.filter((e) => e.kind === "degree").length, label: t.education.stats.degree },
+  { value: EDUCATION.filter((e) => e.kind === "diploma").length, label: t.education.stats.diplomas },
+  { value: Math.min(...EDUCATION.map((e) => Number(e.date.slice(0, 4)))), label: t.education.stats.since },
+]
+
+const payload = (item: EducationItem) =>
+  JSON.stringify({
+    title: item.title[lang],
+    subtitle: `${item.institution} · ${item.date}`,
+    images: [{ src: item.image, alt: `${t.education.certificate} ${item.title[lang]}` }],
+    description: item.description[lang],
+    skills: item.skills[lang],
+    skillsLabel: t.education.skills,
+  })
+---
+
+<section id="formacion" class="container-site py-20 md:py-28">
+  <SectionHeading num={num} title={t.sections.education.title} lead={t.sections.education.lead} />
+
+  <!-- Título universitario -->
+  <article class="frame frame-hover group mb-10 [--c:28px]" data-reveal>
+    <div class="frame-inner grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+      <button type="button" data-lightbox={payload(degree)} class="relative block overflow-hidden bg-surface-2 p-6 sm:p-8" aria-label={`${t.education.view}: ${degree.title[lang]}`}>
+        <img
+          src={thumb(degree.image)}
+          alt={`${t.education.certificate} ${degree.title[lang]}`}
+          width="640"
+          height="453"
+          loading="lazy"
+          decoding="async"
+          class="mx-auto w-full shadow-xl shadow-black/15 transition-transform duration-700 group-hover:scale-[1.02]"
+        />
+      </button>
+      <div class="flex flex-col p-6 sm:p-8 lg:p-10">
+        <p class="eyebrow">/// {t.education.kind.degree}</p>
+        <h3 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl">{degree.title[lang]}</h3>
+        <p class="mt-2 font-medium text-muted">{degree.institution} · <span class="font-mono text-sm">{degree.date}</span></p>
+        <p class="mt-5 leading-relaxed">{degree.description[lang]}</p>
+        <ul class="mt-6 flex flex-wrap gap-1.5">
+          {degree.skills[lang].map((skill) => <li class="chip">{skill}</li>)}
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- Métricas + filtros -->
+  <div class="mb-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between" data-reveal>
+    <dl class="flex flex-wrap gap-x-8 gap-y-3">
+      {
+        stats.map((s) => (
+          <div class="flex flex-row-reverse items-baseline justify-end gap-2">
+            <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-muted">{s.label}</dt>
+            <dd class="font-display text-2xl font-bold text-ink">{s.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <div class="flex gap-1 border border-line bg-surface p-1" role="group" aria-label={t.sections.education.title}>
+      {
+        (["all", "diploma", "course"] as const).map((key) => (
+          <button
+            type="button"
+            data-filter={key}
+            aria-pressed={key === "all" ? "true" : "false"}
+            class="filter-btn px-3.5 py-2 font-display text-xs font-semibold uppercase tracking-[0.12em] text-muted transition-colors hover:text-ink"
+          >
+            {t.education.filters[key]} <span class="font-mono text-[10px] opacity-70">{counts[key]}</span>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Certificaciones -->
+  <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" id="edu-grid">
+    {
+      rest.map((item, i) => (
+        <li data-kind={item.kind} data-reveal style={`--reveal-delay:${(i % 3) * 70}ms`}>
+          <button
+            type="button"
+            data-lightbox={payload(item)}
+            class="frame frame-hover group block h-full w-full text-left"
+            aria-label={`${t.education.view}: ${item.title[lang]}`}
+          >
+            <span class="frame-inner flex flex-col">
+              <span class="relative block aspect-[1.414] overflow-hidden bg-surface-2">
+                <img
+                  src={thumb(item.image)}
+                  alt=""
+                  width="640"
+                  height="453"
+                  loading="lazy"
+                  decoding="async"
+                  class="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <span class="absolute inset-0 grid place-items-center bg-brand-navy/0 opacity-0 transition-all duration-300 group-hover:bg-brand-navy/50 group-hover:opacity-100">
+                  <span class="bg-brand-red px-3 py-1.5 font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
+                    {t.education.view}
+                  </span>
+                </span>
+              </span>
+              <span class="flex flex-1 flex-col p-5">
+                <span class="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-red-ink">{t.education.kind[item.kind]}</span>
+                <span class="mt-2 line-clamp-2 font-display text-lg font-semibold leading-snug text-ink">{item.title[lang]}</span>
+                <span class="mt-auto flex items-center justify-between gap-3 pt-4 text-xs text-muted">
+                  <span class="truncate">{item.institution}</span>
+                  <span class="font-mono">{item.date}</span>
+                </span>
+              </span>
+            </span>
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn")
+  const items = document.querySelectorAll<HTMLElement>("#edu-grid > li")
+  buttons.forEach((btn) =>
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter
+      buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)))
+      items.forEach((item) => {
+        item.hidden = filter !== "all" && item.dataset.kind !== filter
+        item.classList.add("is-visible")
+      })
+    })
+  )
+</script>

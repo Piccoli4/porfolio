@@ -1,0 +1,159 @@
+---
+import SectionHeading from "./SectionHeading.astro"
+import TechIcon from "./TechIcon.astro"
+import { useT, type Lang } from "@/i18n/ui"
+import { PROJECTS, type Project } from "@/data/projects"
+import { TECH } from "@/data/tech"
+
+interface Props {
+  lang: Lang
+  num: string
+}
+
+const { lang, num } = Astro.props
+const t = useT(lang)
+const featured = PROJECTS.find((p) => p.featured)!
+const others = PROJECTS.filter((p) => !p.featured)
+
+const gallery = (p: Project) =>
+  JSON.stringify({
+    title: p.title,
+    subtitle: `${t.lightbox.galleryOf} ${p.title}`,
+    images: p.gallery.map((src, i) => ({ src, alt: `${p.title} — ${t.projects.screenshot} ${i + 1}` })),
+  })
+---
+
+<section id="proyectos" class="container-site py-20 md:py-28">
+  <SectionHeading num={num} title={t.sections.projects.title} lead={t.sections.projects.lead} />
+
+  <!-- Proyecto destacado -->
+  <article class="frame frame-hover group mb-6 [--c:28px]" data-reveal>
+    <div class="frame-inner grid lg:grid-cols-[1.3fr_1fr]">
+      <span class="tricolor-v absolute inset-y-0 left-0 z-10 w-1" aria-hidden="true"></span>
+      <button type="button" data-lightbox={gallery(featured)} class="relative block aspect-[16/10] overflow-hidden bg-surface-2 lg:aspect-auto lg:min-h-[26rem]">
+        <img
+          src={featured.image}
+          alt={`${t.projects.screenshot} ${featured.title}`}
+          width="1920"
+          height="1440"
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 size-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+        <span class="absolute bottom-4 left-5 inline-flex items-center gap-2 bg-brand-navy/80 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-white backdrop-blur">
+          <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18"></rect><path d="m3 16 5-5 5 5M14 14l2-2 5 5"></path></svg>
+          {featured.gallery.length} {t.projects.photos}
+        </span>
+      </button>
+
+      <div class="flex flex-col p-6 sm:p-8 lg:p-10">
+        <div class="mb-5 flex flex-wrap items-center gap-3">
+          <p class="eyebrow">/// {t.projects.featured}</p>
+          <span class="status" data-status={featured.status}>{t.projects.status[featured.status]}</span>
+        </div>
+        <h3 class="text-3xl font-bold sm:text-4xl">{featured.title}</h3>
+        <p class="mt-4 leading-relaxed">{featured.description[lang]}</p>
+        <ul class="mono-icon mt-6 flex flex-wrap gap-2">
+          {
+            featured.tags.map((tag) => (
+              <li class="chip">
+                <TechIcon tech={tag} class="size-3.5" />
+                {TECH[tag].name}
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-auto flex flex-wrap gap-3 pt-8">
+          {
+            featured.link && (
+              <a href={featured.link} target="_blank" rel="noopener" class="btn-primary">
+                {t.projects.visit}
+                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+              </a>
+            )
+          }
+          <button type="button" class="btn-ghost" data-lightbox={gallery(featured)}>{t.projects.gallery}</button>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Resto de proyectos -->
+  <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+    {
+      others.map((p, i) => (
+        <article class="frame frame-hover group" data-reveal style={`--reveal-delay:${(i % 3) * 90}ms`}>
+          <div class="frame-inner flex flex-col">
+            <button type="button" data-lightbox={gallery(p)} class="relative block aspect-[16/10] overflow-hidden bg-surface-2">
+              <img
+                src={p.image}
+                alt={`${t.projects.screenshot} ${p.title}`}
+                width="1200"
+                height="750"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 size-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              />
+              <span class="status absolute left-4 top-4" data-status={p.status}>{t.projects.status[p.status]}</span>
+              <span class="absolute bottom-3 right-3 bg-brand-navy/80 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-white opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
+                {p.gallery.length} {t.projects.photos}
+              </span>
+            </button>
+
+            <div class="flex flex-1 flex-col p-6">
+              <h3 class="text-2xl font-bold">{p.title}</h3>
+              <p class="desc mt-3 line-clamp-3 text-sm leading-relaxed">{p.description[lang]}</p>
+              <button type="button" class="more-btn mt-2 self-start font-mono text-[11px] uppercase tracking-wider text-blue-ink hover:underline" data-more={t.projects.more} data-less={t.projects.less} aria-expanded="false" hidden>
+                {t.projects.more}
+              </button>
+
+              <ul class="mono-icon mt-5 flex flex-wrap gap-1.5">
+                {p.tags.slice(0, 4).map((tag) => (
+                  <li class="chip">
+                    <TechIcon tech={tag} class="size-3.5" />
+                    {TECH[tag].name}
+                  </li>
+                ))}
+                {p.tags.length > 4 && <li class="chip">+{p.tags.length - 4} {t.projects.moreTags}</li>}
+              </ul>
+
+              <div class="mt-auto flex items-center gap-5 border-t border-line pt-5 font-display text-xs font-semibold uppercase tracking-[0.14em]">
+                {p.link && (
+                  <a href={p.link} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-ink transition-colors hover:text-red-ink">
+                    {t.projects.visit}
+                    <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                  </a>
+                )}
+                {p.github && (
+                  <a href={p.github} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-ink transition-colors hover:text-red-ink">
+                    {t.projects.code}
+                    <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4" /></svg>
+                  </a>
+                )}
+                <button type="button" class="ml-auto text-muted transition-colors hover:text-ink" data-lightbox={gallery(p)}>
+                  {t.projects.gallery}
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+
+<script>
+  // "Ver más" solo aparece si la descripción está recortada
+  document.querySelectorAll<HTMLButtonElement>(".more-btn").forEach((btn) => {
+    const desc = btn.previousElementSibling as HTMLElement
+    if (desc.scrollHeight <= desc.clientHeight + 2) return
+    btn.hidden = false
+    btn.addEventListener("click", () => {
+      const expanded = btn.getAttribute("aria-expanded") === "true"
+      desc.classList.toggle("line-clamp-3", expanded)
+      btn.setAttribute("aria-expanded", String(!expanded))
+      btn.textContent = (expanded ? btn.dataset.more : btn.dataset.less) || ""
+    })
+  })
+</script>
